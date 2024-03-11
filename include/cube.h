@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:49:18 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/11 11:50:51 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/11 12:17:29 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,20 @@
 # define SCREEN_LENGTH 2000
 # define SCREEN_HEIGHT 1300
 
+//standard library
+# include <unistd.h>
+# include <stdlib.h>
+# include <math.h>
+
+//libft and mlx library
 # include "mlx.h"
-# include "keycode.h"
-# include "stdlib.h"
-# include "unistd.h"
-# include "math.h"
 # include "ft_libft.h"
 # include "ft_printf.h"
 # include "get_next_line.h"
+
+//lib from cube3d
+# include "keycode.h"
+# include "utils.h"
+# include "controls.h"
 
 #endif /*!CUBE_H */
