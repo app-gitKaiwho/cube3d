@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:49:18 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/11 12:17:29 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/11 15:09:02 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 #ifndef CUBE_H
 # define CUBE_H
 
-# define SCREEN_LENGTH 2000
-# define SCREEN_HEIGHT 1300
+# define WL 1000
+# define WH 1000
 
 //standard library
 # include <unistd.h>
@@ -43,5 +43,7 @@
 # include "keycode.h"
 # include "utils.h"
 # include "controls.h"
+# include "struct.h"
+# include "display.h"
 
 #endif /*!CUBE_H */

@@ -1,28 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   controls.c                                         :+:      :+:    :+:   */
+/*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 12:02:40 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/11 14:51:48 by lvon-war         ###   ########.fr       */
+/*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
+/*   Updated: 2024/03/11 14:58:02 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#ifndef STRUCT_H
+# define STRUCT_H
 
-// invoked when the window is closed.
-int	exit_hook(void)
+typedef struct img
 {
-	exit(EXIT_SUCCESS);
-}
+	void	*img;
+	char	*data;
+	int		bpp;
+	int		line_size;
+	int		endian;
+}t_img;
 
-// basic keyborde hook
-int	keyhook(int keycode, void *param)
+typedef struct window
 {
-	(void)param;
-	if (keycode == ESC || keycode == CLOSE_WINDOW_KEY)
-		exit(EXIT_SUCCESS);
-	return (0);
-}
+	void	*ptr;
+	void	*mlx;
+	int		test;
+}t_window;
+
+typedef struct point
+{
+	double	x;
+	double	y;
+	double	z;
+}t_point;
+
+typedef struct rgb
+{
+	int	red;
+	int	green;
+	int	blue;
+}t_RGB;
+
+typedef struct data
+{
+	t_window	win;
+	t_img		img;
+}t_data;
+
+#endif /*!STRUCT_H */

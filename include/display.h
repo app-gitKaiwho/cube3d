@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   controls.c                                         :+:      :+:    :+:   */
+/*   display.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 12:02:40 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/11 14:51:48 by lvon-war         ###   ########.fr       */
+/*   Created: 2024/03/11 15:05:58 by lvon-war          #+#    #+#             */
+/*   Updated: 2024/03/11 15:09:25 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#ifndef DISPLAY_H
+# define DISPLAY_H
 
-// invoked when the window is closed.
-int	exit_hook(void)
-{
-	exit(EXIT_SUCCESS);
-}
+# include "struct.h"
 
-// basic keyborde hook
-int	keyhook(int keycode, void *param)
-{
-	(void)param;
-	if (keycode == ESC || keycode == CLOSE_WINDOW_KEY)
-		exit(EXIT_SUCCESS);
-	return (0);
-}
+//display.c 
+
+void	displayimg(t_data *d);
+void	fillimg(t_data *d);
+
+#endif /*!DISPLAY_H */
