@@ -1,6 +1,6 @@
-[submodule "libft"]
-	path = libft
+[submodule "include/libft"]
+	path = include/libft
 	url = https://github.com/app-gitKaiwho/libft
-[submodule "minilibx-linux"]
-	path = minilibx-linux
+[submodule "include/minilibx-linux"]
+	path = include/minilibx-linux
 	url = git@github.com:42Paris/minilibx-linux.git
