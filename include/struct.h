@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/11 14:58:02 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/11 21:02:50 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 typedef struct img
 {
 	void	*img;
-	char	*data;
+	char	*addr;
 	int		bpp;
 	int		line_size;
 	int		endian;
@@ -29,13 +29,6 @@ typedef struct window
 	int		test;
 }t_window;
 
-typedef struct point
-{
-	double	x;
-	double	y;
-	double	z;
-}t_point;
-
 typedef struct rgb
 {
 	int	red;
@@ -43,10 +36,19 @@ typedef struct rgb
 	int	blue;
 }t_RGB;
 
+typedef struct point
+{
+	double	x;
+	double	y;
+	double	z;
+	t_RGB	color;
+}t_point;
+
 typedef struct data
 {
 	t_window	win;
 	t_img		img;
+	t_point		*pixel;
 }t_data;
 
 #endif /*!STRUCT_H */

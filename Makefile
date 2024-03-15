@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+         #
+#    By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/25 16:52:50 by lvon-war          #+#    #+#              #
-#    Updated: 2024/03/11 15:05:38 by lvon-war         ###   ########.fr        #
+#    Updated: 2024/03/11 16:04:35 by lvon-war         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ LINKER := -L ./include/minilibx_macos -lmlx -lm
 FRAMEWORK := -framework Appkit -framework OpenGl
 MLX_PATH := ./include/minilibx_macos
 MLX := ./include/minilibx_macos/libmlx.a
+ECHOFLAG := 
 
 # Compliation under anything else (but only work under linux)
 else
@@ -53,6 +54,7 @@ LINKER := -L ./include/minilibx-linux -lmlx -lX11 -lXext -lm -I ./include/minili
 FRAMEWORK :=
 MLX_PATH := ./include/minilibx-linux
 MLX := ./include/minilibx-linux/libmlx.a
+ECHOFLAG := -e
 endif
 
 all :

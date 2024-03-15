@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:05:58 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/11 15:09:25 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:40:34 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@
 //display.c 
 
 void	displayimg(t_data *d);
-void	fillimg(t_data *d);
+void	put_pixel(t_point p, t_data *d);
 
 #endif /*!DISPLAY_H */
