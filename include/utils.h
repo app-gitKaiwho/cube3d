@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:14:25 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/15 10:45:00 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/15 15:14:00 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 //utils.c 
 
 void	error_handler(char *txt, int code);
+int		break_point(t_vector AB, t_point current);
 int		rgb_to_int(t_RGB color);
 void	free_data(t_data *data);
 

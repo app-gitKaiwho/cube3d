@@ -6,14 +6,14 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/15 14:08:54 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/15 15:10:52 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CALC_H
 # define CALC_H
 
-# include "cube.h"
+# include "struct.h"
 
 double	calculate_slope(t_vector AB);
 

@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:54:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/15 14:35:49 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/15 16:02:30 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,11 @@ void	put_line(t_vector AB, t_data *d)
 	delta.y = delta.y / steps;
 	inc.x = AB.a.x;
 	inc.y = AB.a.y;
-	while ((int)(inc.x - AB.b.x) < 1 || (int)(inc.y - AB.b.y) < 1)
+	while ((int)(inc.x - AB.b.x) < 1 &&
+		(int)(inc.y - AB.b.y) < 1)
 	{
+		if (break_point(AB, inc))
+			break ;
 		put_pixel((t_point){inc.x, inc.y, 0, AB.a.color}, d);
 		inc.x += delta.x;
 		inc.y += delta.y;
