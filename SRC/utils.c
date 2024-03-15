@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:05:24 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/15 11:19:55 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/15 12:39:52 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	rgb_to_int(t_RGB color)
 	return ((color.red << 16) + (color.green << 8) + color.blue);
 }
 
+//free win.mlx and data itself
 void	free_data(t_data *data)
 {
 	free(data->win.mlx);
