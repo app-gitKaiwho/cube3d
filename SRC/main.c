@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:48:49 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/15 12:36:06 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/15 12:54:56 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(void)
 	t_data	*data;
 
 	data = initdata();
-	put_pixel((t_point){WH / 2, WL / 2, 0, (t_RGB){0, 0, 255}}, data);
+	put_pixel((t_point){WL / 2, WH / 2, 0, (t_RGB){0, 0, 255}}, data);
 	mlx_key_hook(data->win.ptr, &keyhook, data);
 	mlx_loop_hook(data->win.mlx, loopydyloop, data);
 	mlx_loop(data->win.mlx);

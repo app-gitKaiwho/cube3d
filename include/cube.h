@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:49:18 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/15 11:19:19 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/15 12:52:22 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 #ifndef CUBE_H
 # define CUBE_H
 
-# define WL 1000
-# define WH 1000
+# define WL 1920
+# define WH 1080
 
 //standard library
 # include <unistd.h>

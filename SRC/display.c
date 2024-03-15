@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:54:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/15 12:37:24 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/15 14:28:54 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,44 +30,44 @@ void	put_pixel(t_point p, t_data *d)
 
 void	put_line(t_vector AB, t_data *d)
 {
-	t_point	p;
-	double	slope;
-	double	inc;
+	t_point	delta;
+	t_point	inc;
+	double	steps;
 
-	inc = 0.1;
-	slope = calculate_slope(AB);
-	p = (t_point){AB.a.x, AB.a.y, 0, (t_RGB){255, 255, 255}};
-	while (p.x / AB.b.x < 1 && p.y / AB.b.y < 1)
+	delta.x = AB.b.x - AB.a.x;
+	delta.y = AB.b.y - AB.a.y;
+	if (fabs(delta.x) > fabs(delta.y))
+		steps = fabs(delta.x);
+	else
+		steps = fabs(delta.y);
+	delta.x = delta.x / steps;
+	delta.y = delta.y / steps;
+	inc.x = AB.a.x;
+	inc.y = AB.a.y;
+	while ((int)(inc.x - AB.b.x) < 1 || (int)(inc.y - AB.b.y) < 1)
 	{
-		p.x = p.x + (slope * inc);
-		p.y = p.y + (slope * inc);
-		if (p.x < 0)
-			p.x = 0;
-		if (p.y < 0)
-			p.y = 0;
-		if (p.x > WL)
-			p.x = WL;
-		if (p.y > WH)
-			p.y = WH;
-		p.color = (t_RGB){255, 255, 255};
-		put_pixel(p, d);
+		if (inc.x < 0 || inc.y < 0 || inc.x > WL || inc.y > WH)
+			break ;
+		put_pixel((t_point){inc.x, inc.y, 0, AB.a.color}, d);
+		inc.x += delta.x;
+		inc.y += delta.y;
 	}
 }
 
-void	clear_img(t_data *d)
+void	clear_img(t_data	*d)
 {
 	int		i;
 	int		j;
 
-	i = 0;
-	while (i < WH)
+	j = 0;
+	while (j < WH)
 	{
-		j = 0;
-		while (j < WL)
+		i = 0;
+		while (i < WL)
 		{
 			put_pixel((t_point){i, j, 0, (t_RGB){0, 0, 0}}, d);
-			j++;
+			i++;
 		}
-		i++;
+		j++;
 	}
 }
