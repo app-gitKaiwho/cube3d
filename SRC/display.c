@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:54:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/15 14:28:54 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/15 14:35:49 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	put_pixel(t_point p, t_data *d)
 {
 	int		index;
 
+	if (p.x <= 0 || p.y <= 0 || p.x >= WL || p.y >= WH)
+		return ;
 	index = ((WH - (int)p.y) * d->img.line_size + (int)p.x * d->img.bpp / 8);
 	d->img.addr[index] = p.color.blue;
 	d->img.addr[index + 1] = p.color.green;
@@ -46,8 +48,6 @@ void	put_line(t_vector AB, t_data *d)
 	inc.y = AB.a.y;
 	while ((int)(inc.x - AB.b.x) < 1 || (int)(inc.y - AB.b.y) < 1)
 	{
-		if (inc.x < 0 || inc.y < 0 || inc.x > WL || inc.y > WH)
-			break ;
 		put_pixel((t_point){inc.x, inc.y, 0, AB.a.color}, d);
 		inc.x += delta.x;
 		inc.y += delta.y;
