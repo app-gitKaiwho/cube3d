@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Keycode.h                                          :+:      :+:    :+:   */
+/*   keycode.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 11:54:56 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/11 11:49:31 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/15 11:20:38 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,16 @@
 #  define ARROW_RIGHT 124 
 #  define ARROW_DOWN 125
 #  define RESET 15 //r
-#  define ROT_LEFT 0 //A
-#  define ROT_UP 13 //W
-#  define ROT_DOWN 1 //S
-#  define ROT_RIGHT 2 //D
-#  define BARREL_ROLL_LEFT 12//Q
-#  define BARREL_ROLL_RIGHT 14//E
-#  define ISO_VIEW 34 // I
-#  define FRONT_VIEW 3 // F
-#  define LOWER_H 40//j
-#  define UPPY_H 38//k
+#  define LEFT 0 //A
+#  define UP 13 //W
+#  define DOWN 1 //S
+#  define RIGHT 2 //D
+#  define LEAN_LEFT 12//Q
+#  define LEAN_RIGT 14//E
+#  define INVENTORY 34 // I
+#  define INTERACT 3 // F
+#  define OPTION1 40//j
+#  define OPTION2 38//k
 # else
 //compiled if not on macOS
 #  define ESC 65307 // Escape key on Linux

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:48:49 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/12 10:53:46 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/15 12:36:06 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ t_data	*initdata(void)
 	t_data	*data;
 
 	data = malloc(sizeof(t_data));
-	data->pixel = initpixels();
 	if (!data)
 		error_handler("Failed to init data", 1);
 	data->win.mlx = mlx_init();
@@ -45,8 +44,10 @@ int	main(void)
 
 	data = initdata();
 	put_pixel((t_point){WH / 2, WL / 2, 0, (t_RGB){0, 0, 255}}, data);
+	mlx_key_hook(data->win.ptr, &keyhook, data);
 	mlx_loop_hook(data->win.mlx, loopydyloop, data);
 	mlx_loop(data->win.mlx);
 	free_data(data);
+	error_handler("Failed to init data", 1);
 	return (0);
 }

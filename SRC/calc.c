@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   calc.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 12:14:25 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/15 10:45:00 by lvon-war         ###   ########.fr       */
+/*   Created: 2024/03/15 11:14:25 by lvon-war          #+#    #+#             */
+/*   Updated: 2024/03/15 11:55:22 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "cube.h"
 
-# include "struct.h"
+double	calculate_slope(t_vector AB)
+{
+	double	dy;
+	double	dx;
+	double	slope;
 
-//utils.c 
-
-void	error_handler(char *txt, int code);
-int		rgb_to_int(t_RGB color);
-void	free_data(t_data *data);
-
-#endif /*!CUBE_H */
+	dy = AB.b.y - AB.a.y;
+	dx = AB.b.x - AB.a.x;
+	slope = dy / dx;
+	return (slope);
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/11 21:02:50 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/15 12:38:39 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct rgb
 	int	blue;
 }t_RGB;
 
+//in order x, y, z, color
 typedef struct point
 {
 	double	x;
@@ -44,11 +45,17 @@ typedef struct point
 	t_RGB	color;
 }t_point;
 
+//a = start, b = end
+typedef struct vector
+{
+	t_point	a;
+	t_point	b;
+}t_vector;
+
 typedef struct data
 {
 	t_window	win;
 	t_img		img;
-	t_point		*pixel;
 }t_data;
 
 #endif /*!STRUCT_H */

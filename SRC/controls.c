@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:02:40 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/11 14:51:48 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/15 12:36:57 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,15 @@ int	exit_hook(void)
 // basic keyborde hook
 int	keyhook(int keycode, void *param)
 {
-	(void)param;
-	if (keycode == ESC || keycode == CLOSE_WINDOW_KEY)
+	struct data	*d;
+
+	d = (t_data *)param;
+	if (keycode == ESC || keycode == CLOSE_WINDOW_KEY || keycode == LEAN_LEFT)
 		exit(EXIT_SUCCESS);
+	if (keycode == RESET)
+		clear_img(d);
+	if (keycode == PLUS)
+		put_line((t_vector){(t_point){0, 0, 0, (t_RGB){255, 255, 255}},
+			(t_point){WL, WH, 0, (t_RGB){255, 255, 255}}}, d);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:49:18 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/11 15:09:02 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/15 11:19:19 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@
 # include "controls.h"
 # include "struct.h"
 # include "display.h"
+# include "calc.h"
 
 #endif /*!CUBE_H */
