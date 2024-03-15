@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 12:05:24 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/15 15:18:21 by lvon-war         ###   ########.fr       */
+/*   Created: 2024/03/15 18:23:20 by lvon-war          #+#    #+#             */
+/*   Updated: 2024/03/15 19:26:16 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	free_data(t_data *data)
 	free(data);
 }
 
+///	@brief check if a point is out of the window. based on vector's direction
 int	break_point(t_vector AB, t_point current)
 {
 	int	is_out;
@@ -49,7 +50,13 @@ int	break_point(t_vector AB, t_point current)
 		is_out = 1;
 	else if (current.y > WH)
 		is_out = 1;
-	if (is_out)
-		ft_printf("break point\n");
 	return (is_out);
+}
+
+/// @brief clear the image with a default bg (change color)
+void	clear_img(t_data *d)
+{
+	put_square((t_point){0, WH / 2, 0, (t_RGB){102, 204, 255}}, WL, WH / 2, d);
+	put_square((t_point){0, 0, 0, (t_RGB){204, 204, 204}}, WL, WH / 2, d);
+
 }

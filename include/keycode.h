@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keycode.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 11:54:56 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/15 11:20:38 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:13:51 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,16 @@
 #  define ARROW_RIGHT 65363 
 #  define ARROW_DOWN 65364
 #  define RESET 114 //r
-#  define ROT_LEFT 97//A
-#  define ROT_UP  119//W
-#  define ROT_DOWN  115//S
-#  define ROT_RIGHT 100//D
-#  define BARREL_ROLL_LEFT 113//Q
-#  define BARREL_ROLL_RIGHT 101//E
-#  define ISO_VIEW 105 // I
-#  define FRONT_VIEW 102 // F
-#  define LOWER_H 107//k
-#  define UPPY_H 106//j
+#  define LEFT 97//A
+#  define UP  119//W
+#  define DOWN  115//S
+#  define RIGHT 100//D
+#  define LEAN_LEFT 113//Q
+#  define LEAN_RIGT 101//E
+#  define INVENTORY 105 // I
+#  define INTERACT 102 // F
+#  define OPTION1 107//k
+#  define OPTION2 106//j
 # endif /*!__APPLE__ */
 
 # define CLOSE_WINDOW_KEY 17 //aka destroy signal

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:05:58 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/15 11:22:24 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/15 19:24:32 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 //display.c 
 
 void	displayimg(t_data *d);
-void	clear_img(t_data *d);
 void	put_pixel(t_point p, t_data *d);
 void	put_line(t_vector AB, t_data *d);
+void	put_square(t_point center, int width, int length, t_data *d);
 
 #endif /*!DISPLAY_H */

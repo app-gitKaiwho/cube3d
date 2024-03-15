@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:54:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/15 16:02:30 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/15 19:25:49 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,19 @@ void	put_line(t_vector AB, t_data *d)
 	}
 }
 
-void	clear_img(t_data	*d)
+void	put_square(t_point center, int x, int y, t_data *d)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
 	j = 0;
-	while (j < WH)
+	while (j < y)
 	{
 		i = 0;
-		while (i < WL)
+		while (i < x)
 		{
-			put_pixel((t_point){i, j, 0, (t_RGB){0, 0, 0}}, d);
+			put_pixel((t_point){center.x + i, center.y + j,
+				0, center.color}, d);
 			i++;
 		}
 		j++;
