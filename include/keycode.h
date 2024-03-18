@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 11:54:56 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/15 18:13:51 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/18 16:52:19 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,5 @@
 # endif /*!__APPLE__ */
 
 # define CLOSE_WINDOW_KEY 17 //aka destroy signal
+
 #endif /*!KEYCODE_H */

@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/18 15:10:58 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/18 19:06:04 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,6 @@ typedef struct vector
 	t_point	b;
 }	t_vector;
 
-typedef struct data
-{
-	t_window	win;
-	t_img		img;
-	int			focal;
-	int			fov;
-	int			render_distance;
-	char		*bg;
-}	t_data;
-
 typedef struct object
 {
 	t_point		pos;
@@ -88,5 +78,27 @@ typedef struct sprite
 	t_point2d	size;
 	t_RGB		*texture;
 }	t_sprite;
+
+//c for current
+typedef struct world
+{
+	t_point		spawn;
+	int			nb_obj;
+	t_object	*c_obj;
+	t_sprite	*c_sprite;
+	int			nb_sprite;
+
+}	t_world;
+
+typedef struct data
+{
+	t_window	win;
+	t_img		img;
+	int			fov;
+	char		*bg;
+	int			focal;
+	t_world		world;
+	int			render_distance;
+}	t_data;
 
 #endif /*!STRUCT_H */

@@ -6,13 +6,12 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:03:50 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/18 15:51:10 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/18 20:53:06 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-//remove free when map is implemented
 void	put_sprite(t_data *d, t_sprite s)
 {
 	int		i;
@@ -36,35 +35,36 @@ void	put_sprite(t_data *d, t_sprite s)
 		}
 		j++;
 	}
-	if (s.texture)
-		free(s.texture);
 }
 
-/// @brief color to be changed for texture + be sure to follow it's memory
-/// @param pos left corner of the object
-/// @param size self explanatory
-/// @param color self explanatory
-t_sprite	create_sprite(t_point2d pos, t_point2d size, t_RGB color)
+/// @brief pop a chosen sprite. if it doesn't exist pop the first one
+/// @param d data structure
+/// @param index pos
+void	pop_sprite(t_data *d, int index)
 {
-	t_sprite	sprite;
+	t_sprite	*tmp;
 	int			i;
+	int			found;
 
 	i = 0;
-	sprite.pos = pos;
-	sprite.size = size;
-	sprite.texture = malloc(sizeof(t_RGB) * size.x * size.y);
-	while (i < size.x * size.y)
+	found = 0;
+	if (d->world.nb_sprite <= 0)
+		return ;
+	if (index >= d->world.nb_sprite || index < 0)
+		index = 0;
+	if (d->world.nb_sprite > 1)
 	{
-		sprite.texture[i] = color;
-		i++;
+		tmp = malloc(sizeof(t_sprite) * (d->world.nb_sprite - 1));
+		while (i < d->world.nb_sprite - 1)
+		{
+			if (i == index)
+				found = 1;
+			tmp[i] = d->world.c_sprite[i + found];
+			i++;
+		}
 	}
-	return (sprite);
-}
-
-t_object	*create_object(t_point pos, t_point2d size, t_RGB color)
-{
-	(void)pos;
-	(void)size;
-	(void)color;
-	return (NULL);
+	free(d->world.c_sprite[index].texture);
+	free(d->world.c_sprite);
+	d->world.c_sprite = tmp;
+	d->world.nb_sprite--;
 }

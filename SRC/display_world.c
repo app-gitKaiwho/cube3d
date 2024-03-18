@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   object.h                                           :+:      :+:    :+:   */
+/*   display_world.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/18 15:29:59 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/18 19:36:06 by lvon-war         ###   ########.fr       */
+/*   Created: 2024/03/18 16:49:51 by lvon-war          #+#    #+#             */
+/*   Updated: 2024/03/18 17:15:23 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef OBJECT_H
-# define OBJECT_H
+#include "cube.h"
 
-# include "struct.h"
+void	display_sprite(t_data *d)
+{
+	int		i;
 
-void		pop_sprite(t_data *d, int index);
-void		put_sprite(t_data *d, t_sprite s);
-void		sprite_add(t_data *d, t_sprite s);
-t_object	*create_object(t_point pos, t_point2d size, t_RGB color);
-t_sprite	create_sprite(t_point2d pos, t_point2d size, t_RGB color);
+	i = 0;
+	if (d->world.nb_sprite <= 0)
+		return ;
+	while (i < d->world.nb_sprite)
+	{
+		put_sprite(d, d->world.c_sprite[i]);
+		i++;
+	}
+}
 
-#endif /* OBJECT_H */

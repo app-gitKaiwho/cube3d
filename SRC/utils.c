@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 18:23:20 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/18 15:15:54 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/18 19:44:36 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,6 @@ t_RGB	int_to_rgb(int color)
 	return (rgb);
 }
 
-//free win.mlx and data itself
-void	free_data(t_data *data)
-{
-	free(data->win.mlx);
-	free(data);
-}
 
 ///	@brief check if a point is out of the window. based on vector's direction
 int	break_point(t_vector AB, t_point current)
