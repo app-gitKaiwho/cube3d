@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:02:40 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/15 19:24:18 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/18 16:19:51 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ int	keyhook(int keycode, void *param)
 	if (keycode == RESET)
 		clear_img(d);
 	if (keycode == PLUS)
-		put_square((t_point){WL / 2, WH / 2, 0, (t_RGB){0, 0, 255}}, 100, 100, d);
+		return (0);
 	if (keycode == MINUS)
-		put_line((t_vector){(t_point){100, WH / 2, 0, (t_RGB){0, 0, 255}},
-			(t_point){WL + 1, WH / 2, 0, (t_RGB){0, 0, 255}}}, d);
+	{
+		put_sprite(d, create_sprite((t_point2d){-500, 200},
+				(t_point2d){1000, 100}, int_to_rgb(RED)));
+	}
 	return (0);
 }

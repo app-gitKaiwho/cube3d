@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calc.c                                             :+:      :+:    :+:   */
+/*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 11:14:25 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/18 14:59:23 by lvon-war         ###   ########.fr       */
+/*   Created: 2024/03/18 15:29:59 by lvon-war          #+#    #+#             */
+/*   Updated: 2024/03/18 16:30:48 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#ifndef OBJECT_H
+# define OBJECT_H
 
-//unused function
-double	calculate_slope(t_vector AB)
-{
-	double	dy;
-	double	dx;
-	double	slope;
+# include "struct.h"
 
-	dy = AB.b.y - AB.a.y;
-	dx = AB.b.x - AB.a.x;
-	slope = dy / dx;
-	return (slope);
-}
+void		put_sprite(t_data *d, t_sprite s);
+t_object	*create_object(t_point pos, t_point2d size, t_RGB color);
+t_sprite	create_sprite(t_point2d pos, t_point2d size, t_RGB color);
+
+#endif /* OBJECT_H */

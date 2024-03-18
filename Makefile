@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+         #
+#    By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/25 16:52:50 by lvon-war          #+#    #+#              #
-#    Updated: 2024/03/15 16:06:02 by lvon-war         ###   ########.fr        #
+#    Updated: 2024/03/18 15:29:45 by lvon-war         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ ENAME	=	cube3d
 NAME	=	cube3d.a
 CFLAGS	=	-Wall -Werror -Wextra
 AR		=	ar -rsc
-FILES	=	main.c controls.c utils.c display.c calc.c
+FILES	=	main.c controls.c utils.c display.c calc.c object.c
 
 # Path for .c , .h and .o Files 
 LIBFT	=	./include/libft/lib.a

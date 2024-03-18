@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 18:23:20 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/15 19:26:16 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/18 15:15:54 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,16 @@ void	error_handler(char *txt, int code)
 int	rgb_to_int(t_RGB color)
 {
 	return ((color.red << 16) + (color.green << 8) + color.blue);
+}
+
+t_RGB	int_to_rgb(int color)
+{
+	t_RGB	rgb;
+
+	rgb.red = (color & 0xFF0000) >> 16;
+	rgb.green = (color & 0xFF00) >> 8;
+	rgb.blue = color & 0xFF;
+	return (rgb);
 }
 
 //free win.mlx and data itself
@@ -51,12 +61,4 @@ int	break_point(t_vector AB, t_point current)
 	else if (current.y > WH)
 		is_out = 1;
 	return (is_out);
-}
-
-/// @brief clear the image with a default bg (change color)
-void	clear_img(t_data *d)
-{
-	put_square((t_point){0, WH / 2, 0, (t_RGB){102, 204, 255}}, WL, WH / 2, d);
-	put_square((t_point){0, 0, 0, (t_RGB){204, 204, 204}}, WL, WH / 2, d);
-
 }

@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:54:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/15 19:25:49 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/18 14:53:38 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	displayimg(t_data *d)
 		mlx_put_image_to_window(d->win.mlx, d->win.ptr, d->img.img, 0, 0);
 }
 
-void	put_pixel(t_point p, t_data *d)
+void	put_pixel(t_pixel p, t_data *d)
 {
 	int		index;
 
@@ -30,48 +30,55 @@ void	put_pixel(t_point p, t_data *d)
 	d->img.addr[index + 2] = p.color.red;
 }
 
-void	put_line(t_vector AB, t_data *d)
+void	put_line(t_vector V, t_data *d)
 {
 	t_point	delta;
 	t_point	inc;
 	double	steps;
 
-	delta.x = AB.b.x - AB.a.x;
-	delta.y = AB.b.y - AB.a.y;
+	delta.x = V.b.x - V.a.x;
+	delta.y = V.b.y - V.a.y;
 	if (fabs(delta.x) > fabs(delta.y))
 		steps = fabs(delta.x);
 	else
 		steps = fabs(delta.y);
 	delta.x = delta.x / steps;
 	delta.y = delta.y / steps;
-	inc.x = AB.a.x;
-	inc.y = AB.a.y;
-	while ((int)(inc.x - AB.b.x) < 1 &&
-		(int)(inc.y - AB.b.y) < 1)
+	inc.x = V.a.x;
+	inc.y = V.a.y;
+	while ((int)(inc.x - V.b.x) < 1 && (int)(inc.y - V.b.y) < 1)
 	{
-		if (break_point(AB, inc))
+		if (break_point(V, inc))
 			break ;
-		put_pixel((t_point){inc.x, inc.y, 0, AB.a.color}, d);
+		put_pixel((t_pixel){inc.x, inc.y, 0, (t_RGB){0, 0, 255}}, d);
 		inc.x += delta.x;
 		inc.y += delta.y;
 	}
 }
 
-void	put_square(t_point center, int x, int y, t_data *d)
+void	put_square(t_pixel cen, t_point2d size, t_data *d)
 {
 	int	i;
 	int	j;
 
 	j = 0;
-	while (j < y)
+	while (j < size.y)
 	{
 		i = 0;
-		while (i < x)
+		while (i < size.x)
 		{
-			put_pixel((t_point){center.x + i, center.y + j,
-				0, center.color}, d);
+			put_pixel((t_pixel){cen.x + i, cen.y + j, 0, cen.color}, d);
 			i++;
 		}
 		j++;
 	}
+}
+
+/// @brief clear the image with a default bg (change color)
+void	clear_img(t_data *d)
+{
+	put_square((t_pixel){0, WH / 2, 0, (t_RGB){102, 204, 255}},
+		(t_point2d){WL, WH / 2}, d);
+	put_square((t_pixel){0, 0, 0, (t_RGB){204, 204, 204}},
+		(t_point2d){WL, WH / 2}, d);
 }

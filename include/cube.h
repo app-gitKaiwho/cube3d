@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:49:18 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/15 12:52:22 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/18 15:34:39 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@
 
 # define WL 1920
 # define WH 1080
+# define BLUE 0x0000FF
+# define RED 0xFF0000
+# define GREEN 0x00FF00
 
 //standard library
 # include <unistd.h>
@@ -46,5 +49,8 @@
 # include "struct.h"
 # include "display.h"
 # include "calc.h"
+
+//object
+# include "object.h"
 
 #endif /*!CUBE_H */
