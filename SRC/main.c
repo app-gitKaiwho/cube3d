@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:48:49 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/18 20:50:27 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/18 20:55:35 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,14 @@ int	loopydyloop(void *param)
 {
 	struct data		*d;
 	static int		frame;
-	//static t_RGB	color;
+	static t_RGB	color;
 
 	frame++;
 	d = (t_data *)param;
-	/*
 	if (frame % 100 == 0)
 		color = int_to_rgb(rand());
 	put_sprite(d, create_sprite((t_point2d){20, WH - (300 + 10)},
 			(t_point2d){300, 300}, color));
-	*/
 	display_sprite(d);
 	displayimg(d);
 	return (0);
