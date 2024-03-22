@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 16:49:51 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/22 11:14:44 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/22 13:27:38 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	display_world_sprite(t_data *d)
 		return ;
 	while (i < d->world.nb_sprite)
 	{
-		put_sprite(d, d->world.c_sprite[i]);
+		sprite_put(d, d->world.c_sprite[i]);
 		i++;
 	}
 }

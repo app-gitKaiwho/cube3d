@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:02:40 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/18 20:43:11 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/22 13:27:21 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	keyhook(int keycode, void *param)
 	if (keycode == RESET)
 		clear_img(d);
 	if (keycode == PLUS)
-		sprite_add(d, create_sprite((t_point2d){-500, 200},
+		sprite_add(d, sprite_create((t_point2d){-500, 200},
 				(t_point2d){1000, 100}, int_to_rgb(GREEN)));
 	if (keycode == MINUS)
-		pop_sprite(d, 1);
+		sprite_pop(d, 1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:48:49 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/22 12:49:07 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/22 13:24:52 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ t_data	*initdata(void)
 	mlx_key_hook(data->win.ptr, &keyhook, NULL);
 	data->world = init_world();
 	clear_img(data);
-	sprite_add(data, create_sprite((t_point2d){10, WH - 210},
+	sprite_add(data, sprite_create((t_point2d){10, WH - 210},
 			(t_point2d){200, 200}, int_to_rgb(BLUE)));
-	sprite_add(data, create_sprite((t_point2d){WL / 2, WH - (300 + 10)},
+	sprite_add(data, sprite_create((t_point2d){WL / 2, WH - (300 + 10)},
 			(t_point2d){300, 300}, int_to_rgb(RED)));
-	sprite_add(data, create_sprite((t_point2d){WL / 2, 10},
+	sprite_add(data, sprite_create((t_point2d){WL / 2, 10},
 			(t_point2d){300, 300}, int_to_rgb(GREEN)));
 	return (data);
 }
@@ -59,7 +59,7 @@ int	animation(t_data *d, int frame)
 	if (frame % 5 == 0)
 	{
 		color = int_to_rgb(rand());
-		edit_sprite(d, 0, create_sprite((t_point2d){10, WH - 210},
+		sprite_edit(d, 0, sprite_create((t_point2d){10, WH - 210},
 				(t_point2d){200, 200}, color));
 	}
 	return (frame);
