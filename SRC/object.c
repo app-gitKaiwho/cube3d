@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:03:50 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/22 14:11:06 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/22 21:34:51 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 t_object	object_create(t_point pos, t_point	size, t_RGB **textures)
 {
 	t_object	object;
-	int			i;
 
-	i = 0;
 	object.pos = pos;
 	object.size = size;
 	object.textures = textures;
@@ -53,20 +51,6 @@ int	object_add(t_data *d, t_object o)
 	return (i);
 }
 
-void	object_free_texture(t_data *d)
-{
-	int	i;
-
-	i = 0;
-	while (d->world.c_obj->textures[i])
-	{
-		free(d->world.c_obj->textures[i]);
-		i++;
-	}
-	if (d->world.c_obj->textures)
-		free(d->world.c_obj->textures);
-}
-
 /// @brief pop a chosen sprite. if it doesn't exist pop the first one
 /// @param d data structure
 /// @param index pos
@@ -94,6 +78,7 @@ void	object_pop(t_data *d, int index)
 		}
 	}
 	object_free_texture(d);
+	free(d->world.c_obj);
 	d->world.c_obj = tmp;
 	d->world.nb_obj--;
 }
