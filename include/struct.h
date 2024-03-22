@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/18 19:06:04 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/22 12:14:52 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,17 @@ typedef struct object
 {
 	t_point		pos;
 	t_point2d	size;
-	t_RGB		*texture;
+	t_RGB		*n;
+	t_RGB		*s;
+	t_RGB		*e;
+	t_RGB		*w;
+	t_RGB		*top;
+	t_RGB		*bottom;
 }	t_object;
 
 typedef struct sprite
 {
+	int			id;
 	t_point2d	pos;
 	t_point2d	size;
 	t_RGB		*texture;
@@ -83,6 +89,8 @@ typedef struct sprite
 typedef struct world
 {
 	t_point		spawn;
+	int			sky;
+	int			earth;
 	int			nb_obj;
 	t_object	*c_obj;
 	t_sprite	*c_sprite;
@@ -95,7 +103,8 @@ typedef struct data
 	t_window	win;
 	t_img		img;
 	int			fov;
-	char		*bg;
+	int			sky;
+	int			earth;
 	int			focal;
 	t_world		world;
 	int			render_distance;

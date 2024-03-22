@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:49:18 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/18 15:34:39 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/22 11:04:18 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,8 @@
 
 //object
 # include "object.h"
+
+//sprite
+# include "sprite.h"
 
 #endif /*!CUBE_H */

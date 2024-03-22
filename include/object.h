@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:29:59 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/18 19:36:06 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/22 11:01:57 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,6 @@
 
 # include "struct.h"
 
-void		pop_sprite(t_data *d, int index);
-void		put_sprite(t_data *d, t_sprite s);
-void		sprite_add(t_data *d, t_sprite s);
 t_object	*create_object(t_point pos, t_point2d size, t_RGB color);
-t_sprite	create_sprite(t_point2d pos, t_point2d size, t_RGB color);
 
 #endif /* OBJECT_H */

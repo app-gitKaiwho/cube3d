@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   display_world.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 16:49:51 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/18 17:15:23 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/22 11:14:44 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void	display_sprite(t_data *d)
+/// @brief displays every global sprite
+void	display_world_sprite(t_data *d)
 {
 	int		i;
 

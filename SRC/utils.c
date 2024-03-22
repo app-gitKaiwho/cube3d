@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 18:23:20 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/18 19:44:36 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/22 12:47:27 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ int	rgb_to_int(t_RGB color)
 	return ((color.red << 16) + (color.green << 8) + color.blue);
 }
 
+/// @brief convert an int to a t_RGB struct usefull with rand() for example.
+/// @param color the int to convert.
+/// @return a rgb struct.
 t_RGB	int_to_rgb(int color)
 {
 	t_RGB	rgb;
@@ -38,7 +41,6 @@ t_RGB	int_to_rgb(int color)
 	rgb.blue = color & 0xFF;
 	return (rgb);
 }
-
 
 ///	@brief check if a point is out of the window. based on vector's direction
 int	break_point(t_vector AB, t_point current)

@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   sprite.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 12:14:25 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/22 11:30:47 by lvon-war         ###   ########.fr       */
+/*   Created: 2024/03/22 11:01:25 by lvon-war          #+#    #+#             */
+/*   Updated: 2024/03/22 11:02:14 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#ifndef SPRITE_H
+# define SPRITE_H
 
 # include "struct.h"
 
-//utils.c 
+void		pop_sprite(t_data *d, int index);
+void		put_sprite(t_data *d, t_sprite s);
+int			sprite_add(t_data *d, t_sprite s);
+void		edit_sprite(t_data *d, int index, t_sprite s);
+t_sprite	create_sprite(t_point2d pos, t_point2d size, t_RGB color);
 
-int			break_point(t_vector AB, t_point current);
-void		error_handler(char *txt, int code);
-t_sprite	*file_to_sprite(char *path);
-int			rgb_to_int(t_RGB color);
-void		free_sprite(t_sprite *s);
-void		free_data(t_data *data);
-t_RGB		int_to_rgb(int color);
 
-#endif /*!CUBE_H */
+#endif /* SPRITE_H */

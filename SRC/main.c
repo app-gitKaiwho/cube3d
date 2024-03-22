@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:48:49 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/18 20:55:35 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/22 12:49:07 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ t_world	init_world(void)
 	t_world	world;
 
 	world.spawn = (t_point){0, 0, 0};
+	world.earth = 0xbf9c6d;
+	world.sky = 0x9deaed;
 	world.nb_obj = 0;
 	world.nb_sprite = 0;
 	return (world);
@@ -34,15 +36,33 @@ t_data	*initdata(void)
 	data->img.img = mlx_new_image(data->win.mlx, WL, WH);
 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bpp,
 			&data->img.line_size, &data->img.endian);
-	clear_img(data);
 	mlx_hook(data->win.ptr, CLOSE_WINDOW_KEY, 0, &exit_hook, NULL);
 	mlx_key_hook(data->win.ptr, &keyhook, NULL);
 	data->world = init_world();
+	clear_img(data);
+	sprite_add(data, create_sprite((t_point2d){10, WH - 210},
+			(t_point2d){200, 200}, int_to_rgb(BLUE)));
 	sprite_add(data, create_sprite((t_point2d){WL / 2, WH - (300 + 10)},
 			(t_point2d){300, 300}, int_to_rgb(RED)));
 	sprite_add(data, create_sprite((t_point2d){WL / 2, 10},
 			(t_point2d){300, 300}, int_to_rgb(GREEN)));
 	return (data);
+}
+
+//do thing every frame
+int	animation(t_data *d, int frame)
+{
+	static t_RGB	color;
+
+	if (frame == 100000)
+		frame = 0;
+	if (frame % 5 == 0)
+	{
+		color = int_to_rgb(rand());
+		edit_sprite(d, 0, create_sprite((t_point2d){10, WH - 210},
+				(t_point2d){200, 200}, color));
+	}
+	return (frame);
 }
 
 //animation leak is normal it's a feature
@@ -51,15 +71,12 @@ int	loopydyloop(void *param)
 {
 	struct data		*d;
 	static int		frame;
-	static t_RGB	color;
 
 	frame++;
+
 	d = (t_data *)param;
-	if (frame % 100 == 0)
-		color = int_to_rgb(rand());
-	put_sprite(d, create_sprite((t_point2d){20, WH - (300 + 10)},
-			(t_point2d){300, 300}, color));
-	display_sprite(d);
+	frame = animation(d, frame);
+	display_world_sprite(d);
 	displayimg(d);
 	return (0);
 }
