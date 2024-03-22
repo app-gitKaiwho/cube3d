@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:14:25 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/22 11:30:47 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/22 14:09:06 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 //utils.c 
 
+t_RGB	*texture_monchrome_create(t_point2d size, t_RGB color);
 int			break_point(t_vector AB, t_point current);
 void		error_handler(char *txt, int code);
 t_sprite	*file_to_sprite(char *path);

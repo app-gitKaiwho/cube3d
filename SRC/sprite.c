@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:03:50 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/22 13:28:39 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/22 13:34:05 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void	sprite_edit(t_data *d, int index, t_sprite s)
 
 
 /// @brief add a sprite to the world
+/// @return id of the sprite
 int	sprite_add(t_data *d, t_sprite s)
 {
 	t_sprite	*tmp;
@@ -90,6 +91,8 @@ int	sprite_add(t_data *d, t_sprite s)
 
 	i = 0;
 	tmp = malloc(sizeof(t_sprite) * (d->world.nb_sprite + 1));
+	if (!tmp)
+		error_handler("Failed to add sprite", 1);
 	if (d->world.nb_sprite > 0)
 	{
 		while (i < d->world.nb_sprite)

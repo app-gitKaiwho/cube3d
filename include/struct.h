@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/22 13:20:11 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/22 13:45:25 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,10 @@ typedef struct vector
 //for texture : Nord = 0, Sud = 1, Est = 2, West = 3
 typedef struct object
 {
-	t_point		pos;
-	t_point2d	size;
-	t_RGB		**texture;
+	int		id;
+	t_point	pos;
+	t_point	size;
+	t_RGB	**textures;
 }	t_object;
 
 typedef struct sprite

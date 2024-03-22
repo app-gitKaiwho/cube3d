@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:29:59 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/22 13:25:33 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/22 13:54:47 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include "struct.h"
 
-t_object	*create_object(t_point pos, t_point2d size, t_RGB **textures);
+t_object	object_create(t_point pos, t_point size, t_RGB **textures);
+int			object_add(t_data *d, t_object o);
+void		object_pop(t_data *d, int index);
+void		object_put(t_data *d, t_object o);
 
 #endif /* OBJECT_H */

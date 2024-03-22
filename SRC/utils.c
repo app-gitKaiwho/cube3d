@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 18:23:20 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/22 12:47:27 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/22 14:14:19 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,30 @@ int	break_point(t_vector AB, t_point current)
 	else if (current.y > WH)
 		is_out = 1;
 	return (is_out);
+}
+
+t_RGB	*texture_monchrome_create(t_point2d size, t_RGB color)
+{
+	t_RGB		*texture;
+	int			i;
+	int			j;
+	int			n;
+
+	j = 0;
+	n = 0;
+	texture = malloc(sizeof(t_RGB) * size.x * size.y);
+	if (!texture)
+		error_handler("Failed to create texture", 1);
+	while (j < size.y)
+	{
+		i = 0;
+		while (i < size.x)
+		{
+			texture[n] = color;
+			n++;
+			i++;
+		}
+		j++;
+	}
+	return (texture);
 }
