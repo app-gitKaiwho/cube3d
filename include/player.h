@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calc.h                                             :+:      :+:    :+:   */
+/*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/24 17:46:27 by lvon-war         ###   ########.fr       */
+/*   Created: 2024/03/18 15:29:59 by lvon-war          #+#    #+#             */
+/*   Updated: 2024/03/25 00:16:09 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CALC_H
-# define CALC_H
+#ifndef PLAYER_H
+# define PLAYER_H
 
 # include "struct.h"
 
-double	calculate_slope(t_vector AB);
-t_point	vecdeltacalc(t_vector V);
+void	put_raycast(t_data *d);
+void	player_init(t_data *data);
+void	player_movement(t_data *data, t_point dir);
 
-#endif /*!CALC_H */
+#endif /* PLAYER_H */

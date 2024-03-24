@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:54:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/22 11:21:27 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/24 22:34:17 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	put_line(t_vector V, t_data *d)
 {
 	t_point	delta;
 	t_point	inc;
-	double	steps;
+	int		steps;
+	int		i;
 
 	delta.x = V.b.x - V.a.x;
 	delta.y = V.b.y - V.a.y;
@@ -49,13 +50,15 @@ void	put_line(t_vector V, t_data *d)
 	delta.y = delta.y / steps;
 	inc.x = V.a.x;
 	inc.y = V.a.y;
-	while ((int)(inc.x - V.b.x) < 1 && (int)(inc.y - V.b.y) < 1)
+	i = 0;
+	while (i <= steps)
 	{
 		if (break_point(V, inc))
 			break ;
-		put_pixel((t_pixel){inc.x, inc.y, 0, (t_RGB){0, 0, 255}}, d);
+		put_pixel((t_pixel){inc.x, inc.y, 0, (t_RGB){255, 255, 0}}, d);
 		inc.x += delta.x;
 		inc.y += delta.y;
+		i++;
 	}
 }
 

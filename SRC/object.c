@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:03:50 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/22 21:34:51 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/24 19:57:00 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_object	object_create(t_point pos, t_point	size, t_RGB **textures)
 	object.pos = pos;
 	object.size = size;
 	object.textures = textures;
-	return	(object);
+	return (object);
 }
 
 /// @brief add an object to the world

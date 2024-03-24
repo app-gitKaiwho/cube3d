@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:02:40 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/22 13:27:21 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/24 16:17:03 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,29 @@ int	exit_hook(void)
 	exit(EXIT_SUCCESS);
 }
 
+void	player_keys(int keycode, t_data *d)
+{
+	if (keycode == UP)
+		player_movement(d, (t_point){0, 1, 0});
+	if (keycode == DOWN)
+		player_movement(d, (t_point){0, -1, 0});
+	if (keycode == LEFT)
+		player_movement(d, (t_point){-1, 0, 0});
+	if (keycode == RIGHT)
+		player_movement(d, (t_point){1, 0, 0});
+	if (keycode == ARROW_LEFT)
+		player_movement(d, (t_point){0, 0, 1});
+	if (keycode == ARROW_RIGHT)
+		player_movement(d, (t_point){0, 0, -1});
+}
+
 // basic keyborde hook
 int	keyhook(int keycode, void *param)
 {
 	struct data	*d;
 
 	d = (t_data *)param;
+	player_keys(keycode, d);
 	if (keycode == ESC || keycode == CLOSE_WINDOW_KEY || keycode == LEAN_LEFT)
 		exit(EXIT_SUCCESS);
 	if (keycode == RESET)

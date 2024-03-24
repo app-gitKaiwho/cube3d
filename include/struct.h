@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/22 13:45:25 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/24 23:13:47 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,24 @@ typedef struct world
 
 }	t_world;
 
+typedef struct player
+{
+	int			speed;
+	t_point		pos;
+	t_point2d	size;
+	double		xangle;
+	t_sprite	mapsprite;
+	t_point2d	cast[2];
+}	t_player;
+
+typedef struct minimap
+{
+	t_point2d	pos;
+	t_point2d	size;
+	t_RGB		color;
+	int			scale;
+}	t_minimap;
+
 typedef struct data
 {
 	t_window	win;
@@ -104,6 +122,8 @@ typedef struct data
 	int			earth;
 	int			focal;
 	t_world		world;
+	t_player	player;
+	t_minimap	minimap;
 	int			render_distance;
 }	t_data;
 

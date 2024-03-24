@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:49:18 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/22 11:04:18 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/24 19:51:50 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 #ifndef CUBE_H
 # define CUBE_H
 
+# define M_PI 3.14159265358979323846
 # define WL 1920
 # define WH 1080
 # define BLUE 0x0000FF
@@ -48,6 +49,7 @@
 # include "controls.h"
 # include "struct.h"
 # include "display.h"
+# include "map.h"
 # include "calc.h"
 
 //object
@@ -55,5 +57,8 @@
 
 //sprite
 # include "sprite.h"
+
+//player
+# include "player.h"
 
 #endif /*!CUBE_H */
