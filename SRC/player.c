@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 15:15:19 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/25 00:18:26 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:40:48 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,47 @@
 
 void	player_init(t_data *d)
 {
-	d->player.speed = 10;
-	d->player.size = (t_point2d){d->minimap.scale, d->minimap.scale};
-	d->player.pos = (t_point){WL / 2, WH / 2, 0};
-	d->player.xangle = 90;
+	d->player.speed = 100;
+	d->player.size = (t_point2d){100, 100};
+	d->player.pos = (t_point){d->world.size.x / 2, 0, 100};
+	d->player.yangle = -90;
 }
 
+//temporary doble raycast to show lines
 void	player_movement(t_data *data, t_point dir)
 {
-	data->player.pos.x += dir.x * data->player.speed;
-	data->player.pos.y += dir.y * data->player.speed;
-	data->player.xangle += dir.z * data->player.speed;
-	clear_img(data);
+	if (data->player.pos.x + dir.x >= data->world.size.x)
+		data->player.pos.x = data->world.size.x;
+	else if (data->player.pos.x + dir.x <= 0)
+		data->player.pos.x = 0;
+	else
+		data->player.pos.x += dir.x * data->player.speed;
+	if (data->player.pos.z + dir.y >= data->world.size.y)
+		data->player.pos.z = data->world.size.y;
+	else if (data->player.pos.z + dir.y <= 0)
+		data->player.pos.z = 0;
+	else
+		data->player.pos.z += dir.y * data->player.speed;
+	data->player.yangle += dir.z * data->player.speed / 10;
 }
 
-//not used anymore
-void	put_raycast(t_data *d)
-{
-	double	angle;
+//rework to cast on z and not y
+void	raycast(t_data *d)
+	{
+	double	a;
+	double	fov;
 	t_point	pos;
 
-	angle = (((d->player.xangle)) * M_PI) / 180;
+	a = (((d->player.yangle)) * M_PI) / 180;
 	pos = d->player.pos;
-	d->player.cast[0].x = (cos(angle - (d->fov / 2)) * d->render_distance) + pos.x;
-	d->player.cast[0].y = (sin(angle - (d->fov / 2)) * d->render_distance) + pos.y;
-	d->player.cast[1].x = (cos(angle + (d->fov / 2)) * d->render_distance) + pos.x;
-	d->player.cast[1].y = (sin(angle + (d->fov / 2)) * d->render_distance) + pos.y;
-	put_line((t_vector){pos, (t_point){d->player.cast[0].x, d->player.cast[0].y, 0}}, d);
-	put_line((t_vector){pos, (t_point){d->player.cast[1].x, d->player.cast[1].y, 0}}, d);
-	put_line((t_vector){(t_point){d->player.cast[0].x, d->player.cast[0].y, 0},
-		(t_point){d->player.cast[1].x, d->player.cast[1].y, 0}}, d);
+	fov = (((d->fov)) * M_PI) / 180;
+	d->player.cast[0].x = pos.x
+		- (d->render_distance * cos(a - fov / 2)) / cos(fov / 2);
+	d->player.cast[0].z = pos.z
+		- (d->render_distance * sin(a - fov / 2)) / cos(fov / 2);
+	d->player.cast[1].x = pos.x
+		- (d->render_distance * cos(a + fov / 2)) / cos(fov / 2);
+	d->player.cast[1].z = pos.z
+		- (d->render_distance * sin(a + fov / 2)) / cos(fov / 2);
+	object_to_render(d);
 }

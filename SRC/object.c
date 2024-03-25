@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:03:50 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/24 19:57:00 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:14:34 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ t_object	object_create(t_point pos, t_point	size, t_RGB **textures)
 {
 	t_object	object;
 
+	object.seen = 0;
 	object.pos = pos;
 	object.size = size;
 	object.textures = textures;
@@ -97,13 +98,29 @@ void	object_put(t_data *d, t_object o)
 		i = 0;
 		while (i < o.size.x)
 		{
-			p.x = o.pos.x + i;
-			p.y = o.pos.y + j;
+			p.x = o.pos.x - (o.size.x / 2) + i;
+			p.y = o.pos.y - (o.size.y / 2) + j;
 			p.color = o.textures[0][n];
 			put_pixel(p, d);
 			i++;
 			n++;
 		}
 		j++;
+	}
+	put_pixel((t_pixel){o.pos.x, o.pos.y, o.pos.z, int_to_rgb(BLUE)}, d);
+}
+
+void	object_to_render(t_data *d)
+{
+	int	i;
+
+	i = 0;
+	while (i < d->world.nb_obj)
+	{
+		if (isobjectincast(d->player, d->world.c_obj[i]))
+			d->world.c_obj[i].seen = 1;
+		else
+			d->world.c_obj[i].seen = 0;
+		i++;
 	}
 }

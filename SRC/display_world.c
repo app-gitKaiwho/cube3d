@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_world.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 16:49:51 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/22 14:04:06 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/25 11:21:52 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	display_world_object(t_data *d)
 		return ;
 	while (i < d->world.nb_obj)
 	{
-		object_put(d, d->world.c_obj[i]);
+		if (d->world.c_obj[i].seen)
+			object_put(d, d->world.c_obj[i]);
 		i++;
 	}
 }

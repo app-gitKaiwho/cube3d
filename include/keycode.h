@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 11:54:56 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/18 16:52:19 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:29:00 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@
 #  define DOWN  115//S
 #  define RIGHT 100//D
 #  define LEAN_LEFT 113//Q
-#  define LEAN_RIGT 101//E
+#  define LEAN_RIGHT 101//E
 #  define INVENTORY 105 // I
 #  define INTERACT 102 // F
 #  define OPTION1 107//k

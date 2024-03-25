@@ -6,22 +6,23 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:48:49 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/25 00:22:21 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:32:42 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-t_world	init_world(void)
+void	init_world(t_data *d)
 {
-	t_world	world;
 
-	world.spawn = (t_point){0, 0, 0};
-	world.earth = 0xbf9c6d;
-	world.sky = 0x9deaed;
-	world.nb_obj = 0;
-	world.nb_sprite = 0;
-	return (world);
+	d->world.spawn = (t_point){0, 0, 0};
+	d->world.size.x = 1000;
+	d->world.size.y = 1000;
+	d->world.earth = 0xbf9c6d;
+	d->world.sky = 0x9deaed;
+	d->world.nb_obj = 0;
+	d->world.nb_sprite = 0;
+	d->render_distance = (d->world.size.x + d->world.size.y) / 4;
 }
 
 void	test(t_data *data)
@@ -31,12 +32,18 @@ void	test(t_data *data)
 	texture = malloc(sizeof(t_RGB *) * 4);
 	if (!texture)
 		error_handler("Failed to init data", 1);
-	texture[0] = texture_monchrome_create((t_point2d){100, 100}, int_to_rgb(RED));
-	texture[1] = texture_monchrome_create((t_point2d){100, 100}, int_to_rgb(GREEN));
-	texture[2] = texture_monchrome_create((t_point2d){100, 100}, int_to_rgb(BLUE));
-	texture[3] = texture_monchrome_create((t_point2d){100, 100}, int_to_rgb(RED));
-	sprite_add(data, sprite_create((t_point2d){10, WH - 210}, (t_point2d){200, 200}, int_to_rgb(BLUE)));
-	object_add(data, object_create((t_point){100, 100, 100}, (t_point){100, 100, 100}, texture));
+	texture[0] = texture_monchrome_create((t_point2d){100, 100},
+			int_to_rgb(RED));
+	texture[1] = texture_monchrome_create((t_point2d){100, 100},
+			int_to_rgb(GREEN));
+	texture[2] = texture_monchrome_create((t_point2d){100, 100},
+			int_to_rgb(BLUE));
+	texture[3] = texture_monchrome_create((t_point2d){100, 100},
+			int_to_rgb(RED));
+	sprite_add(data, sprite_create((t_point2d){10, WH - 210},
+			(t_point2d){200, 200}, int_to_rgb(BLUE)));
+	object_add(data, object_create((t_point){500, 800, 500},
+			(t_point){100, 100, 100}, texture));
 }
 
 ///textures to be removed only there for testing
@@ -52,15 +59,9 @@ t_data	*initdata(void)
 	data->img.img = mlx_new_image(data->win.mlx, WL, WH);
 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bpp,
 			&data->img.line_size, &data->img.endian);
-	data->minimap = minimap_init();
 	mlx_hook(data->win.ptr, CLOSE_WINDOW_KEY, 0, &exit_hook, NULL);
 	mlx_key_hook(data->win.ptr, &keyhook, NULL);
-	data->world = init_world();
-	clear_img(data);
-	player_init(data);
-	data->render_distance = 500;
-	data->fov = 40;
-	test(data);
+	data->fov = 90;
 	return (data);
 }
 
@@ -78,6 +79,11 @@ int	animation(t_data *d, int frame)
 			sprite_edit(d, 0, sprite_create((t_point2d){10, WH - 210},
 					(t_point2d){200, 200}, color));
 	}
+	if (frame % 2 == 0)
+	{
+		raycast(d);
+		clear_img(d);
+	}
 	return (frame);
 }
 
@@ -92,7 +98,6 @@ int	loopydyloop(void *param)
 	display_minimap(d);
 	display_world_object(d);
 	display_world_sprite(d);
-	put_raycast(d);
 	displayimg(d);
 	return (0);
 }
@@ -102,6 +107,12 @@ int	main(void)
 	t_data	*data;
 
 	data = initdata();
+	init_world(data);
+	minimap_init(data);
+	player_init(data);
+	clear_img(data);
+	test(data);
+	raycast(data);
 	mlx_key_hook(data->win.ptr, &keyhook, data);
 	mlx_loop_hook(data->win.mlx, loopydyloop, data);
 	mlx_loop(data->win.mlx);

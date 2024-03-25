@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/24 23:13:47 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/25 15:05:46 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,11 @@ typedef struct vector
 }	t_vector;
 
 //for texture : Nord = 0, Sud = 1, Est = 2, West = 3
+//pos is the center of the object
 typedef struct object
 {
 	int		id;
+	int		seen;
 	t_point	pos;
 	t_point	size;
 	t_RGB	**textures;
@@ -86,6 +88,7 @@ typedef struct sprite
 typedef struct world
 {
 	t_point		spawn;
+	t_point2d	size;
 	int			sky;
 	int			earth;
 	int			nb_obj;
@@ -100,9 +103,9 @@ typedef struct player
 	int			speed;
 	t_point		pos;
 	t_point2d	size;
-	double		xangle;
+	double		yangle;
 	t_sprite	mapsprite;
-	t_point2d	cast[2];
+	t_point		cast[2];
 }	t_player;
 
 typedef struct minimap

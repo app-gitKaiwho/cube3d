@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:02:40 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/24 16:17:03 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:50:53 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ void	player_keys(int keycode, t_data *d)
 		player_movement(d, (t_point){0, 0, 1});
 	if (keycode == ARROW_RIGHT)
 		player_movement(d, (t_point){0, 0, -1});
+	if (keycode == LEAN_LEFT)
+		d->fov -= 5;
+	if (keycode == LEAN_RIGHT)
+		d->fov += 5;
 }
 
 // basic keyborde hook
@@ -41,7 +45,7 @@ int	keyhook(int keycode, void *param)
 
 	d = (t_data *)param;
 	player_keys(keycode, d);
-	if (keycode == ESC || keycode == CLOSE_WINDOW_KEY || keycode == LEAN_LEFT)
+	if (keycode == ESC || keycode == CLOSE_WINDOW_KEY)
 		exit(EXIT_SUCCESS);
 	if (keycode == RESET)
 		clear_img(d);

@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:49:18 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/24 19:51:50 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/25 15:09:16 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 # define WL 1920
 # define WH 1080
 # define BLUE 0x0000FF
+# define DARKBLUE 0x000080
+# define YELLOW 0xFFFF00
 # define RED 0xFF0000
 # define GREEN 0x00FF00
 
