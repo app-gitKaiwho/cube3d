@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:48:49 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/25 18:32:42 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/26 13:39:47 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	init_world(t_data *d)
 {
-
 	d->world.spawn = (t_point){0, 0, 0};
 	d->world.size.x = 1000;
 	d->world.size.y = 1000;
@@ -25,6 +24,7 @@ void	init_world(t_data *d)
 	d->render_distance = (d->world.size.x + d->world.size.y) / 4;
 }
 
+//remove after testing
 void	test(t_data *data)
 {
 	t_RGB	**texture;
@@ -42,11 +42,10 @@ void	test(t_data *data)
 			int_to_rgb(RED));
 	sprite_add(data, sprite_create((t_point2d){10, WH - 210},
 			(t_point2d){200, 200}, int_to_rgb(BLUE)));
-	object_add(data, object_create((t_point){500, 800, 500},
+	object_add(data, object_create((t_point){500, 50, 500},
 			(t_point){100, 100, 100}, texture));
 }
 
-///textures to be removed only there for testing
 t_data	*initdata(void)
 {
 	t_data	*data;
@@ -62,6 +61,7 @@ t_data	*initdata(void)
 	mlx_hook(data->win.ptr, CLOSE_WINDOW_KEY, 0, &exit_hook, NULL);
 	mlx_key_hook(data->win.ptr, &keyhook, NULL);
 	data->fov = 90;
+	data->focal = 200;
 	return (data);
 }
 
@@ -72,7 +72,7 @@ int	animation(t_data *d, int frame)
 
 	if (frame == 100000)
 		frame = 0;
-	if (frame % 5 == 0)
+	if (frame % 10 == 0)
 	{
 		color = int_to_rgb(rand());
 		if (d->world.nb_sprite > 0)

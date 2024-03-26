@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprite.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:03:50 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/22 13:34:05 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/25 19:32:36 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ void	sprite_edit(t_data *d, int index, t_sprite s)
 		free(d->world.c_sprite[index].texture);
 	d->world.c_sprite[index] = s;
 }
-
 
 /// @brief add a sprite to the world
 /// @return id of the sprite

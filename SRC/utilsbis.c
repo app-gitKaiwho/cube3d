@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   object.h                                           :+:      :+:    :+:   */
+/*   utilsbis.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/18 15:29:59 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/26 09:35:26 by lvon-war         ###   ########.fr       */
+/*   Created: 2024/03/26 09:31:48 by lvon-war          #+#    #+#             */
+/*   Updated: 2024/03/26 09:34:53 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef OBJECT_H
-# define OBJECT_H
+#include "cube.h"
 
-# include "struct.h"
+t_polygon	pointtopolygone(t_point a, t_point b, t_point c)
+{
+	t_polygon	poly;
 
-t_object	object_create(t_point pos, t_point size, t_RGB **textures);
-int			object_add(t_data *d, t_object o);
-void		object_pop(t_data *d, int index);
-void		object_to_render(t_data *d);
+	poly.edges[0] = (t_vector){a, b};
+	poly.edges[1] = (t_vector){b, c};
+	poly.edges[2] = (t_vector){c, a};
+	return (poly);
+}
 
-#endif /* OBJECT_H */

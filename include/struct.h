@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/25 15:05:46 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/26 13:49:09 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ typedef struct pixel
 {
 	double	x;
 	double	y;
-	double	z;
 	t_RGB	color;
 }	t_pixel;	
 
@@ -65,15 +64,30 @@ typedef struct vector
 	t_point	b;
 }	t_vector;
 
+typedef struct vector2d
+{
+	t_point2d	a;
+	t_point2d	b;
+}	t_vector2d;
+
+//triangular polygon
+typedef struct polygon
+{
+	int			seen;
+	t_vector	edges[3];
+}	t_polygon;
+
 //for texture : Nord = 0, Sud = 1, Est = 2, West = 3
-//pos is the center of the object
+//pos is the center of the object, all object are cubes
 typedef struct object
 {
-	int		id;
-	int		seen;
-	t_point	pos;
-	t_point	size;
-	t_RGB	**textures;
+	int			id;
+	t_point		pos;
+	int			seen;
+	t_point		size;
+	t_polygon	poly[12];
+	t_RGB		**textures;
+	t_point		verti[8];
 }	t_object;
 
 typedef struct sprite
@@ -102,7 +116,7 @@ typedef struct player
 {
 	int			speed;
 	t_point		pos;
-	t_point2d	size;
+	t_point		size;
 	double		yangle;
 	t_sprite	mapsprite;
 	t_point		cast[2];

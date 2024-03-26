@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 19:38:03 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/25 17:53:45 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/26 14:06:36 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ void	cast_player_on_minimap(t_data *d)
 
 void	cast_player_view(t_data *d)
 {
-	t_point		a;
-	t_point		b;
-	t_point		o;
+	t_point2d		a;
+	t_point2d		b;
+	t_point2d		o;
 
 	a.x = d->minimap.pos.x + (d->player.cast[0].x / d->minimap.scale);
 	a.y = d->minimap.pos.y + (d->player.cast[0].z / d->minimap.scale);
@@ -70,9 +70,9 @@ void	cast_player_view(t_data *d)
 	b.y = d->minimap.pos.y + (d->player.cast[1].z / d->minimap.scale);
 	o.x = d->minimap.pos.x + (d->player.pos.x / d->minimap.scale);
 	o.y = d->minimap.pos.y + (d->player.pos.z / d->minimap.scale);
-	put_line((t_vector){a, o}, d);
-	put_line((t_vector){b, o}, d);
-	put_line((t_vector){a, b}, d);
+	put_line((t_vector2d){a, o}, d);
+	put_line((t_vector2d){b, o}, d);
+	put_line((t_vector2d){a, b}, d);
 }
 
 void	display_minimap(t_data *data)
@@ -80,12 +80,9 @@ void	display_minimap(t_data *data)
 	t_pixel	p;
 
 	p = (t_pixel){data->minimap.pos.x, data->minimap.pos.y,
-		0, data->minimap.color};
+		data->minimap.color};
 	put_square(p, data->minimap.size, data);
 	cast_player_on_minimap(data);
 	cast_player_view(data);
 	cast_object_on_minimap(data);
-
 }
-
-

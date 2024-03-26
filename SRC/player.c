@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 15:15:19 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/25 18:40:48 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/26 14:58:35 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	player_init(t_data *d)
 {
 	d->player.speed = 100;
-	d->player.size = (t_point2d){100, 100};
+	d->player.size = (t_point){50, 50, 50};
 	d->player.pos = (t_point){d->world.size.x / 2, 0, 100};
-	d->player.yangle = -90;
+	d->player.yangle = 90;
 }
 
 //temporary doble raycast to show lines
@@ -49,12 +49,12 @@ void	raycast(t_data *d)
 	pos = d->player.pos;
 	fov = (((d->fov)) * M_PI) / 180;
 	d->player.cast[0].x = pos.x
-		- (d->render_distance * cos(a - fov / 2)) / cos(fov / 2);
+		+ (d->render_distance * cos(a + fov / 2)) / cos(fov / 2);
 	d->player.cast[0].z = pos.z
-		- (d->render_distance * sin(a - fov / 2)) / cos(fov / 2);
+		+ (d->render_distance * sin(a + fov / 2)) / cos(fov / 2);
 	d->player.cast[1].x = pos.x
-		- (d->render_distance * cos(a + fov / 2)) / cos(fov / 2);
+		+ (d->render_distance * cos(a - fov / 2)) / cos(fov / 2);
 	d->player.cast[1].z = pos.z
-		- (d->render_distance * sin(a + fov / 2)) / cos(fov / 2);
+		+ (d->render_distance * sin(a - fov / 2)) / cos(fov / 2);
 	object_to_render(d);
 }

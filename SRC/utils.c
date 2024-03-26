@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 18:23:20 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/22 14:14:19 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/26 10:35:53 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_RGB	int_to_rgb(int color)
 }
 
 ///	@brief check if a point is out of the window. based on vector's direction
-int	break_point(t_vector AB, t_point current)
+int	break_point(t_vector2d AB, t_point current)
 {
 	int	is_out;
 

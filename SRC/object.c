@@ -6,20 +6,53 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:03:50 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/25 18:14:34 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/26 09:44:09 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-t_object	object_create(t_point pos, t_point	size, t_RGB **textures)
+void	objecttopoly(t_object *o)
+{
+	o->poly[0] = pointtopolygone(o->verti[0], o->verti[1], o->verti[2]);
+	o->poly[1] = pointtopolygone(o->verti[2], o->verti[3], o->verti[0]);
+	o->poly[2] = pointtopolygone(o->verti[4], o->verti[5], o->verti[6]);
+	o->poly[3] = pointtopolygone(o->verti[6], o->verti[7], o->verti[4]);
+	o->poly[4] = pointtopolygone(o->verti[0], o->verti[1], o->verti[5]);
+	o->poly[5] = pointtopolygone(o->verti[5], o->verti[4], o->verti[0]);
+	o->poly[6] = pointtopolygone(o->verti[1], o->verti[2], o->verti[6]);
+	o->poly[7] = pointtopolygone(o->verti[6], o->verti[5], o->verti[1]);
+	o->poly[8] = pointtopolygone(o->verti[2], o->verti[3], o->verti[7]);
+	o->poly[9] = pointtopolygone(o->verti[7], o->verti[6], o->verti[2]);
+	o->poly[10] = pointtopolygone(o->verti[3], o->verti[0], o->verti[4]);
+	o->poly[11] = pointtopolygone(o->verti[4], o->verti[7], o->verti[3]);
+}
+
+t_object	object_create(t_point pos, t_point	si, t_RGB **textures)
 {
 	t_object	object;
 
 	object.seen = 0;
 	object.pos = pos;
-	object.size = size;
+	object.size = si;
 	object.textures = textures;
+	object.verti[0] = (t_point){pos.x - si.x / 2,
+		pos.y - si.y / 2, pos.z - si.z / 2};
+	object.verti[1] = (t_point){pos.x + si.x / 2,
+		pos.y - si.y / 2, pos.z - si.z / 2};
+	object.verti[2] = (t_point){pos.x + si.x / 2,
+		pos.y + si.y / 2, pos.z - si.z / 2};
+	object.verti[3] = (t_point){pos.x - si.x / 2,
+		pos.y + si.y / 2, pos.z - si.z / 2};
+	object.verti[4] = (t_point){pos.x - si.x / 2,
+		pos.y - si.y / 2, pos.z + si.z / 2};
+	object.verti[5] = (t_point){pos.x + si.x / 2,
+		pos.y - si.y / 2, pos.z + si.z / 2};
+	object.verti[6] = (t_point){pos.x + si.x / 2,
+		pos.y + si.y / 2, pos.z + si.z / 2};
+	object.verti[7] = (t_point){pos.x - si.x / 2,
+		pos.y + si.y / 2, pos.z + si.z / 2};
+	objecttopoly(&object);
 	return (object);
 }
 
@@ -82,32 +115,6 @@ void	object_pop(t_data *d, int index)
 	free(d->world.c_obj);
 	d->world.c_obj = tmp;
 	d->world.nb_obj--;
-}
-
-void	object_put(t_data *d, t_object o)
-{
-	int		i;
-	int		j;
-	int		n;
-	t_pixel	p;
-
-	n = 0;
-	j = 0;
-	while (j < o.size.y)
-	{
-		i = 0;
-		while (i < o.size.x)
-		{
-			p.x = o.pos.x - (o.size.x / 2) + i;
-			p.y = o.pos.y - (o.size.y / 2) + j;
-			p.color = o.textures[0][n];
-			put_pixel(p, d);
-			i++;
-			n++;
-		}
-		j++;
-	}
-	put_pixel((t_pixel){o.pos.x, o.pos.y, o.pos.z, int_to_rgb(BLUE)}, d);
 }
 
 void	object_to_render(t_data *d)

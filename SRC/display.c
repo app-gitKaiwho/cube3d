@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:54:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/24 22:34:17 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/26 10:36:17 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	displayimg(t_data *d)
 		mlx_put_image_to_window(d->win.mlx, d->win.ptr, d->img.img, 0, 0);
 }
 
-//add a pixel to img
+//add a pixel to img only for 2d object
 void	put_pixel(t_pixel p, t_data *d)
 {
 	int		index;
@@ -33,7 +33,7 @@ void	put_pixel(t_pixel p, t_data *d)
 }
 
 //put a line to img
-void	put_line(t_vector V, t_data *d)
+void	put_line(t_vector2d V, t_data *d)
 {
 	t_point	delta;
 	t_point	inc;
@@ -55,7 +55,7 @@ void	put_line(t_vector V, t_data *d)
 	{
 		if (break_point(V, inc))
 			break ;
-		put_pixel((t_pixel){inc.x, inc.y, 0, (t_RGB){255, 255, 0}}, d);
+		put_pixel((t_pixel){inc.x, inc.y, int_to_rgb(RED)}, d);
 		inc.x += delta.x;
 		inc.y += delta.y;
 		i++;
@@ -74,7 +74,7 @@ void	put_square(t_pixel cen, t_point2d size, t_data *d)
 		i = 0;
 		while (i < size.x)
 		{
-			put_pixel((t_pixel){cen.x + i, cen.y + j, 0, cen.color}, d);
+			put_pixel((t_pixel){cen.x + i, cen.y + j, cen.color}, d);
 			i++;
 		}
 		j++;
@@ -84,8 +84,8 @@ void	put_square(t_pixel cen, t_point2d size, t_data *d)
 /// @brief clear the image with a default bg (change color)
 void	clear_img(t_data *d)
 {
-	put_square((t_pixel){0, WH / 2, 0, int_to_rgb(d->world.sky)},
+	put_square((t_pixel){0, WH / 2, int_to_rgb(d->world.sky)},
 		(t_point2d){WL, WH / 2}, d);
-	put_square((t_pixel){0, 0, 0, int_to_rgb(d->world.earth)},
+	put_square((t_pixel){0, 0, int_to_rgb(d->world.earth)},
 		(t_point2d){WL, WH / 2}, d);
 }
