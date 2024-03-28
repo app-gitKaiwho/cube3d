@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 15:15:19 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/26 14:58:35 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/29 00:10:35 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	player_init(t_data *d)
 	d->player.speed = 100;
 	d->player.size = (t_point){50, 50, 50};
 	d->player.pos = (t_point){d->world.size.x / 2, 0, 100};
-	d->player.yangle = 90;
+	d->player.angle = (t_point){0, 90, 0};
 }
 
 //temporary doble raycast to show lines
@@ -35,7 +35,7 @@ void	player_movement(t_data *data, t_point dir)
 		data->player.pos.z = 0;
 	else
 		data->player.pos.z += dir.y * data->player.speed;
-	data->player.yangle += dir.z * data->player.speed / 10;
+	data->player.angle.y += dir.z * data->player.speed / 10;
 }
 
 //rework to cast on z and not y
@@ -45,7 +45,7 @@ void	raycast(t_data *d)
 	double	fov;
 	t_point	pos;
 
-	a = (((d->player.yangle)) * M_PI) / 180;
+	a = (((d->player.angle.y)) * M_PI) / 180;
 	pos = d->player.pos;
 	fov = (((d->fov)) * M_PI) / 180;
 	d->player.cast[0].x = pos.x

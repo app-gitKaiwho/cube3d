@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:49:18 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/25 15:09:16 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/28 23:46:19 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # define M_PI 3.14159265358979323846
 # define WL 1920
 # define WH 1080
+# define FOV 60
+# define FOCAL 500
 # define BLUE 0x0000FF
 # define DARKBLUE 0x000080
 # define YELLOW 0xFFFF00
@@ -47,12 +49,15 @@
 
 //lib from cube3d
 # include "keycode.h"
-# include "utils.h"
 # include "controls.h"
-# include "struct.h"
 # include "display.h"
 # include "map.h"
 # include "calc.h"
+
+
+//utils
+# include "struct.h"
+# include "utils.h"
 
 //object
 # include "object.h"

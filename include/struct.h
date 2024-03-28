@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/26 13:49:09 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/29 00:09:21 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct vector2d
 typedef struct polygon
 {
 	int			seen;
+	t_vector	normal;
 	t_vector	edges[3];
 }	t_polygon;
 
@@ -83,6 +84,7 @@ typedef struct object
 {
 	int			id;
 	t_point		pos;
+	t_point		rot;
 	int			seen;
 	t_point		size;
 	t_polygon	poly[12];
@@ -117,7 +119,7 @@ typedef struct player
 	int			speed;
 	t_point		pos;
 	t_point		size;
-	double		yangle;
+	t_point		angle;
 	t_sprite	mapsprite;
 	t_point		cast[2];
 }	t_player;
@@ -138,6 +140,9 @@ typedef struct data
 	int			sky;
 	int			earth;
 	int			focal;
+	double		width;
+	double		height;
+	double		a_ratio;
 	t_world		world;
 	t_player	player;
 	t_minimap	minimap;

@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:14:25 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/26 10:36:12 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/29 00:12:53 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define UTILS_H
 
 # include "struct.h"
+
+//init.c
+t_data		*initdata(void);
+void		init_world(t_data *d);
 
 //utils.c 
 t_RGB		*texture_monchrome_create(t_point2d size, t_RGB color);
@@ -30,5 +34,6 @@ void		free_texture(t_RGB *t);
 
 //utilsbis.c
 t_polygon	pointtopolygone(t_point a, t_point b, t_point c);
+int			degtorad(int degree);
 
 #endif /*!CUBE_H */

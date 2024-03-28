@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 11:14:25 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/26 15:30:53 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/29 00:27:55 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,20 +74,18 @@ int	isobjectincast(t_player p, t_object obj)
 
 t_point2d	pointcast(t_point point, t_data d)
 {
-	t_point2d	castedpoint;
-	float		delta_x;
-	float		delta_y;
-	float		delta_z;
+	t_point2d	casted;
+	double		deltaz;
 
-	delta_x = point.x - d.player.pos.x;
-	delta_y = point.y - d.player.pos.y - d.player.size.y / 2;
-	delta_z = point.z - d.player.pos.z;
-	castedpoint.x = (delta_x * d.focal) / delta_z;
-	castedpoint.y = (delta_y * d.focal) / delta_z;
-	castedpoint.x += WL / 2;
-	castedpoint.y += WH / 2;
-
-	return (castedpoint);
+	deltaz = point.z - d.player.pos.z;
+	if (deltaz == 0)
+		deltaz = 0.0001;
+	casted.x = ((point.x - d.player.pos.x) * d.focal) / deltaz;
+	casted.y = ((point.y - d.player.pos.y - d.player.size.y)
+			* d.focal) / deltaz;
+	casted.x = casted.x + (WL / 2);
+	casted.y = casted.y + (WH / 2);
+	return (casted);
 }
 
 t_vector2d	vec3cast(t_vector v, t_data d)
