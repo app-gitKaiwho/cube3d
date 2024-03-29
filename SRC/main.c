@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:48:49 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/29 16:44:36 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/29 17:20:49 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	test(t_data *d)
 			int_to_rgb(RED));
 	sprite_add(d, sprite_create((t_point2d){10, WH - 210},
 			(t_point2d){200, 200}, int_to_rgb(BLUE)));
-	object_add(d, object_create((t_point){40 * d->scale, 0.5 * d->scale, 20 * d->scale},
+	object_add(d, object_create((t_point){40 * d->scale, 0.5 * d->scale, 50 * d->scale},
 			(t_point){1 * d->scale, 1 * d->scale, 1 * d->scale}, texture));
-	object_add(d, object_create((t_point){50 * d->scale, 5 * d->scale, 20 * d->scale},
+	object_add(d, object_create((t_point){50 * d->scale, 5 * d->scale, 50 * d->scale},
 			(t_point){10 * d->scale, 10 * d->scale, 10 * d->scale}, texture));
 }
 

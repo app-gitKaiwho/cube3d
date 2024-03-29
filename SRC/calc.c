@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 11:14:25 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/29 14:56:58 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/29 17:33:01 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ t_point	vecdeltacalc(t_vector V)
 		steps = fabs(delta.x);
 	else
 		steps = fabs(delta.y);
+	if (steps == 0)
+		steps = 0.0001;
 	delta.x = delta.x / steps;
 	delta.y = delta.y / steps;
 	return (delta);
@@ -46,6 +48,8 @@ int	ispointincast(t_point p, t_point A, t_point B, t_point tocheck)
 	double	c;
 
 	denominator = ((A.z - B.z) * (p.x - B.x) + (B.x - A.x) * (p.z - B.z));
+	if (denominator == 0)
+		return (0);
 	a = ((A.z - B.z) * (tocheck.x - B.x)
 			+ (B.x - A.x) * (tocheck.z - B.z)) / denominator;
 	b = ((B.z - p.z) * (tocheck.x - B.x)
@@ -77,14 +81,17 @@ t_point2d	pointcast(t_point point, t_data d)
 {
 	t_point2d	casted;
 	double		deltaz;
+	t_point		rot;
 
+	rot.x = d.focal * sin(degtorad(d.player.angle.y - 90));
+	rot.y = d.focal * cos(degtorad(d.player.angle.y - 90));
 	deltaz = point.z - d.player.pos.z;
 	if (deltaz == 0)
 		deltaz = 0.0001;
 	casted.x = ((point.x - d.player.pos.x) * (d.focal)) / deltaz;
 	casted.y = ((point.y - d.player.pos.y - d.player.size.y)
 			* (d.focal)) / deltaz;
-	casted.x = casted.x + (WL / 2);
+	casted.x = casted.x + rot.x + (WL / 2);
 	casted.y = casted.y + (WH / 2);
 	return (casted);
 }
