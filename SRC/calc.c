@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 11:14:25 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/29 17:33:01 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/29 18:20:29 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,9 @@ t_point2d	pointcast(t_point point, t_data d)
 	double		deltaz;
 	t_point		rot;
 
-	rot.x = d.focal * sin(degtorad(d.player.angle.y - 90));
-	rot.y = d.focal * cos(degtorad(d.player.angle.y - 90));
+
+	rot.x = .x * cos(d->angle.y) + .z * sin(d->angle.y);
+	rot.z = .z * cos(d->angle.y) - .x * sin(d->angle.y);
 	deltaz = point.z - d.player.pos.z;
 	if (deltaz == 0)
 		deltaz = 0.0001;
