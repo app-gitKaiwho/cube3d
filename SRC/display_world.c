@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_world.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 16:49:51 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/26 14:51:49 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/29 13:36:35 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	display_polygone(t_data *d, t_polygon p)
 	i = 0;
 	while (i < 3)
 	{
-		put_line(vec3cast(p.edges[i], *d), d);
+		put_line(vec3cast(p.edges[i], *d), d, int_to_rgb(RED));
 		i++;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 15:15:19 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/29 00:10:35 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/29 16:40:43 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	player_init(t_data *d)
 {
-	d->player.speed = 100;
-	d->player.size = (t_point){50, 50, 50};
+	d->player.speed = 1 * d->scale;
+	d->player.size = (t_point){0.5 * d->scale, 1.8 * d->scale, 0.5 * d->scale};
 	d->player.pos = (t_point){d->world.size.x / 2, 0, 100};
 	d->player.angle = (t_point){0, 90, 0};
 }
@@ -35,7 +35,7 @@ void	player_movement(t_data *data, t_point dir)
 		data->player.pos.z = 0;
 	else
 		data->player.pos.z += dir.y * data->player.speed;
-	data->player.angle.y += dir.z * data->player.speed / 10;
+	data->player.angle.y += dir.z * data->player.speed * 10 / data->scale;
 }
 
 //rework to cast on z and not y

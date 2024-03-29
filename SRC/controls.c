@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:02:40 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/29 00:26:52 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/29 16:41:59 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	exit_hook(void)
 {
 	exit(EXIT_SUCCESS);
 }
-
+#include <stdio.h>
 void	player_keys(int keycode, t_data *d)
 {
 	if (keycode == UP)
@@ -32,14 +32,13 @@ void	player_keys(int keycode, t_data *d)
 		player_movement(d, (t_point){0, 0, 1});
 	if (keycode == ARROW_RIGHT)
 		player_movement(d, (t_point){0, 0, -1});
-	if (keycode == PLUS)
-		d->focal += 10;
-	if (keycode == MINUS)
-		d->focal -= 10;
-	if (keycode == LEAN_LEFT)
-		d->fov -= 5;
-	if (keycode == LEAN_RIGHT)
-		d->fov += 5;
+	if (keycode == MAP)
+	{
+		if (d->minimap.scale == d->scale)
+			d->minimap.scale = d->scale / 10;
+		else
+			d->minimap.scale = d->scale;
+	}
 }
 
 // basic keyborde hook

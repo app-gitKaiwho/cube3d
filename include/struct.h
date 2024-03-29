@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/29 00:09:21 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/29 16:38:22 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,13 +136,13 @@ typedef struct data
 {
 	t_window	win;
 	t_img		img;
-	int			fov;
+	double		fov;
 	int			sky;
 	int			earth;
-	int			focal;
+	double		focal;
 	double		width;
 	double		height;
-	double		a_ratio;
+	double		scale;
 	t_world		world;
 	t_player	player;
 	t_minimap	minimap;

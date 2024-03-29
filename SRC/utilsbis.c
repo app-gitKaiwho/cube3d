@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utilsbis.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 09:31:48 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/29 00:12:43 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/29 16:28:37 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_polygon	pointtopolygone(t_point a, t_point b, t_point c)
 	return (poly);
 }
 
-int	degtorad(int degree)
+double	degtorad(double degree)
 {
 	return (degree * M_PI / 180);
 }

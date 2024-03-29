@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:48:49 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/28 23:49:28 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/29 16:44:36 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
 //remove after testing
-void	test(t_data *data)
+void	test(t_data *d)
 {
 	t_RGB	**texture;
 
@@ -28,10 +28,12 @@ void	test(t_data *data)
 			int_to_rgb(BLUE));
 	texture[3] = texture_monchrome_create((t_point2d){100, 100},
 			int_to_rgb(RED));
-	sprite_add(data, sprite_create((t_point2d){10, WH - 210},
+	sprite_add(d, sprite_create((t_point2d){10, WH - 210},
 			(t_point2d){200, 200}, int_to_rgb(BLUE)));
-	object_add(data, object_create((t_point){500, 50, 500},
-			(t_point){100, 100, 100}, texture));
+	object_add(d, object_create((t_point){40 * d->scale, 0.5 * d->scale, 20 * d->scale},
+			(t_point){1 * d->scale, 1 * d->scale, 1 * d->scale}, texture));
+	object_add(d, object_create((t_point){50 * d->scale, 5 * d->scale, 20 * d->scale},
+			(t_point){10 * d->scale, 10 * d->scale, 10 * d->scale}, texture));
 }
 
 //do thing every frame
@@ -64,9 +66,9 @@ int	loopydyloop(void *param)
 	frame++;
 	d = (t_data *)param;
 	frame = animation(d, frame);
-	display_minimap(d);
 	display_world_object(d);
 	display_world_sprite(d);
+	display_minimap(d);
 	displayimg(d);
 	return (0);
 }

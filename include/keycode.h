@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keycode.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 11:54:56 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/25 18:29:00 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:36:38 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,12 @@
 #  define DOWN 1 //S
 #  define RIGHT 2 //D
 #  define LEAN_LEFT 12//Q
-#  define LEAN_RIGT 14//E
+#  define LEAN_RIGHT 14//E
 #  define INVENTORY 34 // I
 #  define INTERACT 3 // F
 #  define OPTION1 40//j
 #  define OPTION2 38//k
+#  define MAP 46//m
 # else
 //compiled if not on macOS
 #  define ESC 65307 // Escape key on Linux
@@ -65,6 +66,7 @@
 #  define INTERACT 102 // F
 #  define OPTION1 107//k
 #  define OPTION2 106//j
+#  define MAP 46//m
 # endif /*!__APPLE__ */
 
 # define CLOSE_WINDOW_KEY 17 //aka destroy signal

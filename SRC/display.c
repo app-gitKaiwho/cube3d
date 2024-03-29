@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:54:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/26 10:36:17 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/29 13:35:29 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	put_pixel(t_pixel p, t_data *d)
 }
 
 //put a line to img
-void	put_line(t_vector2d V, t_data *d)
+void	put_line(t_vector2d V, t_data *d, t_RGB color)
 {
 	t_point	delta;
 	t_point	inc;
@@ -55,7 +55,7 @@ void	put_line(t_vector2d V, t_data *d)
 	{
 		if (break_point(V, inc))
 			break ;
-		put_pixel((t_pixel){inc.x, inc.y, int_to_rgb(RED)}, d);
+		put_pixel((t_pixel){inc.x, inc.y, color}, d);
 		inc.x += delta.x;
 		inc.y += delta.y;
 		i++;

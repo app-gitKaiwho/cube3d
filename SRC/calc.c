@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 11:14:25 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/29 00:27:55 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/29 14:56:58 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ int	ispointincast(t_point p, t_point A, t_point B, t_point tocheck)
 	c = 1 - a - b;
 	if (a >= 0 && a <= 1 && b >= 0 && b <= 1 && c >= 0 && c <= 1)
 		return (1);
-	return (0);
+	//return (0);
+	return (1);
 }
 
 int	isobjectincast(t_player p, t_object obj)
@@ -80,9 +81,9 @@ t_point2d	pointcast(t_point point, t_data d)
 	deltaz = point.z - d.player.pos.z;
 	if (deltaz == 0)
 		deltaz = 0.0001;
-	casted.x = ((point.x - d.player.pos.x) * d.focal) / deltaz;
+	casted.x = ((point.x - d.player.pos.x) * (d.focal)) / deltaz;
 	casted.y = ((point.y - d.player.pos.y - d.player.size.y)
-			* d.focal) / deltaz;
+			* (d.focal)) / deltaz;
 	casted.x = casted.x + (WL / 2);
 	casted.y = casted.y + (WH / 2);
 	return (casted);

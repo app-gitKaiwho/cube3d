@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 22:24:15 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/28 22:24:40 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/03/29 16:42:15 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	init_world(t_data *d)
 {
 	d->world.spawn = (t_point){0, 0, 0};
-	d->world.size.x = 1000;
-	d->world.size.y = 1000;
+	d->world.size.x = 100 * d->scale;
+	d->world.size.y = 100 * d->scale;
 	d->world.earth = 0xbf9c6d;
 	d->world.sky = 0x9deaed;
 	d->world.nb_obj = 0;
@@ -24,6 +24,7 @@ void	init_world(t_data *d)
 	d->render_distance = (d->world.size.x + d->world.size.y) / 4;
 }
 
+#include <stdio.h>
 t_data	*initdata(void)
 {
 	t_data	*data;
@@ -38,10 +39,10 @@ t_data	*initdata(void)
 			&data->img.line_size, &data->img.endian);
 	mlx_hook(data->win.ptr, CLOSE_WINDOW_KEY, 0, &exit_hook, NULL);
 	mlx_key_hook(data->win.ptr, &keyhook, NULL);
-	data->fov = FOV;
-	data->focal = FOCAL;
 	data->width = WL;
 	data->height = WH;
-	data->a_ratio = data->width / data->height;
+	data->fov = 90;
+	data->scale = WL * 0.1;
+	data->focal = data->width * 0.5 / tan(degtorad(data->fov * 0.5));
 	return (data);
 }
