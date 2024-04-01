@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 11:14:25 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/29 18:20:29 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/01 13:28:41 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,11 @@ int	ispointincast(t_point p, t_point A, t_point B, t_point tocheck)
 	a = ((A.z - B.z) * (tocheck.x - B.x)
 			+ (B.x - A.x) * (tocheck.z - B.z)) / denominator;
 	b = ((B.z - p.z) * (tocheck.x - B.x)
-			+ (p.x - B.x) * (tocheck.x - B.z)) / denominator;
+			+ (p.x - B.x) * (tocheck.z - B.z)) / denominator;
 	c = 1 - a - b;
 	if (a >= 0 && a <= 1 && b >= 0 && b <= 1 && c >= 0 && c <= 1)
 		return (1);
-	//return (0);
-	return (1);
+	return (0);
 }
 
 int	isobjectincast(t_player p, t_object obj)
@@ -77,22 +76,30 @@ int	isobjectincast(t_player p, t_object obj)
 	return (0);
 }
 
+t_point	rotation_y(t_point point, t_data d)
+{
+	t_point	rotated;
+	t_point	angle;
+
+	angle.y = (((d.player.angle.y) * M_PI) / 180);
+	rotated.x = point.x * cos(angle.y) + point.z * sin(angle.y);
+	rotated.y = point.y;
+	rotated.z = -point.x * sin(angle.y) + point.z * cos(angle.y);
+	return (rotated);
+}
+
 t_point2d	pointcast(t_point point, t_data d)
 {
 	t_point2d	casted;
-	double		deltaz;
-	t_point		rot;
+	t_point		delta;
 
-
-	rot.x = .x * cos(d->angle.y) + .z * sin(d->angle.y);
-	rot.z = .z * cos(d->angle.y) - .x * sin(d->angle.y);
-	deltaz = point.z - d.player.pos.z;
-	if (deltaz == 0)
-		deltaz = 0.0001;
-	casted.x = ((point.x - d.player.pos.x) * (d.focal)) / deltaz;
-	casted.y = ((point.y - d.player.pos.y - d.player.size.y)
-			* (d.focal)) / deltaz;
-	casted.x = casted.x + rot.x + (WL / 2);
+	delta.x = point.x - d.player.pos.x;
+	delta.y = point.y - d.player.pos.y - d.player.size.y;
+	delta.z = point.z - d.player.pos.z;
+	delta = rotation_y(delta, d);
+	casted.x = (delta.x * d.focal) / delta.z;
+	casted.y = (delta.y * d.focal) / delta.z;
+	casted.x = casted.x + (WL / 2);
 	casted.y = casted.y + (WH / 2);
 	return (casted);
 }

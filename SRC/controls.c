@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:02:40 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/29 16:41:59 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/01 13:10:21 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	exit_hook(void)
 {
 	exit(EXIT_SUCCESS);
 }
-#include <stdio.h>
+
 void	player_keys(int keycode, t_data *d)
 {
 	if (keycode == UP)

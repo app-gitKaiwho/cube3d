@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 22:24:15 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/29 17:27:31 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/01 12:09:10 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	init_world(t_data *d)
 	d->render_distance = (d->world.size.x + d->world.size.y) / 4;
 }
 
-#include <stdio.h>
 t_data	*initdata(void)
 {
 	t_data	*data;

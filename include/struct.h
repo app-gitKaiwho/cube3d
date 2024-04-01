@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/29 16:38:22 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/01 12:32:57 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 typedef struct img
 {
+	int		bpp;
 	void	*img;
 	char	*addr;
-	int		bpp;
-	int		line_size;
 	int		endian;
+	int		line_size;
 }	t_img;
 
 typedef struct window
@@ -87,9 +87,9 @@ typedef struct object
 	t_point		rot;
 	int			seen;
 	t_point		size;
+	t_point		verti[8];
 	t_polygon	poly[12];
 	t_RGB		**textures;
-	t_point		verti[8];
 }	t_object;
 
 typedef struct sprite
@@ -103,25 +103,24 @@ typedef struct sprite
 //c for current
 typedef struct world
 {
-	t_point		spawn;
-	t_point2d	size;
 	int			sky;
+	t_point2d	size;
+	t_point		spawn;
 	int			earth;
 	int			nb_obj;
 	t_object	*c_obj;
 	t_sprite	*c_sprite;
 	int			nb_sprite;
-
 }	t_world;
 
 typedef struct player
 {
-	int			speed;
 	t_point		pos;
 	t_point		size;
+	int			speed;
 	t_point		angle;
-	t_sprite	mapsprite;
 	t_point		cast[2];
+	t_sprite	mapsprite;
 }	t_player;
 
 typedef struct minimap
@@ -141,9 +140,9 @@ typedef struct data
 	int			earth;
 	double		focal;
 	double		width;
-	double		height;
 	double		scale;
 	t_world		world;
+	double		height;
 	t_player	player;
 	t_minimap	minimap;
 	int			render_distance;
