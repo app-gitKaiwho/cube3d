@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:54:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/29 13:35:29 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/01 13:36:41 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	put_line(t_vector2d V, t_data *d, t_RGB color)
 	i = 0;
 	while (i <= steps)
 	{
-		if (break_point(V, inc))
+		if (break_point(V, inc) && 0) //break point kill some lines have to fix later
 			break ;
 		put_pixel((t_pixel){inc.x, inc.y, color}, d);
 		inc.x += delta.x;

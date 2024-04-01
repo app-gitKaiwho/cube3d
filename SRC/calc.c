@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 11:14:25 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/01 13:28:41 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/01 13:52:36 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,18 @@ int	ispointincast(t_point p, t_point A, t_point B, t_point tocheck)
 	return (0);
 }
 
-int	isobjectincast(t_player p, t_object obj)
+int	ispolyincast(t_player p, t_polygon poly)
 {
 	int		i;
 	t_point	tocheck;
 
 	i = 0;
-	while (i < 8)
+	while (i < 3)
 	{
-		tocheck = obj.verti[i];
+		tocheck = poly.edges[i].a;
+		if (ispointincast(p.pos, p.cast[0], p.cast[1], tocheck))
+			return (1);
+		tocheck = poly.edges[i].b;
 		if (ispointincast(p.pos, p.cast[0], p.cast[1], tocheck))
 			return (1);
 		i++;

@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 15:15:19 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/01 13:20:54 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/01 14:30:20 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	player_init(t_data *d)
 //temporary doble raycast to show lines
 void	player_movement(t_data *data, t_point dir)
 {
+	r.x = o.x + (d->render_distance / d->minimap.scale * cos(ang));
+	r.y = o.y + (d->render_distance / d->minimap.scale * sin(ang));
 	if (data->player.pos.x + dir.x >= data->world.size.x)
 		data->player.pos.x = data->world.size.x;
 	else if (data->player.pos.x + dir.x <= 0)

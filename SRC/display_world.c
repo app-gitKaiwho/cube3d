@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 16:49:51 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/29 13:36:35 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/01 13:42:20 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,11 @@ void	display_world_object(t_data *d)
 	while (i < d->world.nb_obj)
 	{
 		j = 0;
-		if (d->world.c_obj[i].seen)
+		while (j < 12)
 		{
-			while (j < 12)
-			{
+			if (d->world.c_obj[i].poly[j].seen)
 				display_polygone(d, d->world.c_obj[i].poly[j]);
-				j++;
-			}
+			j++;
 		}
 		i++;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:03:50 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/26 09:44:09 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/01 13:52:57 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,14 +120,20 @@ void	object_pop(t_data *d, int index)
 void	object_to_render(t_data *d)
 {
 	int	i;
+	int	j;
 
 	i = 0;
 	while (i < d->world.nb_obj)
 	{
-		if (isobjectincast(d->player, d->world.c_obj[i]))
-			d->world.c_obj[i].seen = 1;
-		else
-			d->world.c_obj[i].seen = 0;
+		j = 0;
+		while (j < 12)
+		{
+			if (ispolyincast(d->player, d->world.c_obj[i].poly[j]))
+				d->world.c_obj[i].poly[j].seen = 1;
+			else
+				d->world.c_obj[i].poly[j].seen = 0;
+			j++;
+		}
 		i++;
 	}
 }

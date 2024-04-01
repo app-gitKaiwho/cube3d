@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:02:40 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/01 13:10:21 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/01 14:30:15 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ void	player_keys(int keycode, t_data *d)
 		else
 			d->minimap.scale = d->scale;
 	}
+	if (keycode == PLUS)
+		d->focal += 10;
+	if (keycode == MINUS)
+		d->focal -= 10;
 }
 
 // basic keyborde hook
