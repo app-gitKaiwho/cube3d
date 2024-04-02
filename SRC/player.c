@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 15:15:19 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/01 14:30:20 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/02 14:31:11 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,21 @@ void	player_init(t_data *d)
 //temporary doble raycast to show lines
 void	player_movement(t_data *data, t_point dir)
 {
-	r.x = o.x + (d->render_distance / d->minimap.scale * cos(ang));
-	r.y = o.y + (d->render_distance / d->minimap.scale * sin(ang));
-	if (data->player.pos.x + dir.x >= data->world.size.x)
+	data->player.pos.x += dir.x * data->player.speed
+		* cos(data->player.angle.y * M_PI / 180)
+		- dir.z * data->player.speed * sin(data->player.angle.y * M_PI / 180);
+	data->player.pos.z += dir.z * data->player.speed
+		* cos(data->player.angle.y * M_PI / 180)
+		+ dir.x * data->player.speed * sin(data->player.angle.y * M_PI / 180);
+	data->player.angle.y += dir.y * 10 ;
+	if (data->player.pos.x >= data->world.size.x)
 		data->player.pos.x = data->world.size.x;
-	else if (data->player.pos.x + dir.x <= 0)
+	else if (data->player.pos.x <= 0)
 		data->player.pos.x = 0;
-	else
-		data->player.pos.x += dir.x * data->player.speed;
-	if (data->player.pos.z + dir.y >= data->world.size.y)
+	if (data->player.pos.z >= data->world.size.y)
 		data->player.pos.z = data->world.size.y;
-	else if (data->player.pos.z + dir.y <= 0)
+	else if (data->player.pos.z <= 0)
 		data->player.pos.z = 0;
-	else
-		data->player.pos.z += dir.y * data->player.speed;
-	data->player.angle.y += dir.z * 10 ;
 }
 
 //rework to cast on z and not y

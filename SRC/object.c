@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:03:50 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/01 13:52:57 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/02 18:41:57 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 void	objecttopoly(t_object *o)
 {
 	o->poly[0] = pointtopolygone(o->verti[0], o->verti[1], o->verti[2]);
-	o->poly[1] = pointtopolygone(o->verti[2], o->verti[3], o->verti[0]);
-	o->poly[2] = pointtopolygone(o->verti[4], o->verti[5], o->verti[6]);
-	o->poly[3] = pointtopolygone(o->verti[6], o->verti[7], o->verti[4]);
-	o->poly[4] = pointtopolygone(o->verti[0], o->verti[1], o->verti[5]);
-	o->poly[5] = pointtopolygone(o->verti[5], o->verti[4], o->verti[0]);
-	o->poly[6] = pointtopolygone(o->verti[1], o->verti[2], o->verti[6]);
-	o->poly[7] = pointtopolygone(o->verti[6], o->verti[5], o->verti[1]);
-	o->poly[8] = pointtopolygone(o->verti[2], o->verti[3], o->verti[7]);
-	o->poly[9] = pointtopolygone(o->verti[7], o->verti[6], o->verti[2]);
-	o->poly[10] = pointtopolygone(o->verti[3], o->verti[0], o->verti[4]);
-	o->poly[11] = pointtopolygone(o->verti[4], o->verti[7], o->verti[3]);
+	o->poly[1] = pointtopolygone(o->verti[0], o->verti[2], o->verti[3]);
+	o->poly[2] = pointtopolygone(o->verti[3], o->verti[2], o->verti[6]);
+	o->poly[3] = pointtopolygone(o->verti[3], o->verti[6], o->verti[7]);
+	o->poly[4] = pointtopolygone(o->verti[7], o->verti[6], o->verti[5]);
+	o->poly[5] = pointtopolygone(o->verti[7], o->verti[5], o->verti[4]);
+	o->poly[6] = pointtopolygone(o->verti[4], o->verti[5], o->verti[1]);
+	o->poly[7] = pointtopolygone(o->verti[4], o->verti[1], o->verti[0]);
+	o->poly[8] = pointtopolygone(o->verti[1], o->verti[5], o->verti[6]);
+	o->poly[9] = pointtopolygone(o->verti[1], o->verti[6], o->verti[2]);
+	o->poly[10] = pointtopolygone(o->verti[0], o->verti[3], o->verti[7]);
+	o->poly[11] = pointtopolygone(o->verti[0], o->verti[7], o->verti[4]);
 }
 
 t_object	object_create(t_point pos, t_point	si, t_RGB **textures)
@@ -128,7 +128,7 @@ void	object_to_render(t_data *d)
 		j = 0;
 		while (j < 12)
 		{
-			if (ispolyincast(d->player, d->world.c_obj[i].poly[j]))
+			if (ispolyseen(d->player, d->world.c_obj[i].poly[j]))
 				d->world.c_obj[i].poly[j].seen = 1;
 			else
 				d->world.c_obj[i].poly[j].seen = 0;

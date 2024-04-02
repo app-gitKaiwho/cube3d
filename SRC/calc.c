@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 11:14:25 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/01 13:52:36 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/02 18:41:48 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,21 +60,30 @@ int	ispointincast(t_point p, t_point A, t_point B, t_point tocheck)
 	return (0);
 }
 
-int	ispolyincast(t_player p, t_polygon poly)
+int	ispolyseen(t_player p, t_polygon poly)
 {
-	int		i;
-	t_point	tocheck;
+	int			i;
+	t_vector	n;
+	t_point		dir;
+	t_vector	tocheck;
 
-	i = 0;
-	while (i < 3)
+	n.a = (t_point){poly.edges[1].a.x - poly.edges[0].a.x, poly.edges[1].a.y
+		- poly.edges[0].a.y, poly.edges[1].a.z - poly.edges[0].a.z};
+	n.b = (t_point){poly.edges[2].a.x - poly.edges[0].a.x, poly.edges[2].a.y
+		- poly.edges[0].a.y, poly.edges[2].a.z - poly.edges[0].a.z};
+	poly.normal = vectounivec((t_point){n.a.y * n.b.z - n.a.z * n.b.y,
+			n.a.z * n.b.x - n.a.x * n.b.z, n.a.x * n.b.y - n.a.y * n.b.x});
+	dir = vectounivec((t_point){poly.edges[0].a.x - p.pos.x, poly.edges[0].a.y
+			- p.pos.y, poly.edges[0].a.z - p.pos.z});
+	if (poly.normal.x * dir.x + poly.normal.y * dir.y + poly.normal.z * dir.z <= 0)
+		return (0);
+	i = -1;
+	while (++i < 3)
 	{
-		tocheck = poly.edges[i].a;
-		if (ispointincast(p.pos, p.cast[0], p.cast[1], tocheck))
+		tocheck = poly.edges[i];
+		if (ispointincast(p.pos, p.cast[0], p.cast[1], tocheck.a)
+			|| (ispointincast(p.pos, p.cast[0], p.cast[1], tocheck.b)))
 			return (1);
-		tocheck = poly.edges[i].b;
-		if (ispointincast(p.pos, p.cast[0], p.cast[1], tocheck))
-			return (1);
-		i++;
 	}
 	return (0);
 }
@@ -104,14 +113,5 @@ t_point2d	pointcast(t_point point, t_data d)
 	casted.y = (delta.y * d.focal) / delta.z;
 	casted.x = casted.x + (WL / 2);
 	casted.y = casted.y + (WH / 2);
-	return (casted);
-}
-
-t_vector2d	vec3cast(t_vector v, t_data d)
-{
-	t_vector2d	casted;
-
-	casted.a = pointcast(v.a, d);
-	casted.b = pointcast(v.b, d);
 	return (casted);
 }

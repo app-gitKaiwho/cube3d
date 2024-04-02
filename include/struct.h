@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/01 13:47:37 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/02 17:28:13 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ typedef struct vector2d
 typedef struct polygon
 {
 	int			seen;
-	t_vector	normal;
+	t_point		normal;
 	t_vector	edges[3];
 }	t_polygon;
 
@@ -131,6 +131,13 @@ typedef struct minimap
 	int			scale;
 }	t_minimap;
 
+typedef struct option
+{
+	int		raytoplayer;
+	int		playerview;
+	int		minimap;
+}	t_option;
+
 typedef struct data
 {
 	t_window	win;
@@ -142,6 +149,7 @@ typedef struct data
 	double		width;
 	double		scale;
 	t_world		world;
+	t_option	option;
 	double		height;
 	t_player	player;
 	t_minimap	minimap;

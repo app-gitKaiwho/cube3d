@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 22:24:15 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/01 12:09:10 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/02 14:53:09 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+
+/// @brief should be initialised by input
+void	minimap_init(t_data *d)
+{
+	d->minimap.pos = (t_point2d){10, 10};
+	d->minimap.scale = 1 * d->scale;
+	d->minimap.color = int_to_rgb(BLUE);
+}
 
 void	init_world(t_data *d)
 {
@@ -22,6 +30,13 @@ void	init_world(t_data *d)
 	d->world.nb_obj = 0;
 	d->world.nb_sprite = 0;
 	d->render_distance = (d->world.size.x + d->world.size.y) / 4;
+}
+
+void	initoption(t_data *d)
+{
+	d->option.minimap = 1;
+	d->option.playerview = 0;
+	d->option.raytoplayer = 0;
 }
 
 t_data	*initdata(void)

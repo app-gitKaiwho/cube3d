@@ -3,22 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 19:38:03 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/01 14:30:04 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/02 14:53:01 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
-
-/// @brief should be initialised by input
-void	minimap_init(t_data *d)
-{
-	d->minimap.pos = (t_point2d){10, 10};
-	d->minimap.scale = 1 * d->scale;
-	d->minimap.color = int_to_rgb(BLUE);
-}
 
 void	cast_object_on_minimap(t_data	*d)
 {
@@ -109,7 +101,9 @@ void	display_minimap(t_data *d)
 		d->minimap.color};
 	put_square(p, d->minimap.size, d);
 	cast_player_on_minimap(d);
-	displayraytoplayer(d);
-	cast_player_view(d);
+	if (d->option.raytoplayer)
+		displayraytoplayer(d);
+	if (d->option.playerview)
+		cast_player_view(d);
 	cast_object_on_minimap(d);
 }
