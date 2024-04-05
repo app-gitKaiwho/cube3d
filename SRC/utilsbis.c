@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 09:31:48 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/02 18:37:59 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/03 14:46:02 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ double	degtorad(double degree)
 	return (degree * M_PI / 180);
 }
 
-t_vector2d	vec3cast(t_vector v, t_data d)
+t_vector	vec3cast(t_vector v, t_data d)
 {
-	t_vector2d	casted;
+	t_vector	casted;
 
 	casted.a = pointcast(v.a, d);
 	casted.b = pointcast(v.b, d);
@@ -45,4 +45,13 @@ t_point	vectounivec(t_point v)
 	if (v.z != 0)
 		v.z /= fabs(v.z);
 	return (v);
+}
+
+t_vector2d	rmdepth(t_vector v)
+{
+	t_vector2d	v2d;
+
+	v2d.a = (t_point2d){v.a.x, v.a.y};
+	v2d.b = (t_point2d){v.b.x, v.b.y};
+	return (v2d);
 }

@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 11:14:25 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/02 18:41:48 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/03 15:08:11 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	ispolyseen(t_player p, t_polygon poly)
 {
 	int			i;
 	t_vector	n;
-	t_point		dir;
+	t_point		d;
 	t_vector	tocheck;
 
 	n.a = (t_point){poly.edges[1].a.x - poly.edges[0].a.x, poly.edges[1].a.y
@@ -73,9 +73,9 @@ int	ispolyseen(t_player p, t_polygon poly)
 		- poly.edges[0].a.y, poly.edges[2].a.z - poly.edges[0].a.z};
 	poly.normal = vectounivec((t_point){n.a.y * n.b.z - n.a.z * n.b.y,
 			n.a.z * n.b.x - n.a.x * n.b.z, n.a.x * n.b.y - n.a.y * n.b.x});
-	dir = vectounivec((t_point){poly.edges[0].a.x - p.pos.x, poly.edges[0].a.y
-			- p.pos.y, poly.edges[0].a.z - p.pos.z});
-	if (poly.normal.x * dir.x + poly.normal.y * dir.y + poly.normal.z * dir.z <= 0)
+	d = vectounivec((t_point){poly.edges[0].a.x - p.pos.x, poly.edges[0].a.y
+			- (p.pos.y + p.size.y), poly.edges[0].a.z - p.pos.z});
+	if (poly.normal.x * d.x + poly.normal.y * d.y + poly.normal.z * d.z < 0)
 		return (0);
 	i = -1;
 	while (++i < 3)
@@ -100,10 +100,10 @@ t_point	rotation_y(t_point point, t_data d)
 	return (rotated);
 }
 
-t_point2d	pointcast(t_point point, t_data d)
+t_point	pointcast(t_point point, t_data d)
 {
-	t_point2d	casted;
-	t_point		delta;
+	t_point	casted;
+	t_point	delta;
 
 	delta.x = point.x - d.player.pos.x;
 	delta.y = point.y - d.player.pos.y - d.player.size.y;
@@ -113,5 +113,6 @@ t_point2d	pointcast(t_point point, t_data d)
 	casted.y = (delta.y * d.focal) / delta.z;
 	casted.x = casted.x + (WL / 2);
 	casted.y = casted.y + (WH / 2);
+	casted.z = delta.z;
 	return (casted);
 }

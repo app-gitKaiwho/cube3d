@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 18:23:20 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/26 10:35:53 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:13:00 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ t_RGB	int_to_rgb(int color)
 	return (rgb);
 }
 
-///	@brief check if a point is out of the window. based on vector's direction
+///	@brief check if a point is out of the window. 
+/// based on vector's direction unused
 int	break_point(t_vector2d AB, t_point current)
 {
 	int	is_out;
@@ -66,21 +67,19 @@ t_RGB	*texture_monchrome_create(t_point2d size, t_RGB color)
 	int			j;
 	int			n;
 
-	j = 0;
+	j = -1;
 	n = 0;
 	texture = malloc(sizeof(t_RGB) * size.x * size.y);
 	if (!texture)
 		error_handler("Failed to create texture", 1);
-	while (j < size.y)
+	while (++j < size.y)
 	{
-		i = 0;
-		while (i < size.x)
+		i = -1;
+		while (++i < size.x)
 		{
 			texture[n] = color;
 			n++;
-			i++;
 		}
-		j++;
 	}
 	return (texture);
 }

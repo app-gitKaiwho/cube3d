@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:03:50 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/02 18:41:57 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:06:11 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ void	object_pop(t_data *d, int index)
 	int			i;
 	int			found;
 
-	i = -1;
 	tmp = NULL;
 	found = 0;
 	if (d->world.nb_obj <= 0)
@@ -104,6 +103,7 @@ void	object_pop(t_data *d, int index)
 	if (d->world.nb_obj > 1)
 	{
 		tmp = malloc(sizeof(t_object) * (d->world.nb_obj - 1));
+		i = -1;
 		while (++i < d->world.nb_obj - 1)
 		{
 			if (i == index)
@@ -122,18 +122,16 @@ void	object_to_render(t_data *d)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (i < d->world.nb_obj)
+	i = -1;
+	while (++i < d->world.nb_obj)
 	{
-		j = 0;
-		while (j < 12)
+		j = -1;
+		while (++j < 12)
 		{
 			if (ispolyseen(d->player, d->world.c_obj[i].poly[j]))
 				d->world.c_obj[i].poly[j].seen = 1;
 			else
 				d->world.c_obj[i].poly[j].seen = 0;
-			j++;
 		}
-		i++;
 	}
 }
