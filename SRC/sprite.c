@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:03:50 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/25 19:32:36 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:06:38 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,18 @@ void	sprite_put(t_data *d, t_sprite s)
 	t_pixel	p;
 
 	n = 0;
-	j = 0;
-	while (j < s.size.y)
+	j = -1;
+	while (++j < s.size.y)
 	{
-		i = 0;
-		while (i < s.size.x)
+		i = -1;
+		while (++i < s.size.x)
 		{
 			p.x = s.pos.x + i;
 			p.y = s.pos.y + j;
 			p.color = s.texture[n];
 			put_pixel(p, d);
-			i++;
 			n++;
 		}
-		j++;
 	}
 }
 

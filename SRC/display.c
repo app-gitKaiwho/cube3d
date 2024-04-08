@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:54:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/01 13:36:41 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:03:50 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	put_pixel(t_pixel p, t_data *d)
 }
 
 //put a line to img
-void	put_line(t_vector2d V, t_data *d, t_RGB color)
+void	put_line(t_vector V, t_data *d, t_RGB color)
 {
 	t_point	delta;
 	t_point	inc;
@@ -50,15 +50,12 @@ void	put_line(t_vector2d V, t_data *d, t_RGB color)
 	delta.y = delta.y / steps;
 	inc.x = V.a.x;
 	inc.y = V.a.y;
-	i = 0;
-	while (i <= steps)
+	i = -1;
+	while (++i <= steps)
 	{
-		if (break_point(V, inc) && 0) //break point kill some lines have to fix later
-			break ;
 		put_pixel((t_pixel){inc.x, inc.y, color}, d);
 		inc.x += delta.x;
 		inc.y += delta.y;
-		i++;
 	}
 }
 
@@ -68,16 +65,12 @@ void	put_square(t_pixel cen, t_point2d size, t_data *d)
 	int	i;
 	int	j;
 
-	j = 0;
-	while (j < size.y)
+	j = -1;
+	while (++j < size.y)
 	{
-		i = 0;
-		while (i < size.x)
-		{
+		i = -1;
+		while (++i < size.x)
 			put_pixel((t_pixel){cen.x + i, cen.y + j, cen.color}, d);
-			i++;
-		}
-		j++;
 	}
 }
 
