@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:49:18 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/29 16:13:07 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/12 10:24:09 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,8 @@
 
 //player
 # include "player.h"
+
+//test
+# include "test.h"
 
 #endif /*!CUBE_H */
