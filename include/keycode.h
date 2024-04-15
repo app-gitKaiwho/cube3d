@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keycode.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 11:54:56 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/02 14:45:39 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/15 11:43:02 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,15 @@
 #  define JLETTER 40//j
 #  define KLETTER 38//k
 #  define MAP 46//m
-#  define OPTION1 65436 //num pad 1
-#  define OPTION2 65433 //num pad 2
-#  define OPTION3 65435 //num pad 3
-#  define OPTION4 65430 //num pad 4
-#  define OPTION5 65437 //num pad 5
-#  define OPTION6 65432 //num pad 6
-#  define OPTION7 65429 //num pad 7
-#  define OPTION8 65431 //num pad 8
-#  define OPTION9 65434 //num pad 9
+#  define OPTION1 83 //num pad 1
+#  define OPTION2 84 //num pad 2
+#  define OPTION3 85 //num pad 3
+#  define OPTION4 86 //num pad 4
+#  define OPTION5 87 //num pad 5
+#  define OPTION6 88 //num pad 6
+#  define OPTION7 89 //num pad 7
+#  define OPTION8 91 //num pad 8
+#  define OPTION9 92 //num pad 9
 # else
 //compiled if not on macOS
 #  define ESC 65307 // Escape key on Linux

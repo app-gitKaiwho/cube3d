@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:02:40 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/02 15:09:45 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/15 10:05:22 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ int	keyhook(int keycode, void *param)
 		exit(EXIT_SUCCESS);
 	if (keycode == RESET)
 		clear_img(d);
+	ft_printf("keycode: %d\n", keycode);
 	return (0);
 }
