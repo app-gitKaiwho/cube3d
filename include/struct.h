@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/02 17:28:13 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/15 13:29:48 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ typedef struct polygon
 	int			seen;
 	t_point		normal;
 	t_vector	edges[3];
+	t_RGB		*textaddr;
+	t_point2d	texturepos[3];
 }	t_polygon;
 
 //for texture : Nord = 0, Sud = 1, Est = 2, West = 3

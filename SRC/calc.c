@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 11:14:25 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/03 15:08:11 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/15 13:51:04 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	ispolyseen(t_player p, t_polygon poly)
 			n.a.z * n.b.x - n.a.x * n.b.z, n.a.x * n.b.y - n.a.y * n.b.x});
 	d = vectounivec((t_point){poly.edges[0].a.x - p.pos.x, poly.edges[0].a.y
 			- (p.pos.y + p.size.y), poly.edges[0].a.z - p.pos.z});
-	if (poly.normal.x * d.x + poly.normal.y * d.y + poly.normal.z * d.z < 0)
+	if (poly.normal.x * d.x + poly.normal.y * d.y + poly.normal.z * d.z > 0)
 		return (0);
 	i = -1;
 	while (++i < 3)
