@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+         #
+#    By: spook <spook@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/25 16:52:50 by lvon-war          #+#    #+#              #
-#    Updated: 2024/04/15 13:25:36 by lvon-war         ###   ########.fr        #
+#    Updated: 2024/04/18 15:21:36 by spook            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ ENAME	=	cube3d
 NAME	=	cube3d.a
 CFLAGS	=	-Wall -Werror -Wextra
 AR		=	ar -rsc
-FILES	=	main.c controls.c calc.c utils.c display.c  display_world.c \
+FILES	=	main.c controls.c calc.c calcbis.c utils.c display.c  display_world.c \
 sprite.c object.c objectinit.c data_utils.c player.c map.c utilsbis.c init.c test.c
 
 # Path for .c , .h and .o Files 

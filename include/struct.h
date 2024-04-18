@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/15 13:29:48 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/18 16:06:57 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,12 @@ typedef struct vector2d
 }	t_vector2d;
 
 //triangular polygon
+
 typedef struct polygon
 {
 	int			seen;
 	t_point		normal;
+	t_point		verti[3];
 	t_vector	edges[3];
 	t_RGB		*textaddr;
 	t_point2d	texturepos[3];
@@ -137,6 +139,7 @@ typedef struct option
 {
 	int		raytoplayer;
 	int		playerview;
+	int		wireframe;
 	int		minimap;
 }	t_option;
 

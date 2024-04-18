@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objectinit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 13:05:38 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/15 13:48:27 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/18 13:15:38 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	polytexturemapping(t_object *o)
 
 	i = 0;
 	while (i < 12)
-	{	
+	{
 		if ((i / 2) < 4)
 			o->poly[i].textaddr = o->textures[i / 2];
 		else
@@ -35,7 +35,7 @@ void	polytexturemapping(t_object *o)
 			o->poly[i].texturepos[1] = (t_point2d){1, 1};
 			o->poly[i].texturepos[2] = (t_point2d){1, 0};
 		}
-	i++;
+		i++;
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 22:24:15 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/02 14:53:09 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/15 20:24:57 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	init_world(t_data *d)
 void	initoption(t_data *d)
 {
 	d->option.minimap = 1;
+	d->option.wireframe = 1;
 	d->option.playerview = 0;
 	d->option.raytoplayer = 0;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:02:40 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/15 10:05:22 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/15 20:24:05 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	options_key(int keycode, t_data *d)
 		d->option.raytoplayer = !d->option.raytoplayer;
 	if (keycode == OPTION3)
 		d->option.playerview = !d->option.playerview;
+	if (keycode == OPTION4)
+		d->option.wireframe = !d->option.wireframe;
 }
 
 // basic keyborde hook
@@ -72,6 +74,5 @@ int	keyhook(int keycode, void *param)
 		exit(EXIT_SUCCESS);
 	if (keycode == RESET)
 		clear_img(d);
-	ft_printf("keycode: %d\n", keycode);
 	return (0);
 }
