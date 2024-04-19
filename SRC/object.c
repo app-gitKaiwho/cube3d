@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:03:50 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/19 15:50:59 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:11:49 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,17 @@ void	object_to_render(t_data *d)
 t_RGB	polygon_get_color(t_polygon p)
 {
 	t_iterator	it;
+	int			deltax;
+	int			deltay;
+
+	if (p.texturepos[1].x > 0)
+	{
+		delta.x = p.texturepos[1].x - p.texturepos[0].x;
+	}
+	else
+	{
+		delta.x = p.texturepos[2].x - p.texturepos[0].x;
+	}
 	//p.textaddr[i + j * size.x];
 	return (p.textaddr[0]);
 }

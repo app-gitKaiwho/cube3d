@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 14:23:39 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/19 15:31:46 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:11:44 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	pixelinterpolation(t_data *d, t_point	vert[3], t_polygon p)
 	int	l;
 	int	r;
 
-	/*if (p.texturepos[1].x == 0)
-		return ;*/
+	if (p.texturepos[1].x == 0)
+		return ;
 	i = vert[0].y;
 	while (i > vert[2].y)
 	{
