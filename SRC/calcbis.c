@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 14:23:39 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/19 16:11:44 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:44:40 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ void	lineinterpolation(t_data *d, t_iterator it, t_polygon p)
 	if (it.i > it.j)
 	{
 		while (it.i > it.j)
-			put_pixel((t_pixel){it.i--, it.k, polygon_get_color(p)}, d);
+			put_pixel((t_pixel){it.i--, it.k, polygon_get_color(p, 0, 0, (t_iterator){0, 0, 0})}, d);
 	}
 	else
 	{
 		while (it.i <= it.j)
-			put_pixel((t_pixel){it.i++, it.k, polygon_get_color(p)}, d);
+			put_pixel((t_pixel){it.i++, it.k, polygon_get_color(p, 0, 0, (t_iterator){0, 0, 0})}, d);
 	}
 }
 
@@ -62,8 +62,6 @@ void	pixelinterpolation(t_data *d, t_point	vert[3], t_polygon p)
 	int	l;
 	int	r;
 
-	if (p.texturepos[1].x == 0)
-		return ;
 	i = vert[0].y;
 	while (i > vert[2].y)
 	{
