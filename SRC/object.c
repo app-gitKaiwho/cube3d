@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:03:50 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/15 13:06:51 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/19 15:50:59 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,11 @@ void	object_to_render(t_data *d)
 				d->world.c_obj[i].poly[j].seen = 0;
 		}
 	}
+}
+
+t_RGB	polygon_get_color(t_polygon p)
+{
+	t_iterator	it;
+	//p.textaddr[i + j * size.x];
+	return (p.textaddr[0]);
 }

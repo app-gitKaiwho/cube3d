@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 10:22:59 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/12 11:29:09 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/19 14:39:46 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ void	test(t_data *d)
 		{40 * d->scale, 0.5 * d->scale, 50 * d->scale},
 			(t_point){1 * d->scale, 1 * d->scale, 1 * d->scale}, texture));
 	object_add(d, object_create((t_point)
-		{50 * d->scale, 5 * d->scale, 50 * d->scale},
+		{50 * d->scale, 10 * d->scale, 50 * d->scale},
 			(t_point){10 * d->scale, 10 * d->scale, 10 * d->scale}, texture));
 }

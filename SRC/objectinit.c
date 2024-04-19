@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objectinit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 13:05:38 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/18 13:15:38 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/19 15:47:35 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ void	polytexturemapping(t_object *o)
 		if (i % 2 == 0)
 		{
 			o->poly[i].texturepos[0] = (t_point2d){0, 0};
-			o->poly[i].texturepos[1] = (t_point2d){0, 1};
-			o->poly[i].texturepos[2] = (t_point2d){1, 1};
+			o->poly[i].texturepos[1] = (t_point2d){0, o->size.y};
+			o->poly[i].texturepos[2] = (t_point2d){o->size.x, o->size.y};
 		}
 		else
 		{
 			o->poly[i].texturepos[0] = (t_point2d){0, 0};
-			o->poly[i].texturepos[1] = (t_point2d){1, 1};
-			o->poly[i].texturepos[2] = (t_point2d){1, 0};
+			o->poly[i].texturepos[1] = (t_point2d){o->size.x, o->size.y};
+			o->poly[i].texturepos[2] = (t_point2d){o->size.x, 0};
 		}
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 14:23:39 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/19 13:29:16 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/19 15:31:46 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,28 @@ int	sortscanlines(t_point	vert[3])
 	return (0);
 }
 
-void	leftpoly(t_data *d, t_point	vert[3], t_polygon p)
+void	lineinterpolation(t_data *d, t_iterator it, t_polygon p)
+{
+	if (it.i > it.j)
+	{
+		while (it.i > it.j)
+			put_pixel((t_pixel){it.i--, it.k, polygon_get_color(p)}, d);
+	}
+	else
+	{
+		while (it.i <= it.j)
+			put_pixel((t_pixel){it.i++, it.k, polygon_get_color(p)}, d);
+	}
+}
+
+void	pixelinterpolation(t_data *d, t_point	vert[3], t_polygon p)
 {
 	int	i;
 	int	l;
 	int	r;
 
-	(void)p;
-	(void)d;
+	/*if (p.texturepos[1].x == 0)
+		return ;*/
 	i = vert[0].y;
 	while (i > vert[2].y)
 	{
@@ -58,10 +72,11 @@ void	leftpoly(t_data *d, t_point	vert[3], t_polygon p)
 		else
 			l = interpolator(vert[1], vert[2], i);
 		r = interpolator(vert[0], vert[2], i);
-		put_line((t_vector){(t_point){l, i, 0}, (t_point){r, i, 0}}, d, p.textaddr[0]);
+		lineinterpolation(d, (t_iterator){l, r, i}, p);
 		i--;
 	}
 }
+
 void	rasterizer(t_data *d, t_polygon p)
 {
 	t_point	vert[3];
@@ -71,5 +86,5 @@ void	rasterizer(t_data *d, t_polygon p)
 	while (++i < 3)
 		vert[i] = p.verti[i];
 	sortscanlines(vert);
-	leftpoly(d, vert, p);
+	pixelinterpolation(d, vert, p);
 }
