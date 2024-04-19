@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calcbis.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 14:23:39 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/18 16:42:00 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/19 09:25:55 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	swappoints(t_point *a, t_point *b)
 	*b = tmp;
 }
 
-//return is bend direction : 1 right 0 left
+//return is bend direction : right 1, left 0
 int	sortscanlines(t_point	vert[3])
 {
 	if (vert[1].y > vert[0].y)
