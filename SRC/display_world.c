@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_world.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 16:49:51 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/18 16:45:16 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/19 09:38:25 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,17 @@ void	display_polygone(t_data *d, t_polygon p)
 	i = -1;
 	poly = p;
 	while (++i < 3)
+	{
 		poly.edges[i] = vec3cast(p.edges[i], *d);
+		poly.verti[i] = pointcast(p.verti[i], *d);
+	}
 	i = -1;
 	while (++i < 3)
 	{
 		if (d->option.wireframe)
 			put_line(poly.edges[i], d, p.textaddr[0]);
 		else
-		{
-			ft_printf("Test");
 			rasterizer(d, poly);
-		}
 	}
 }
 
