@@ -1,37 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calc.h                                             :+:      :+:    :+:   */
+/*   vector.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/19 10:45:49 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/19 10:23:42 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CALC_H
-# define CALC_H
+#ifndef VECTOR_H
+# define VECTOR_H
 
 # include "struct.h"
 
-//calc.c
+//vectutils.c
 
-t_point		pointcast(t_point point, t_data d);
-int			ispointincast(t_point p, t_point A, t_point B, t_point tocheck);
-int			ispolyseen(t_player p, t_polygon obj);
+t_point		vecdeltacalc(t_vector V);
+t_vector2d	rmdepth(t_vector v);
+t_vector	vec3cast(t_vector v, t_data d);
 
-//calcbis.c
-
-void		rasterizer(t_data *d, t_polygon p);
-
-//calcter.c
-
-int			delta(int a, int b);
-double		slope(t_point a, t_point b);
-double		degtorad(double degree);
-void		swappoints(t_point *a, t_point *b);
-
-//calcquater.c
-
-#endif /*!CALC_H */
+#endif /*!VECTOR_H */

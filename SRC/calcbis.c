@@ -6,27 +6,24 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 14:23:39 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/19 09:37:15 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/19 13:29:16 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-int	delta(int a, int b)
+int	interpolator(t_point start, t_point end, int y)
 {
-	if (a > b)
-		return (a - b);
-	else
-		return (b - a);
-}
+	double	percent;
+	double	deltax;
+	double	deltay;
 
-void	swappoints(t_point *a, t_point *b)
-{
-	t_point	tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
+	if (start.y == end.y)
+		return (start.x);
+	deltax = (double)(start.x - end.x);
+	deltay = (double)(start.y - end.y);
+	percent = (double)(y - start.y) / (deltay);
+	return (round(start.x + (deltax * percent)));
 }
 
 //return is bend direction : right 1, left 0
@@ -45,21 +42,34 @@ int	sortscanlines(t_point	vert[3])
 	return (0);
 }
 
-#include <stdio.h>
+void	leftpoly(t_data *d, t_point	vert[3], t_polygon p)
+{
+	int	i;
+	int	l;
+	int	r;
+
+	(void)p;
+	(void)d;
+	i = vert[0].y;
+	while (i > vert[2].y)
+	{
+		if (i >= vert[1].y)
+			l = interpolator(vert[0], vert[1], i);
+		else
+			l = interpolator(vert[1], vert[2], i);
+		r = interpolator(vert[0], vert[2], i);
+		put_line((t_vector){(t_point){l, i, 0}, (t_point){r, i, 0}}, d, p.textaddr[0]);
+		i--;
+	}
+}
 void	rasterizer(t_data *d, t_polygon p)
 {
 	t_point	vert[3];
 	int		i;
 
-	(void )d;
 	i = -1;
 	while (++i < 3)
 		vert[i] = p.verti[i];
-	printf("p.vert0: %f %f %f\t", p.verti[0].x, p.verti[0].y, p.verti[0].z);
-	printf("p.vert1: %f %f %f\t", p.verti[1].x, p.verti[1].y, p.verti[1].z);
-	printf("p.vert2: %f %f %f\n", p.verti[2].x, p.verti[2].y, p.verti[2].z);
 	sortscanlines(vert);
-	printf("vert0: %f %f %f\t", vert[0].x, vert[0].y, vert[0].z);
-	printf("vert1: %f %f %f\t", vert[1].x, vert[1].y, vert[1].z);
-	printf("vert2: %f %f %f\n\n", vert[2].x, vert[2].y, vert[2].z);
+	leftpoly(d, vert, p);
 }

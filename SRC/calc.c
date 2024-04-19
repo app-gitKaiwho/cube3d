@@ -6,35 +6,11 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 11:14:25 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/15 13:51:04 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/19 10:23:04 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
-
-t_point	vecdeltacalc(t_vector V)
-{
-	t_point	delta;
-	double	steps;
-
-	if (V.b.x > V.a.x)
-		delta.x = V.b.x - V.a.x;
-	else
-		delta.x = V.a.x - V.b.x;
-	if (V.b.y > V.a.y)
-		delta.y = V.b.y - V.a.y;
-	else
-		delta.y = V.a.y - V.b.y;
-	if (fabs(delta.x) > fabs(delta.y))
-		steps = fabs(delta.x);
-	else
-		steps = fabs(delta.y);
-	if (steps == 0)
-		steps = 0.0001;
-	delta.x = delta.x / steps;
-	delta.y = delta.y / steps;
-	return (delta);
-}
 
 /// @brief check is a pos is in player view
 /// @param p player pos 

@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 16:49:51 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/19 09:41:08 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/19 11:39:56 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,8 @@ void	display_polygone(t_data *d, t_polygon p)
 	else
 	{
 		while (++i < 3)
-		{
 			poly.verti[i] = pointcast(p.verti[i], *d);
-			rasterizer(d, poly);
-		}
+		rasterizer(d, poly);
 	}
 }
 

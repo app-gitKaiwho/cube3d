@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:14:25 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/03 14:46:24 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/19 10:24:22 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,6 @@ void		free_texture(t_RGB *t);
 
 //utilsbis.c
 t_polygon	pointtopolygone(t_point a, t_point b, t_point c);
-t_vector	vec3cast(t_vector v, t_data d);
-double		degtorad(double degree);
-t_point     vectounivec(t_point v);
-t_vector2d	rmdepth(t_vector v);
+t_point		vectounivec(t_point v);
 
 #endif /*!CUBE_H */

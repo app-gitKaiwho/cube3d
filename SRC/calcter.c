@@ -1,39 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utilsbis.c                                         :+:      :+:    :+:   */
+/*   calcter.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/26 09:31:48 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/19 10:22:46 by lvon-war         ###   ########.fr       */
+/*   Created: 2024/04/19 10:14:06 by lvon-war          #+#    #+#             */
+/*   Updated: 2024/04/19 10:45:32 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-t_polygon	pointtopolygone(t_point a, t_point b, t_point c)
+int	delta(int a, int b)
 {
-	t_polygon	poly;
-
-	poly.verti[0] = a;
-	poly.verti[1] = b;
-	poly.verti[2] = c;
-	poly.edges[0] = (t_vector){a, b};
-	poly.edges[1] = (t_vector){b, c};
-	poly.edges[2] = (t_vector){c, a};
-	return (poly);
+	if (a > b)
+		return (a - b);
+	else
+		return (b - a);
 }
 
-t_point	vectounivec(t_point v)
+double	slope(t_point a, t_point b)
 {
-	if (v.x != 0)
-		v.x /= fabs(v.x);
-	if (v.y != 0)
-		v.y /= fabs(v.y);
-	if (v.z != 0)
-		v.z /= fabs(v.z);
-	return (v);
+	if (delta(a.x, b.x) == 0)
+		return (0);
+	return ((double)delta(a.y, b.y) / (double)delta(a.x, b.x));
 }
 
+double	degtorad(double degree)
+{
+	return (degree * M_PI / 180);
+}
 
+void	swappoints(t_point *a, t_point *b)
+{
+	t_point	tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
