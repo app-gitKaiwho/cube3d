@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:49:18 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/19 10:25:25 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/21 01:43:13 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define FOV 90
 # define BLUE 0x0000FF
 # define DARKBLUE 0x000080
+# define DARKRED 0x8B0000
 # define YELLOW 0xFFFF00
 # define RED 0xFF0000
 # define GREEN 0x00FF00

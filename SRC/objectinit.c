@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objectinit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 13:05:38 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/19 16:42:16 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/21 04:01:28 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,16 @@ void	polytexturemapping(t_object *o)
 			o->poly[i].textaddr = o->textures[i / 2];
 		else
 			o->poly[i].textaddr = o->textures[0];
+		o->poly[i].texturepos[0] = (t_point2d){0, 0};
 		if (i % 2 == 0)
 		{
-			o->poly[i].texturepos[0] = (t_point2d){0, 0};
-			o->poly[i].texturepos[1] = (t_point2d){0, o->size.y};
-			o->poly[i].texturepos[2] = (t_point2d){o->size.x, o->size.y};
+			o->poly[i].texturepos[1] = (t_point2d){0, o->textsize};
+			o->poly[i].texturepos[2] = (t_point2d){o->textsize, o->textsize};
 		}
 		else
 		{
-			o->poly[i].texturepos[0] = (t_point2d){0, 0};
-			o->poly[i].texturepos[1] = (t_point2d){o->size.x, o->size.y};
-			o->poly[i].texturepos[2] = (t_point2d){o->size.x, 0};
+			o->poly[i].texturepos[1] = (t_point2d){o->textsize, o->textsize};
+			o->poly[i].texturepos[2] = (t_point2d){o->textsize, 0};
 		}
 		i++;
 	}
@@ -57,30 +56,24 @@ void	objecttopoly(t_object *o)
 	polytexturemapping(o);
 }
 
-t_object	object_create(t_point pos, t_point	si, t_RGB **textures)
+t_object	object_create(t_point pos, t_point	si,
+	int text_size, t_RGB **textures)
 {
-	t_object	object;
+	t_object	o;
 
-	object.seen = 0;
-	object.pos = pos;
-	object.size = si;
-	object.textures = textures;
-	object.verti[0] = (t_point){pos.x - si.x / 2,
-		pos.y - si.y / 2, pos.z - si.z / 2};
-	object.verti[1] = (t_point){pos.x - si.x / 2,
-		pos.y + si.y / 2, pos.z - si.z / 2};
-	object.verti[2] = (t_point){pos.x + si.x / 2,
-		pos.y + si.y / 2, pos.z - si.z / 2};
-	object.verti[3] = (t_point){pos.x + si.x / 2,
-		pos.y - si.y / 2, pos.z - si.z / 2};
-	object.verti[4] = (t_point){pos.x - si.x / 2,
-		pos.y - si.y / 2, pos.z + si.z / 2};
-	object.verti[5] = (t_point){pos.x - si.x / 2,
-		pos.y + si.y / 2, pos.z + si.z / 2};
-	object.verti[6] = (t_point){pos.x + si.x / 2,
-		pos.y + si.y / 2, pos.z + si.z / 2};
-	object.verti[7] = (t_point){pos.x + si.x / 2,
-		pos.y - si.y / 2, pos.z + si.z / 2};
-	objecttopoly(&object);
-	return (object);
+	o.seen = 0;
+	o.pos = pos;
+	o.size = si;
+	o.textsize = text_size;
+	o.textures = textures;
+	o.verti[0] = (t_point){pos.x - si.x / 2, pos.y - si.y / 2, pos.z - si.z / 2};
+	o.verti[1] = (t_point){pos.x - si.x / 2, pos.y + si.y / 2, pos.z - si.z / 2};
+	o.verti[2] = (t_point){pos.x + si.x / 2, pos.y + si.y / 2, pos.z - si.z / 2};
+	o.verti[3] = (t_point){pos.x + si.x / 2, pos.y - si.y / 2, pos.z - si.z / 2};
+	o.verti[4] = (t_point){pos.x - si.x / 2, pos.y - si.y / 2, pos.z + si.z / 2};
+	o.verti[5] = (t_point){pos.x - si.x / 2, pos.y + si.y / 2, pos.z + si.z / 2};
+	o.verti[6] = (t_point){pos.x + si.x / 2, pos.y + si.y / 2, pos.z + si.z / 2};
+	o.verti[7] = (t_point){pos.x + si.x / 2, pos.y - si.y / 2, pos.z + si.z / 2};
+	objecttopoly(&o);
+	return (o);
 }

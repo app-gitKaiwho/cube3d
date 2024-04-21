@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:03:50 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/19 16:43:47 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/21 04:26:56 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,14 +92,16 @@ void	object_to_render(t_data *d)
 	}
 }
 
-t_RGB	polygon_get_color(t_polygon p, double dx, double dy, t_iterator curr)
+#include <stdio.h>
+t_RGB	polygon_get_color(t_polygon p, int j)
 {
-	t_iterator	it;
+	double	inc;
+	double	x;
+	double	l;
 
-	(void)dx;
-	(void)dy;
-	(void)curr;
-	(void)it;
-	//p.textaddr[i + j * size.x];
-	return (p.textaddr[0]);
+	inc = p.texturepos[0].y / (p.verti[0].y - p.verti[2].y);
+	x = inc * (j - p.verti[2].y);
+	l = interpolator2d(p.texturepos[0], p.texturepos[2], x);
+	printf("%d\t", (int)round(l));
+	return (p.textaddr[(int)round(x)]);
 }

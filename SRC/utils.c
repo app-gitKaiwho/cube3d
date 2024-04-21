@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 18:23:20 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/05 14:13:00 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/21 03:33:21 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,40 @@ t_RGB	*texture_monchrome_create(t_point2d size, t_RGB color)
 		while (++i < size.x)
 		{
 			texture[n] = color;
+			n++;
+		}
+	}
+	return (texture);
+}
+
+t_RGB	*texture_pattern_create(t_point2d size, t_RGB color)
+{
+	t_RGB		*texture;
+	t_RGB		tmp;
+	int			i;
+	int			j;
+	int			n;
+
+	j = -1;
+	n = 0;
+	texture = malloc(sizeof(t_RGB) * size.x * size.y);
+	if (!texture)
+		error_handler("Failed to create texture", 1);
+	while (++j < size.y)
+	{
+		i = -1;
+		tmp = color;
+		if (j > size.y / 2)
+			tmp = int_to_rgb(DARKBLUE);
+		while (++i < size.x)
+		{
+			if (i > size.x / 2)
+			{
+				tmp = int_to_rgb(DARKRED);
+				if (j > size.y / 2)
+					tmp = int_to_rgb((DARKBLUE + DARKRED) / 2);
+			}
+			texture[n] = tmp;
 			n++;
 		}
 	}

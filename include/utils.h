@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:14:25 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/19 10:24:22 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/21 00:57:16 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void		minimap_init(t_data *d);
 
 //utils.c 
 t_RGB		*texture_monchrome_create(t_point2d size, t_RGB color);
+t_RGB		*texture_pattern_create(t_point2d size, t_RGB color);
 int			break_point(t_vector2d AB, t_point current);
 void		error_handler(char *txt, int code);
 int			rgb_to_int(t_RGB color);
