@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calcbis.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 14:23:39 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/25 16:54:45 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/26 10:30:42 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	top(t_data *d, t_polygon p, t_upl *n, t_xupl *x)
 	tab = getstep(p.verti[0], p.verti[1]);
 	n->ac = 1 / deltadouble(p.verti[0].y, p.verti[2].y);
 	n->ab = 1;
+	mx = 1;
 	while (n->n > p.verti[1].y)
 	{
 			if (x->ab < x->ac)
