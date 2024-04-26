@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 14:23:39 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/26 10:30:42 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/26 11:33:03 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,15 @@ void	put(t_data *d, t_polygon p, t_upl a, t_xupl x)
 	}
 }
 
-#include <stdio.h>
-void	top(t_data *d, t_polygon p, t_upl *n, t_xupl *x)
+void	top(t_data *d, t_polygon p, t_upl *y, t_xupl *x)
 {
 	float	tab;
 	float	tac;
-	double	mx;
 
 	tac = getstep(p.verti[0], p.verti[2]);
 	tab = getstep(p.verti[0], p.verti[1]);
-	n->ac = 1 / deltadouble(p.verti[0].y, p.verti[2].y);
-	n->ab = 1;
-	mx = 1;
+	y->ac = 1 / deltadouble(p.verti[0].y, p.verti[2].y);
+	y->ab = 1;
 	while (n->n > p.verti[1].y)
 	{
 			if (x->ab < x->ac)
@@ -51,7 +48,6 @@ void	top(t_data *d, t_polygon p, t_upl *n, t_xupl *x)
 		n->n--;
 		x->ab -= tab;
 		x->ac -= tac;
-		mx -= n->ac;
 	}
 }
 /*

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:29:59 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/24 22:53:37 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/26 11:27:19 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,6 @@
 # define OBJECT_H
 
 # include "struct.h"
-
-typedef struct bornes
-{
-	double	l;
-	double	r;
-}	t_bornes;
 
 typedef struct upl
 {
