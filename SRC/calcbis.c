@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 14:23:39 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/26 11:33:03 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/26 14:59:13 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,82 +14,86 @@
 
 float	getstep(t_point a, t_point b)
 {
-	if ((a.x - b.x) == 0)
-		return (0);
-	if ((a.y - b.y) == 0)
-		return (1);
-	return ((a.x - b.x) / (a.y - b.y));
+	float	deltax;
+	float	deltay;
+
+	deltax = a.x - b.x;
+	deltay = a.y - b.y;
+	if ((deltax) == 0)
+		deltax = 1;
+	if ((deltay) == 0)
+		deltay = 1;
+	return (deltax / deltay);
 }
 
-void	put(t_data *d, t_polygon p, t_upl a, t_xupl x)
+void	put(t_data *d, t_polygon p, t_yupl y, t_xupl x)
 {
-	(void)a;
+	(void)y;
 	while (x.ab < x.ac)
 	{
-		put_pixel((t_pixel){round(x.ab++), x.x, sampler(p, 0, 0)}, d);
+		put_pixel((t_pixel){round(x.ab++), y.y, sampler(p, 0, 0)}, d);
 	}
 }
-
-void	top(t_data *d, t_polygon p, t_upl *y, t_xupl *x)
+#include <stdio.h>
+// y : y start y, ab y pos on ab, ac y pos on ac
+void	top(t_data *d, t_polygon p, t_yupl *y, t_xupl x)
 {
 	float	tab;
 	float	tac;
 
-	tac = getstep(p.verti[0], p.verti[2]);
-	tab = getstep(p.verti[0], p.verti[1]);
-	y->ac = 1 / deltadouble(p.verti[0].y, p.verti[2].y);
-	y->ab = 1;
-	while (n->n > p.verti[1].y)
+	tab = getstep(p.verti[0], p.verti[2]);
+	tac = getstep(p.verti[0], p.verti[1]);
+	while (y->y > p.verti[1].y)
 	{
-			if (x->ab < x->ac)
-				put(d, p, *n, ((t_xupl){n->n, x->ab, x->ac}));
+		if (d->option.five)
+		{
+			if (x.ab < x.ac)
+				put(d, p, *y, ((t_xupl){y->y, x.ab, x.ac}));
 			else
-				put(d, p, *n, ((t_xupl){n->n, x->ac, x->ab}));
-		n->n--;
-		x->ab -= tab;
-		x->ac -= tac;
+				put(d, p, *y, ((t_xupl){y->y, x.ac, x.ab}));
+		}
+		y->y--;
+		x.ab -= tab;
+		x.ac -= tac;
 	}
 }
-/*
-void	bot(t_data *d, t_polygon p, t_upl *y, t_xupl *x)
+
+void	bot(t_data *d, t_polygon p, t_yupl y, t_xupl x)
 {
 	float	tab;
 	float	tac;
 
-	tac = getstep(p.verti[0], p.verti[2]);
-	tab = getstep(p.verti[1], p.verti[2]);
-	while (y->n > p.verti[2].y)
+
+	tab = getstep((t_point){x.ab, p.verti[1].y, 0}, p.verti[2]);
+	tac = getstep((t_point){x.ac, p.verti[1].y, 0}, p.verti[2]);
+	while (y.y > p.verti[2].y + 1)
 	{
 		if (d->option.six)
 		{
-			if (x->ab < x->ac)
-				put(d, p, (t_upl){y->n, x->ab, x->ac});
+			if (x.ab < x.ac)
+				put(d, p, y, ((t_xupl){y.y, round(x.ab), round(x.ac)}));
 			else
-				put(d, p, (t_upl){y->n, x->ac, x->ab});
+				put(d, p, y, ((t_xupl){y.y, round(x.ac), round(x.ab)}));
 		}
-		x->ab -= tab;
-		x->ac -= tac;
-		(y->n)--;
+		y.y--;
+		x.ab -= tab;
+		x.ac -= tac;
 	}
-}*/
+}
 
 void	rasterizer(t_data *d, t_polygon p)
 {
 	t_polygon	a;
 	t_xupl		x;
-	t_upl		y;
+	t_yupl		y;
 
 	a = p;
 	sortscanlines(&a);
-	a.verti[0].x--;
-	x.ab = a.verti[1].x;
-	y.n = round(a.verti[1].y);
-	if (a.verti[0].y > a.verti[1].y)
-	{
-		y.n = round(a.verti[0].y);
-		x.ab = a.verti[0].x;
-	}
+	y.y = round(a.verti[0].y);
+	x.ab = a.verti[0].x;
 	x.ac = a.verti[0].x;
-	top(d, a, &y, &x);
-	//bot(d, a, &y, &x);
+	top(d, a, &y, x);
+	x.ab = interpolator(a.verti[0], a.verti[2], y.y);
+	x.ac = interpolator(a.verti[1], a.verti[2], y.y);
+	bot(d, a, y, x);
 }

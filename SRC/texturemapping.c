@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   texturemapping.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 14:18:46 by spook             #+#    #+#             */
-/*   Updated: 2024/04/24 19:59:08 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/26 15:00:08 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-double	interpolator(t_point start, t_point end, double y)
+float	interpolator(t_point start, t_point end, float y)
 {
-	double	percent;
-	double	deltax;
-	double	deltay;
+	float	percent;
+	float	deltax;
+	float	deltay;
 
 	deltax = start.x - end.x;
 	deltay = start.y - end.y;
@@ -27,7 +27,7 @@ double	interpolator(t_point start, t_point end, double y)
 }
 
 //take u v value from 0 to 1
-t_RGB	sampler(t_polygon p, double u, double v)
+t_RGB	sampler(t_polygon p, float u, float v)
 {
 	int	i;
 	int	j;
@@ -53,7 +53,7 @@ int	sortscanlines(t_polygon *p)
 	{
 		swappoints(&p->verti[1], &p->verti[2]);
 		swappoints(&p->texturepos[1], &p->texturepos[2]);
-		if (p->verti[1].y >= p->verti[0].y)
+		if (p->verti[1].y > p->verti[0].y)
 		{
 			swappoints(&p->verti[1], &p->verti[0]);
 			swappoints(&p->texturepos[1], &p->texturepos[0]);

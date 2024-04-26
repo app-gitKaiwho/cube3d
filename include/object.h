@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:29:59 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/26 11:27:19 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/26 15:00:45 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 # include "struct.h"
 
-typedef struct upl
+typedef struct yupl
 {
-	int		n;
+	int		y;
 	double	ab;
 	double	ac;
-}	t_upl;
+}	t_yupl;
 
 typedef struct xupl
 {
@@ -42,7 +42,7 @@ void		object_pop(t_data *d, int index);
 //texture mapping
 
 int			sortscanlines(t_polygon *p);
-t_RGB		sampler(t_polygon p, double u, double v);
-double		interpolator(t_point start, t_point end, double y);
+t_RGB		sampler(t_polygon p, float u, float v);
+float		interpolator(t_point start, t_point end, float y);
 
 #endif /* OBJECT_H */
