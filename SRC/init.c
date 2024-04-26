@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 22:24:15 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/15 20:24:57 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/22 16:33:58 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ void	initoption(t_data *d)
 	d->option.wireframe = 1;
 	d->option.playerview = 0;
 	d->option.raytoplayer = 0;
+	d->option.five = 1;
+	d->option.six = 1;
+	d->option.seven = 0;
 }
 
 t_data	*initdata(void)

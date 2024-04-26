@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/21 00:35:25 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/22 23:19:38 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,9 @@ typedef struct polygon
 	t_point		normal;
 	t_point		verti[3];
 	t_vector	edges[3];
+	int			textsize;
 	t_RGB		*textaddr;
-	t_point2d	texturepos[3];
+	t_point		texturepos[3];
 }	t_polygon;
 
 //for texture : Nord = 0, Sud = 1, Est = 2, West = 3
@@ -148,6 +149,9 @@ typedef struct option
 	int		playerview;
 	int		wireframe;
 	int		minimap;
+	int		five;
+	int		six;
+	int		seven;
 }	t_option;
 
 typedef struct data

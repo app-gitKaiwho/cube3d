@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:02:40 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/15 20:24:05 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/22 16:29:28 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,12 @@ void	options_key(int keycode, t_data *d)
 		d->option.playerview = !d->option.playerview;
 	if (keycode == OPTION4)
 		d->option.wireframe = !d->option.wireframe;
+	if (keycode == OPTION5)
+		d->option.five = !d->option.five;
+	if (keycode == OPTION6)
+		d->option.six = !d->option.six;
+	if (keycode == OPTION7)
+		d->option.seven = !d->option.seven;
 }
 
 // basic keyborde hook

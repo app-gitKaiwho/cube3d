@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 10:14:06 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/21 00:35:20 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/22 18:32:47 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@ int	delta(int a, int b)
 		return (a - b);
 	else
 		return (b - a);
+}
+
+double	deltadouble(double a, double b)
+{
+	if (a > b)
+		return (a - b);
+	return (b - a);
 }
 
 double	slope(t_point a, t_point b)

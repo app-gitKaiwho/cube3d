@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 11:14:25 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/19 10:23:04 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/24 12:37:33 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,13 @@ t_point	pointcast(t_point point, t_data d)
 	casted.y = casted.y + (WH / 2);
 	casted.z = delta.z;
 	return (casted);
+}
+
+void	swapdouble(double *a, double *b)
+{
+	double	tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }

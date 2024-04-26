@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+         #
+#    By: spook <spook@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/25 16:52:50 by lvon-war          #+#    #+#              #
-#    Updated: 2024/04/19 10:24:41 by lvon-war         ###   ########.fr        #
+#    Updated: 2024/04/21 14:19:21 by spook            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ CFLAGS	=	-Wall -Werror -Wextra
 AR		=	ar -rsc
 FILES	=	main.c controls.c calc.c calcbis.c calcter.c utils.c display.c  display_world.c \
 sprite.c object.c objectinit.c data_utils.c player.c map.c utilsbis.c init.c test.c vector.c \
+texturemapping.c
 
 # Path for .c , .h and .o Files 
 LIBFT	=	./include/libft/lib.a

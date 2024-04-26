@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 13:05:38 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/21 04:01:28 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/22 23:20:32 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,18 @@ void	polytexturemapping(t_object *o)
 			o->poly[i].textaddr = o->textures[i / 2];
 		else
 			o->poly[i].textaddr = o->textures[0];
-		o->poly[i].texturepos[0] = (t_point2d){0, 0};
+		o->poly[i].texturepos[0] = (t_point){0, 0, 0};
 		if (i % 2 == 0)
 		{
-			o->poly[i].texturepos[1] = (t_point2d){0, o->textsize};
-			o->poly[i].texturepos[2] = (t_point2d){o->textsize, o->textsize};
+			o->poly[i].texturepos[1] = (t_point){0, 1.0, 0};
+			o->poly[i].texturepos[2] = (t_point){1.0, 1.0, 0};
 		}
 		else
 		{
-			o->poly[i].texturepos[1] = (t_point2d){o->textsize, o->textsize};
-			o->poly[i].texturepos[2] = (t_point2d){o->textsize, 0};
+			o->poly[i].texturepos[1] = (t_point){1.0, 1.0, 0};
+			o->poly[i].texturepos[2] = (t_point){1.0, 0, 0};
 		}
+		o->poly[i].textsize = o->textsize;
 		i++;
 	}
 }
