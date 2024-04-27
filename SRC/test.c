@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 10:22:59 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/26 15:19:54 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/28 00:11:59 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	test(t_data *d)
 	texture = malloc(sizeof(t_RGB *) * 4);
 	if (!texture)
 		error_handler("Failed to init data", 1);
-	texture[0] = texture_monchrome_create((t_point2d){100, 100},
+	texture[0] = texture_pattern_create((t_point2d){100, 100},
 			int_to_rgb(RED));
 	texture[1] = texture_pattern_create((t_point2d){100, 100},
 			int_to_rgb(GREEN));

@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 14:18:46 by spook             #+#    #+#             */
-/*   Updated: 2024/04/28 00:05:03 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/28 00:11:29 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ float	interpolator(t_point start, t_point end, float y)
 	return (start.x + (deltax * percent));
 }
 
-#include <stdio.h>
 //take u v value from 0 to 1
 t_RGB	sampler(t_polygon p, float u, float v)
 {
@@ -66,4 +65,3 @@ int	sortscanlines(t_polygon *p)
 	}
 	return (0);
 }
-
