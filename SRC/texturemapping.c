@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texturemapping.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 14:18:46 by spook             #+#    #+#             */
-/*   Updated: 2024/04/26 15:00:08 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/28 00:05:03 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ float	interpolator(t_point start, t_point end, float y)
 	return (start.x + (deltax * percent));
 }
 
+#include <stdio.h>
 //take u v value from 0 to 1
 t_RGB	sampler(t_polygon p, float u, float v)
 {
@@ -34,11 +35,15 @@ t_RGB	sampler(t_polygon p, float u, float v)
 
 	i = round(u * (p.textsize - 1));
 	j = round(v * (p.textsize - 1));
-	if (i > p.textsize)
+	if (i < 0)
+		i = 0;
+	if (j < 0)
+		j = 0;
+	if (i > (p.textsize - 1))
 		i = p.textsize - 1;
-	if (j > p.textsize)
+	if (j > (p.textsize - 1))
 		j = p.textsize - 1;
-	return (p.textaddr[(i + (j * p.textsize))]);
+	return (p.textaddr[(i + (j * (p.textsize)))]);
 }
 
 //return is bend direction : right 1, left 0

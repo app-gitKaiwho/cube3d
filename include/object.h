@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:29:59 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/26 15:00:45 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/27 22:57:57 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ typedef struct xupl
 	double	ab;
 	double	ac;
 }	t_xupl;
+
+typedef struct upl
+{
+	t_xupl	x;
+	t_yupl	y;
+}	t_upl;
 
 //objectinit.c
 

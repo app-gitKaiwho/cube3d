@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   calcbis.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 14:23:39 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/26 14:59:13 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/28 00:06:44 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+
+float	interpolator2d(float start, float end, float percent)
+{
+	float	delta;
+
+	delta = start - end;
+	return (start + (delta * percent));
+}
+
+float	percent(float n, float start, float end)
+{
+	float	delta;
+
+	delta = start - end;
+	if (delta == 0)
+		delta = 1;
+	return ((n - start) / (delta));
+}
 
 float	getstep(t_point a, t_point b)
 {
@@ -26,36 +44,96 @@ float	getstep(t_point a, t_point b)
 	return (deltax / deltay);
 }
 
-void	put(t_data *d, t_polygon p, t_yupl y, t_xupl x)
+void	topput(t_data *d, t_polygon p, t_upl n)
 {
-	(void)y;
-	while (x.ab < x.ac)
+	t_point2d	mab;
+	t_point2d	mac;
+	t_point2d	current;
+	float		precent;
+
+	if (n.x.ab <= n.x.ac)
 	{
-		put_pixel((t_pixel){round(x.ab++), y.y, sampler(p, 0, 0)}, d);
+		mab.x = interpolator2d(p.texturepos[0].x, p.texturepos[2].x, n.y.ab);
+		mab.y = interpolator2d(p.texturepos[0].y, p.texturepos[2].y, n.y.ab);
+		mac.x = interpolator2d(p.texturepos[0].x, p.texturepos[1].x, n.y.ac);
+		mac.y = interpolator2d(p.texturepos[0].y, p.texturepos[1].y, n.y.ac);
+	}
+	else
+	{
+		n.x.x = n.x.ab;
+		n.x.ab = n.x.ac;
+		n.x.ac = n.x.x;
+		mac.x = interpolator2d(p.texturepos[0].x, p.texturepos[2].x, n.y.ab);
+		mac.y = interpolator2d(p.texturepos[0].y, p.texturepos[2].y, n.y.ab);
+		mab.x = interpolator2d(p.texturepos[0].x, p.texturepos[1].x, n.y.ac);
+		mab.y = interpolator2d(p.texturepos[0].y, p.texturepos[1].y, n.y.ac);
+	}
+	n.x.x = n.x.ab;
+	while (n.x.x <= n.x.ac)
+	{
+		precent = percent(n.x.x, n.x.ab, n.x.ac);
+		current.x = interpolator2d(mab.x, mac.x, precent);
+		current.y = interpolator2d(mab.y, mac.y, precent);
+		put_pixel((t_pixel){round(n.x.x), n.y.y,
+			sampler(p, current.x, current.y)}, d);
+		n.x.x++;
 	}
 }
-#include <stdio.h>
+
+void	botput(t_data *d, t_polygon p, t_upl n)
+{
+	t_point2d	mab;
+	t_point2d	mac;
+	t_point2d	current;
+	float		precent;
+
+	if (n.x.ab <= n.x.ac)
+	{
+		mab.x = interpolator2d(p.texturepos[0].x, p.texturepos[2].x, n.y.ab);
+		mab.y = interpolator2d(p.texturepos[0].y, p.texturepos[2].y, n.y.ab);
+		mac.x = interpolator2d(p.texturepos[1].x, p.texturepos[2].x, n.y.ac);
+		mac.y = interpolator2d(p.texturepos[1].y, p.texturepos[2].y, n.y.ac);
+	}
+	else
+	{
+		n.x.x = n.x.ab;
+		n.x.ab = n.x.ac;
+		n.x.ac = n.x.x;
+		mac.x = interpolator2d(p.texturepos[0].x, p.texturepos[2].x, n.y.ab);
+		mac.y = interpolator2d(p.texturepos[0].y, p.texturepos[2].y, n.y.ab);
+		mab.x = interpolator2d(p.texturepos[1].x, p.texturepos[2].x, n.y.ac);
+		mab.y = interpolator2d(p.texturepos[1].y, p.texturepos[2].y, n.y.ac);
+	}
+	n.x.x = n.x.ab - 1;
+	while (++n.x.x <= n.x.ac)
+	{
+		precent = percent(n.x.x, n.x.ab, n.x.ac);
+		current.x = interpolator2d(mab.x, mac.x, precent);
+		current.y = interpolator2d(mab.y, mac.y, precent);
+		put_pixel((t_pixel){round(n.x.x), n.y.y,
+			sampler(p, current.x, current.y)}, d);
+	}
+}
+
 // y : y start y, ab y pos on ab, ac y pos on ac
-void	top(t_data *d, t_polygon p, t_yupl *y, t_xupl x)
+int	top(t_data *d, t_polygon p, t_yupl y, t_xupl x)
 {
 	float	tab;
 	float	tac;
 
 	tab = getstep(p.verti[0], p.verti[2]);
 	tac = getstep(p.verti[0], p.verti[1]);
-	while (y->y > p.verti[1].y)
+	while (y.y > p.verti[1].y)
 	{
+		y.ab = percent(y.y, p.verti[0].y, p.verti[2].y);
+		y.ac = percent(y.y, p.verti[0].y, p.verti[1].y);
 		if (d->option.five)
-		{
-			if (x.ab < x.ac)
-				put(d, p, *y, ((t_xupl){y->y, x.ab, x.ac}));
-			else
-				put(d, p, *y, ((t_xupl){y->y, x.ac, x.ab}));
-		}
-		y->y--;
+			topput(d, p, (t_upl){(t_xupl){y.y, x.ab, x.ac}, y});
+		y.y--;
 		x.ab -= tab;
 		x.ac -= tac;
 	}
+	return (y.y);
 }
 
 void	bot(t_data *d, t_polygon p, t_yupl y, t_xupl x)
@@ -63,18 +141,14 @@ void	bot(t_data *d, t_polygon p, t_yupl y, t_xupl x)
 	float	tab;
 	float	tac;
 
-
 	tab = getstep((t_point){x.ab, p.verti[1].y, 0}, p.verti[2]);
 	tac = getstep((t_point){x.ac, p.verti[1].y, 0}, p.verti[2]);
 	while (y.y > p.verti[2].y + 1)
 	{
+		y.ab = percent(y.y, p.verti[0].y, p.verti[2].y);
+		y.ac = percent(y.y, p.verti[1].y, p.verti[2].y);
 		if (d->option.six)
-		{
-			if (x.ab < x.ac)
-				put(d, p, y, ((t_xupl){y.y, round(x.ab), round(x.ac)}));
-			else
-				put(d, p, y, ((t_xupl){y.y, round(x.ac), round(x.ab)}));
-		}
+			botput(d, p, (t_upl){(t_xupl){y.y, x.ab, x.ac}, y});
 		y.y--;
 		x.ab -= tab;
 		x.ac -= tac;
@@ -92,7 +166,7 @@ void	rasterizer(t_data *d, t_polygon p)
 	y.y = round(a.verti[0].y);
 	x.ab = a.verti[0].x;
 	x.ac = a.verti[0].x;
-	top(d, a, &y, x);
+	y.y = top(d, a, y, x);
 	x.ab = interpolator(a.verti[0], a.verti[2], y.y);
 	x.ac = interpolator(a.verti[1], a.verti[2], y.y);
 	bot(d, a, y, x);
