@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 14:23:39 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/28 00:06:44 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/28 00:21:23 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ void	bot(t_data *d, t_polygon p, t_yupl y, t_xupl x)
 
 	tab = getstep((t_point){x.ab, p.verti[1].y, 0}, p.verti[2]);
 	tac = getstep((t_point){x.ac, p.verti[1].y, 0}, p.verti[2]);
-	while (y.y > p.verti[2].y + 1)
+	while (y.y > p.verti[2].y)
 	{
 		y.ab = percent(y.y, p.verti[0].y, p.verti[2].y);
 		y.ac = percent(y.y, p.verti[1].y, p.verti[2].y);
