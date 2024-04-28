@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:14:25 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/28 12:47:04 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/28 17:07:56 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_data		*initdata(void);
 void		initoption(t_data *d);
 void		init_world(t_data *d);
 void		minimap_init(t_data *d);
+void		init_bg(t_data *d);
 
 //utils.c 
 

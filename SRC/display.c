@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:54:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/28 12:36:18 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/28 17:12:53 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,6 @@ void	put_square(t_pixel cen, t_point2d size, t_data *d)
 /// @brief clear the image with a default bg (change color)
 void	clear_img(t_data *d)
 {
-	put_square((t_pixel){0, WH / 2, int_to_rgb(d->world.sky)},
-		(t_point2d){WL, WH / 2}, d);
-	put_square((t_pixel){0, 0, int_to_rgb(d->world.earth)},
-		(t_point2d){WL, WH / 2}, d);
+	if (d->bg.img)
+		mlx_put_image_to_window(d->win.mlx, d->win.ptr, d->bg.img, 0, 0);
 }

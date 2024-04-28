@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 22:24:15 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/22 16:33:58 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/28 17:13:46 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,35 @@ void	initoption(t_data *d)
 	d->option.five = 1;
 	d->option.six = 1;
 	d->option.seven = 0;
+}
+
+void	init_bg(t_data *d)
+{
+	int		index;
+	t_RGB	color;
+	int		i;
+	int		j;
+
+	j = 0;
+	d->bg.img = mlx_new_image(d->win.mlx, WL, WH);
+	d->bg.addr = mlx_get_data_addr(d->bg.img, &d->bg.bpp,
+			&d->bg.line_size, &d->bg.endian);
+	color = int_to_rgb(d->world.earth);
+	while (j < WH)
+	{
+		i = 0;
+		if (j > WH / 2)
+			color = int_to_rgb(d->world.sky);
+		while (i < WL)
+		{
+			index = ((WH - j) * d->img.line_size + (int)i * d->img.bpp / 8);
+			d->img.addr[index] = color.blue;
+			d->img.addr[index + 1] = color.green;
+			d->img.addr[index + 2] = color.red;
+			i++;
+		}
+		j++;
+	}
 }
 
 t_data	*initdata(void)

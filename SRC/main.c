@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:48:49 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/28 14:35:36 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/28 17:15:53 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,13 @@ int	main(void)
 	init_world(data);
 	minimap_init(data);
 	player_init(data);
+	init_bg(data);
 	initoption(data);
 	clear_img(data);
 	test(data);
 	raycast(data);
+	display_world_object(data);
+	displayimg(data);
 	mlx_key_hook(data->win.ptr, &keyhook, data);
 	mlx_loop_hook(data->win.mlx, loopydyloop, data);
 	mlx_loop(data->win.mlx);
