@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 13:05:38 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/22 23:20:32 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/28 13:26:59 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,24 +57,24 @@ void	objecttopoly(t_object *o)
 	polytexturemapping(o);
 }
 
-t_object	object_create(t_point pos, t_point	si,
+t_object	object_create(t_point p, t_point	si,
 	int text_size, t_RGB **textures)
 {
 	t_object	o;
 
 	o.seen = 0;
-	o.pos = pos;
+	o.pos = p;
 	o.size = si;
 	o.textsize = text_size;
 	o.textures = textures;
-	o.verti[0] = (t_point){pos.x - si.x / 2, pos.y - si.y / 2, pos.z - si.z / 2};
-	o.verti[1] = (t_point){pos.x - si.x / 2, pos.y + si.y / 2, pos.z - si.z / 2};
-	o.verti[2] = (t_point){pos.x + si.x / 2, pos.y + si.y / 2, pos.z - si.z / 2};
-	o.verti[3] = (t_point){pos.x + si.x / 2, pos.y - si.y / 2, pos.z - si.z / 2};
-	o.verti[4] = (t_point){pos.x - si.x / 2, pos.y - si.y / 2, pos.z + si.z / 2};
-	o.verti[5] = (t_point){pos.x - si.x / 2, pos.y + si.y / 2, pos.z + si.z / 2};
-	o.verti[6] = (t_point){pos.x + si.x / 2, pos.y + si.y / 2, pos.z + si.z / 2};
-	o.verti[7] = (t_point){pos.x + si.x / 2, pos.y - si.y / 2, pos.z + si.z / 2};
+	o.verti[0] = (t_point){p.x - si.x / 2, p.y - si.y / 2, p.z - si.z / 2};
+	o.verti[1] = (t_point){p.x - si.x / 2, p.y + si.y / 2, p.z - si.z / 2};
+	o.verti[2] = (t_point){p.x + si.x / 2, p.y + si.y / 2, p.z - si.z / 2};
+	o.verti[3] = (t_point){p.x + si.x / 2, p.y - si.y / 2, p.z - si.z / 2};
+	o.verti[4] = (t_point){p.x - si.x / 2, p.y - si.y / 2, p.z + si.z / 2};
+	o.verti[5] = (t_point){p.x - si.x / 2, p.y + si.y / 2, p.z + si.z / 2};
+	o.verti[6] = (t_point){p.x + si.x / 2, p.y + si.y / 2, p.z + si.z / 2};
+	o.verti[7] = (t_point){p.x + si.x / 2, p.y - si.y / 2, p.z + si.z / 2};
 	objecttopoly(&o);
 	return (o);
 }

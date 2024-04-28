@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:48:49 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/12 10:23:24 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/28 14:35:36 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,8 @@ int	animation(t_data *d, int frame)
 	{
 		color = int_to_rgb(rand());
 		if (d->world.nb_sprite > 0)
-			sprite_edit(d, 0, sprite_create((t_point2d){10, WH - 210},
+			sprite_edit(d, 0, sprite_create((t_point2d){10, d->height - 210},
 					(t_point2d){200, 200}, color));
-	}
-	if (frame % 2 == 0)
-	{
-		raycast(d);
-		clear_img(d);
-		display_world_object(d);
 		display_world_sprite(d);
 		if (d->option.minimap)
 			display_minimap(d);

@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/22 23:19:38 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/28 15:47:53 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,7 @@ typedef struct data
 {
 	t_window	win;
 	t_img		img;
+	t_img		hud;
 	double		fov;
 	int			sky;
 	int			earth;

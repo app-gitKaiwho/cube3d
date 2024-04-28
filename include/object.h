@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:29:59 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/27 22:57:57 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/28 09:35:56 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void		object_pop(t_data *d, int index);
 
 int			sortscanlines(t_polygon *p);
 t_RGB		sampler(t_polygon p, float u, float v);
+float		percent(float n, float start, float end);
 float		interpolator(t_point start, t_point end, float y);
+float		interpolator2d(float start, float end, float percent);
 
 #endif /* OBJECT_H */

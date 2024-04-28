@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 18:23:20 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/28 00:15:52 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/28 11:14:58 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,6 @@ t_RGB	int_to_rgb(int color)
 	rgb.green = (color & 0xFF00) >> 8;
 	rgb.blue = color & 0xFF;
 	return (rgb);
-}
-
-///	@brief check if a point is out of the window. 
-/// based on vector's direction unused
-int	break_point(t_vector2d AB, t_point current)
-{
-	int	is_out;
-
-	is_out = 0;
-	if (AB.a.x > AB.b.x && current.x < 0)
-		is_out = 1;
-	else if (current.x > WL)
-		is_out = 1;
-	if (AB.a.y > AB.b.y && current.y < 0)
-		is_out = 1;
-	else if (current.y > WH)
-		is_out = 1;
-	return (is_out);
 }
 
 t_RGB	*texture_pattern_create(t_point2d size, t_RGB color)

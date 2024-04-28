@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/24 13:16:18 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/28 12:48:11 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,8 @@ void		swappoints(t_point *a, t_point *b);
 void		swappoints2d(t_point2d *a, t_point2d *b);
 
 //calcquater.c
+
+float		getstep(t_point a, t_point b);
+int			break_point(t_data d, t_vector2d AB, t_point2d current);
 
 #endif /*!CALC_H */

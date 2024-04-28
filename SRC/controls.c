@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:02:40 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/22 16:29:28 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/28 14:35:23 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ void	player_moves(int keycode, t_data *d)
 		else
 			d->minimap.scale = d->scale;
 	}
+	clear_img(d);
+	raycast(d);
+	display_world_object(d);
+	displayimg(d);
 }
 
 void	world_effect(int keycode, t_data *d)

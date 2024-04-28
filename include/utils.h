@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:14:25 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/21 00:57:16 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/28 12:47:04 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,8 @@ void		init_world(t_data *d);
 void		minimap_init(t_data *d);
 
 //utils.c 
-t_RGB		*texture_monchrome_create(t_point2d size, t_RGB color);
+
 t_RGB		*texture_pattern_create(t_point2d size, t_RGB color);
-int			break_point(t_vector2d AB, t_point current);
 void		error_handler(char *txt, int code);
 int			rgb_to_int(t_RGB color);
 t_RGB		int_to_rgb(int color);

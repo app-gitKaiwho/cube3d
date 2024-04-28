@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 14:18:46 by spook             #+#    #+#             */
-/*   Updated: 2024/04/28 00:11:29 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/28 09:34:42 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,22 @@ int	sortscanlines(t_polygon *p)
 		}
 	}
 	return (0);
+}
+
+float	interpolator2d(float start, float end, float percent)
+{
+	float	delta;
+
+	delta = start - end;
+	return (start + (delta * percent));
+}
+
+float	percent(float n, float start, float end)
+{
+	float	delta;
+
+	delta = start - end;
+	if (delta == 0)
+		delta = 1;
+	return ((n - start) / (delta));
 }
