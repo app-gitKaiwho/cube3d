@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 22:24:15 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/29 13:52:18 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/29 14:48:58 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,30 @@ void	initoption(t_data *d)
 	d->option.seven = 0;
 }
 
+void	initscreenbuffer(t_data *d)
+{
+	int	i;
+	int	j;
+
+	d->buffer = malloc(sizeof(float) * d->height);
+	if (!d->buffer)
+		error_handler("Failed to init buffer", 1);
+	j = 0;
+	while (j < d->height)
+	{
+		d->buffer[j] = malloc(sizeof(float) * d->width);
+		if (!d->buffer[j])
+			error_handler("Failed to init buffer", 1);
+		i = 0;
+		while (i < d->width)
+		{
+			d->buffer[j][i] = -1;
+			i++;
+		}
+		j++;
+	}
+}
+
 t_data	*initdata(void)
 {
 	t_data	*data;
@@ -57,7 +81,6 @@ t_data	*initdata(void)
 		error_handler("Failed to init data", 1);
 	data->win.mlx = mlx_init();
 	data->win.ptr = mlx_new_window(data->win.mlx, WL, WH, "My Window");
-	init_objectimg(data);
 	mlx_hook(data->win.ptr, CLOSE_WINDOW_KEY, 0, &exit_hook, NULL);
 	mlx_key_hook(data->win.ptr, &keyhook, NULL);
 	data->width = WL;
@@ -65,5 +88,11 @@ t_data	*initdata(void)
 	data->fov = 90;
 	data->scale = WL * 0.1;
 	data->focal = data->width * 0.5 / tan(degtorad(data->fov * 0.5));
+	init_world(data);
+	minimap_init(data);
+	player_init(data);
+	initoption(data);
+	init_img(data);
+	initscreenbuffer(data);
 	return (data);
 }

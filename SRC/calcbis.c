@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 14:23:39 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/29 10:57:45 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/29 14:44:01 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,11 @@ void	topput(t_data *d, t_polygon p, t_upl n)
 		precent = percent(n.x.x, n.x.ab, n.x.ac);
 		current.x = interpolator2d(mab.x, mac.x, precent);
 		current.y = interpolator2d(mab.y, mac.y, precent);
-		if (break_point(*d, (t_vector2d){(t_point2d){n.x.ab, n.y.y}, (t_point2d){n.x.ac, n.y.y}}, (t_point2d){n.x.x, n.y.y}))
+		if (break_point(*d, (t_vector2d){(t_point2d){n.x.ab, n.y.y},
+			(t_point2d){n.x.ac, n.y.y}}, (t_point2d){n.x.x, n.y.y}))
 			return ;
-		put_pixel((t_pixel){round(n.x.x), n.y.y,
-			sampler(p, current.x, current.y)}, d, d->img);
+		put_point((t_point){n.x.x, n.y.y, 1}, d, d->img,
+			sampler(p, current.x, current.y));
 		n.x.x++;
 	}
 }
@@ -83,8 +84,8 @@ void	botput(t_data *d, t_polygon p, t_upl n)
 		if (break_point(*d, (t_vector2d){(t_point2d){n.x.ab, n.y.y},
 			(t_point2d){n.x.ac, n.y.y}}, (t_point2d){n.x.x, n.y.y}))
 			return ;
-		put_pixel((t_pixel){round(n.x.x), n.y.y,
-			sampler(p, current.x, current.y)}, d, d->img);
+		put_point((t_point){n.x.x, n.y.y, 0}, d, d->img,
+			sampler(p, current.x, current.y));
 	}
 }
 

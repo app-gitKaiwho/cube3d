@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:54:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/29 13:49:52 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/29 15:02:54 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,28 @@ void	displayimg(t_data *d)
 //add a pixel to img only for 2d object
 void	put_pixel(t_pixel p, t_data *d, t_img img)
 {
-	int		index;
+	int				index;
 
 	if (p.x <= 0 || p.y <= 0 || p.x >= d->width || p.y >= d->height)
 		return ;
-	index = ((WH - (int)p.y) * img.line_size + (int)p.x * img.bpp / 8);
+	index = ((d->height - (int)p.y) * img.line_size + (int)p.x * img.bpp / 8);
 	img.addr[index] = p.color.blue;
 	img.addr[index + 1] = p.color.green;
 	img.addr[index + 2] = p.color.red;
 	img.addr[index + 3] = p.color.alpha;
+}
+
+#include <stdio.h>
+void	put_point(t_point p, t_data *d, t_img img, t_RGB color)
+{
+	if (p.x <= 0 || p.y <= 0 || p.x >= d->width || p.y >= d->height)
+		return ;
+	if (d->buffer[(int)p.y][(int)p.x] < p.z)
+	{
+		d->buffer[(int)p.y][(int)p.x] = p.z;
+		printf("put point\n");
+	}
+	put_pixel((t_pixel){p.x, p.y, color}, d, img);
 }
 
 //put a line to img
@@ -79,26 +92,5 @@ void	put_square(t_pixel cen, t_point2d size, t_data *d, t_img img)
 		i = -1;
 		while (++i < size.x)
 			put_pixel((t_pixel){cen.x + i, cen.y + j, cen.color}, d, img);
-	}
-}
-
-void	clear_img(t_data *d, t_img img)
-{
-	int		index;
-	int		i;
-	int		j;
-
-	j = 0;
-	while (++j < d->height)
-	{
-		i = 0;
-		while (++i < d->width)
-		{
-			index = ((d->height - j) * img.line_size + (int)i * img.bpp / 8);
-			img.addr[index] = 0;
-			img.addr[index + 1] = 0;
-			img.addr[index + 2] = 0;
-			img.addr[index + 3] = (unsigned char)255;
-		}
 	}
 }

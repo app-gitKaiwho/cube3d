@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/29 13:47:05 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/29 14:44:33 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,7 @@ typedef struct data
 	t_img		bg;
 	t_img		hud;
 	t_img		minimapimg;
+	float		**buffer;
 	double		fov;
 	int			sky;
 	int			earth;

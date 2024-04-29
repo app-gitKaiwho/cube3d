@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/28 12:48:11 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/29 14:12:09 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void		rasterizer(t_data *d, t_polygon p);
 
 int			delta(int a, int b);
 double		deltadouble(double a, double b);
-double		slope(t_point a, t_point b);
 double		degtorad(double degree);
 void		swappoints(t_point *a, t_point *b);
 void		swappoints2d(t_point2d *a, t_point2d *b);
