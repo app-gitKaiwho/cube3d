@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 16:49:51 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/29 11:13:23 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/29 13:54:00 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@ void	display_world_sprite(t_data *d)
 {
 	int		i;
 
+	clear_img(d, d->hud);
 	i = -1;
 	if (d->world.nb_sprite <= 0)
 		return ;
 	while (++i < d->world.nb_sprite)
 		sprite_put(d, d->world.c_sprite[i]);
+	mlx_put_image_to_window(d->win.mlx, d->win.ptr, d->hud.img, 0, 0);
 }
 
 void	display_polygone(t_data *d, t_polygon p)

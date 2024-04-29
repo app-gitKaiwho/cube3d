@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:54:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/29 12:02:35 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/29 13:49:52 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ void	displayimg(t_data *d)
 		mlx_put_image_to_window(d->win.mlx, d->win.ptr, d->bg.img, 0, 0);
 	if (d->img.img)
 		mlx_put_image_to_window(d->win.mlx, d->win.ptr, d->img.img, 0, 0);
+	if (d->hud.img)
+		mlx_put_image_to_window(d->win.mlx, d->win.ptr, d->hud.img, 0, 0);
+	if (d->option.minimap && d->minimapimg.img)
+		mlx_put_image_to_window(d->win.mlx, d->win.ptr,
+			d->minimapimg.img, 0, 0);
 }
 
 //add a pixel to img only for 2d object
@@ -93,7 +98,7 @@ void	clear_img(t_data *d, t_img img)
 			img.addr[index] = 0;
 			img.addr[index + 1] = 0;
 			img.addr[index + 2] = 0;
-			img.addr[index + 3] = 0;
+			img.addr[index + 3] = (unsigned char)255;
 		}
 	}
 }

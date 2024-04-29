@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:02:40 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/29 12:01:40 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/29 13:55:47 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,14 @@ void	player_moves(int keycode, t_data *d)
 		player_movement(d, (t_point){0, -1, 0});
 	if (keycode == MAP)
 	{
+		clear_img(d, d->minimapimg);
 		if (d->minimap.scale == d->scale)
 			d->minimap.scale = d->scale / 10;
 		else
 			d->minimap.scale = d->scale;
 	}
+	clear_img(d, d->img);
+	display_minimap(d);
 	raycast(d);
 	display_world_object(d);
 	displayimg(d);
@@ -81,10 +84,5 @@ int	keyhook(int keycode, void *param)
 	options_key(keycode, d);
 	if (keycode == ESC || keycode == CLOSE_WINDOW_KEY)
 		exit(EXIT_SUCCESS);
-	if (keycode == RESET)
-	{
-		if (d->bg.img)
-			mlx_put_image_to_window(d->win.mlx, d->win.ptr, d->bg.img, 0, 0);
-	}
 	return (0);
 }

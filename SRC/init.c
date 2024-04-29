@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 22:24:15 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/29 10:44:23 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/29 13:52:18 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,14 @@
 /// @brief should be initialised by input
 void	minimap_init(t_data *d)
 {
+	d->minimapimg.img = mlx_new_image(d->win.mlx, WL, WH);
+	d->minimapimg.addr = mlx_get_data_addr(d->minimapimg.img,
+			&d->minimapimg.bpp, &d->minimapimg.line_size,
+			&d->minimapimg.endian);
+	clear_img(d, d->minimapimg);
 	d->minimap.pos = (t_point2d){10, 10};
 	d->minimap.scale = 1 * d->scale;
-	d->minimap.color = int_to_rgb(BLUE);
+	d->minimap.color = (t_RGB){0, 0, 255, 50};
 }
 
 void	init_world(t_data *d)
