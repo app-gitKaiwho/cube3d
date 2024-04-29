@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 18:23:20 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/28 11:14:58 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/29 10:50:02 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,6 @@ void	error_handler(char *txt, int code)
 	exit(code);
 }
 
-/// @brief convert a t_RGB struct to an int (for the mlx format).
-/// @param color the t_RGB struct to convert.
-/// @return a int representing the color.
-int	rgb_to_int(t_RGB color)
-{
-	return ((color.red << 16) + (color.green << 8) + color.blue);
-}
-
 /// @brief convert an int to a t_RGB struct usefull with rand() for example.
 /// @param color the int to convert.
 /// @return a rgb struct.
@@ -39,6 +31,7 @@ t_RGB	int_to_rgb(int color)
 	rgb.red = (color & 0xFF0000) >> 16;
 	rgb.green = (color & 0xFF00) >> 8;
 	rgb.blue = color & 0xFF;
+	rgb.alpha = 0;
 	return (rgb);
 }
 

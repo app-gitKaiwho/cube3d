@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 19:38:03 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/03 14:53:28 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/29 11:17:41 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
+//replace d->img with d->hud
 void	cast_object_on_minimap(t_data	*d)
 {
 	int			i;
@@ -28,11 +29,12 @@ void	cast_object_on_minimap(t_data	*d)
 			- (size.x / 2);
 		p.y = d->minimap.pos.y + (d->world.c_obj[i].pos.z / d->minimap.scale)
 			- (size.y / 2);
-		put_square(p, size, d);
+		put_square(p, size, d, d->img);
 		i++;
 	}
 }
 
+//replace d->img with d->hud
 void	cast_player_on_minimap(t_data *d)
 {
 	t_pixel		p;
@@ -45,9 +47,10 @@ void	cast_player_on_minimap(t_data *d)
 		- (pscaledsize.x / 2);
 	p.y = d->minimap.pos.y + (d->player.pos.z / d->minimap.scale)
 		- (pscaledsize.y / 2);
-	put_square(p, pscaledsize, d);
+	put_square(p, pscaledsize, d, d->img);
 }
 
+//replace d->img with d->hud
 void	cast_player_view(t_data *d)
 {
 	t_point		a;
@@ -60,11 +63,12 @@ void	cast_player_view(t_data *d)
 		d->minimap.pos.y + (d->player.cast[1].z / d->minimap.scale), 0};
 	o = (t_point){d->minimap.pos.x + (d->player.pos.x / d->minimap.scale),
 		d->minimap.pos.y + (d->player.pos.z / d->minimap.scale), 0};
-	put_line((t_vector){a, o}, d, int_to_rgb(YELLOW));
-	put_line((t_vector){b, o}, d, int_to_rgb(YELLOW));
-	put_line((t_vector){a, b}, d, int_to_rgb(YELLOW));
+	put_line((t_vector){a, o}, d, int_to_rgb(YELLOW), d->img);
+	put_line((t_vector){b, o}, d, int_to_rgb(YELLOW), d->img);
+	put_line((t_vector){a, b}, d, int_to_rgb(YELLOW), d->img);
 }
 
+//replace d->img with d->hud
 void	displayraytoplayer(t_data *d)
 {
 	int			i;
@@ -84,13 +88,14 @@ void	displayraytoplayer(t_data *d)
 			o = (t_point){d->minimap.pos.x + (d->player.pos.x
 					/ d->minimap.scale), d->minimap.pos.y
 				+ (d->player.pos.z / d->minimap.scale), 0};
-			put_line((t_vector){a, o}, d, int_to_rgb(RED));
+			put_line((t_vector){a, o}, d, int_to_rgb(RED), d->img);
 			j++;
 		}
 		i++;
 	}
 }
 
+//replace d->img with d->hud
 void	display_minimap(t_data *d)
 {
 	t_pixel	p;
@@ -99,7 +104,7 @@ void	display_minimap(t_data *d)
 		d->world.size.y / d->minimap.scale};
 	p = (t_pixel){d->minimap.pos.x, d->minimap.pos.y,
 		d->minimap.color};
-	put_square(p, d->minimap.size, d);
+	put_square(p, d->minimap.size, d, d->img);
 	cast_player_on_minimap(d);
 	if (d->option.raytoplayer)
 		displayraytoplayer(d);

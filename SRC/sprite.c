@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   sprite.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:03:50 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/28 14:33:46 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/29 11:14:16 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
 // put a sprite to img
+// replace d->img by d->sprite when made
 void	sprite_put(t_data *d, t_sprite s)
 {
 	int		i;
@@ -30,7 +31,7 @@ void	sprite_put(t_data *d, t_sprite s)
 			p.x = s.pos.x + i;
 			p.y = s.pos.y + j;
 			p.color = s.texture[n];
-			put_pixel(p, d);
+			put_pixel(p, d, d->img);
 			n++;
 		}
 	}

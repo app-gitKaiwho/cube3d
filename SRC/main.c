@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:48:49 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/28 17:15:53 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/29 12:02:03 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	animation(t_data *d, int frame)
 		display_world_sprite(d);
 		if (d->option.minimap)
 			display_minimap(d);
-		displayimg(d);
+		//displayimg(d);
 	}
 	return (frame);
 }
@@ -52,10 +52,11 @@ int	main(void)
 	init_world(data);
 	minimap_init(data);
 	player_init(data);
-	init_bg(data);
 	initoption(data);
-	clear_img(data);
+	init_bg(data);
 	test(data);
+	if (data->bg.img)
+		mlx_put_image_to_window(data->win.mlx, data->win.ptr, data->bg.img, 0, 0);
 	raycast(data);
 	display_world_object(data);
 	displayimg(data);

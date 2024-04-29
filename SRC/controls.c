@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:02:40 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/28 17:27:45 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/29 12:01:40 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	player_moves(int keycode, t_data *d)
 		else
 			d->minimap.scale = d->scale;
 	}
-	clear_img(d);
 	raycast(d);
 	display_world_object(d);
 	displayimg(d);
@@ -83,6 +82,9 @@ int	keyhook(int keycode, void *param)
 	if (keycode == ESC || keycode == CLOSE_WINDOW_KEY)
 		exit(EXIT_SUCCESS);
 	if (keycode == RESET)
-		clear_img(d);
+	{
+		if (d->bg.img)
+			mlx_put_image_to_window(d->win.mlx, d->win.ptr, d->bg.img, 0, 0);
+	}
 	return (0);
 }

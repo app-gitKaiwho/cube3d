@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   calcbis.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 14:23:39 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/28 13:32:38 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/29 10:57:45 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
-
 
 void	topput(t_data *d, t_polygon p, t_upl n)
 {
@@ -46,7 +45,7 @@ void	topput(t_data *d, t_polygon p, t_upl n)
 		if (break_point(*d, (t_vector2d){(t_point2d){n.x.ab, n.y.y}, (t_point2d){n.x.ac, n.y.y}}, (t_point2d){n.x.x, n.y.y}))
 			return ;
 		put_pixel((t_pixel){round(n.x.x), n.y.y,
-			sampler(p, current.x, current.y)}, d);
+			sampler(p, current.x, current.y)}, d, d->img);
 		n.x.x++;
 	}
 }
@@ -81,10 +80,11 @@ void	botput(t_data *d, t_polygon p, t_upl n)
 		precent = percent(n.x.x, n.x.ab, n.x.ac);
 		current.x = interpolator2d(mab.x, mac.x, precent);
 		current.y = interpolator2d(mab.y, mac.y, precent);
-		if (break_point(*d, (t_vector2d){(t_point2d){n.x.ab, n.y.y}, (t_point2d){n.x.ac, n.y.y}}, (t_point2d){n.x.x, n.y.y}))
+		if (break_point(*d, (t_vector2d){(t_point2d){n.x.ab, n.y.y},
+			(t_point2d){n.x.ac, n.y.y}}, (t_point2d){n.x.x, n.y.y}))
 			return ;
 		put_pixel((t_pixel){round(n.x.x), n.y.y,
-			sampler(p, current.x, current.y)}, d);
+			sampler(p, current.x, current.y)}, d, d->img);
 	}
 }
 
@@ -100,7 +100,8 @@ int	top(t_data *d, t_polygon p, t_yupl y, t_xupl x)
 	{
 		y.ab = percent(y.y, p.verti[0].y, p.verti[2].y);
 		y.ac = percent(y.y, p.verti[0].y, p.verti[1].y);
-		if (break_point(*d, (t_vector2d){(t_point2d){x.ab, y.y}, (t_point2d){x.ac, p.verti[0].y}}, (t_point2d){x.x, p.verti[2].y}))
+		if (break_point(*d, (t_vector2d){(t_point2d){x.ab, y.y},
+			(t_point2d){x.ac, p.verti[0].y}}, (t_point2d){x.x, p.verti[2].y}))
 			return (y.y);
 		if (d->option.five)
 			topput(d, p, (t_upl){(t_xupl){y.y, x.ab, x.ac}, y});
