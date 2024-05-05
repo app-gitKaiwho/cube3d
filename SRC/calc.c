@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 11:14:25 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/28 13:36:12 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/05 10:24:18 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ t_point	pointcast(t_point point, t_data d)
 	casted.y = (delta.y * d.focal) / delta.z;
 	casted.x = casted.x + (d.width * 0.5);
 	casted.y = casted.y + (d.height * 0.5);
-	casted.z = point.z;
+	casted.z = delta.z;
 	return (casted);
 }
 

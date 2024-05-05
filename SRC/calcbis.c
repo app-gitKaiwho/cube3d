@@ -6,13 +6,13 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 14:23:39 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/05 10:01:09 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/05 15:51:17 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void	setborder(t_vector mp[2], t_upl *n, t_point2d *mab, t_point2d *mac)
+void	setborder(t_vector mp[2], t_upl *n, t_point *mab, t_point *mac)
 {
 	if (n->x.ab <= n->x.ac)
 	{
@@ -36,9 +36,9 @@ void	setborder(t_vector mp[2], t_upl *n, t_point2d *mab, t_point2d *mac)
 
 void	x_put(t_data *d, t_polygon p, t_upl n, t_vector mp[2])
 {
-	t_point2d	mab;
-	t_point2d	mac;
-	t_point2d	current;
+	t_point		mab;
+	t_point		mac;
+	t_point		current;
 	float		precent;
 
 	setborder(mp, &n, &mab, &mac);
@@ -50,7 +50,7 @@ void	x_put(t_data *d, t_polygon p, t_upl n, t_vector mp[2])
 		if (break_point(*d, (t_vector2d){(t_point2d){n.x.ab, n.y.y},
 			(t_point2d){n.x.ac, n.y.y}}, (t_point2d){n.x.x, n.y.y}))
 			return ;
-		put_point((t_point){n.x.x, n.y.y, 1}, d, d->img,
+		put_point((t_point){n.x.x, n.y.y, p.verti[0].z}, d, d->img,
 			sampler(p, current.x, current.y));
 	}
 }
