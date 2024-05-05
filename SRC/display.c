@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:54:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/29 15:02:54 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:13:17 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,14 @@ void	displayimg(t_data *d)
 		mlx_put_image_to_window(d->win.mlx, d->win.ptr, d->bg.img, 0, 0);
 	if (d->img.img)
 		mlx_put_image_to_window(d->win.mlx, d->win.ptr, d->img.img, 0, 0);
-	if (d->hud.img)
-		mlx_put_image_to_window(d->win.mlx, d->win.ptr, d->hud.img, 0, 0);
-	if (d->option.minimap && d->minimapimg.img)
-		mlx_put_image_to_window(d->win.mlx, d->win.ptr,
-			d->minimapimg.img, 0, 0);
+	if (0)
+	{
+		if (d->hud.img)
+			mlx_put_image_to_window(d->win.mlx, d->win.ptr, d->hud.img, 0, 0);
+		if (d->option.minimap && d->minimapimg.img)
+			mlx_put_image_to_window(d->win.mlx, d->win.ptr,
+				d->minimapimg.img, 0, 0);
+	}
 }
 
 //add a pixel to img only for 2d object
@@ -40,17 +43,15 @@ void	put_pixel(t_pixel p, t_data *d, t_img img)
 	img.addr[index + 3] = p.color.alpha;
 }
 
-#include <stdio.h>
 void	put_point(t_point p, t_data *d, t_img img, t_RGB color)
 {
 	if (p.x <= 0 || p.y <= 0 || p.x >= d->width || p.y >= d->height)
 		return ;
-	if (d->buffer[(int)p.y][(int)p.x] < p.z)
+	if (d->buffer[(int)p.y][(int)p.x] == -1 || d->buffer[(int)p.y][(int)p.x] > p.z)
 	{
 		d->buffer[(int)p.y][(int)p.x] = p.z;
-		printf("put point\n");
+		put_pixel((t_pixel){p.x, p.y, color}, d, img);
 	}
-	put_pixel((t_pixel){p.x, p.y, color}, d, img);
 }
 
 //put a line to img

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utilsbis.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 09:31:48 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/29 14:24:23 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:12:23 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,21 @@ void	clear_img(t_data *d, t_img img)
 			img.addr[index] = 0;
 			img.addr[index + 1] = 0;
 			img.addr[index + 2] = 0;
-			img.addr[index + 3] = (unsigned char)255;
+			img.addr[index + 3] = 0;
 		}
+	}
+}
+
+void	clear_buffer(t_data *d)
+{
+	int		i;
+	int		j;
+
+	j = 0;
+	while (++j < d->height)
+	{
+		i = 0;
+		while (++i < d->width)
+			d->buffer[j][i] = -1;
 	}
 }

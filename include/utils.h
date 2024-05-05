@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:14:25 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/29 14:24:55 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:15:00 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void		free_texture(t_RGB *t);
 //utilsbis.c
 t_polygon	pointtopolygone(t_point a, t_point b, t_point c);
 void		clear_img(t_data *d, t_img img);
+void	    clear_buffer(t_data *d);
 t_point		vectounivec(t_point v);
 
 #endif /*!UTILS_H */

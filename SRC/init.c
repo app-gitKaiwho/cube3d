@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 22:24:15 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/29 14:48:58 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/29 20:52:32 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	minimap_init(t_data *d)
 	clear_img(d, d->minimapimg);
 	d->minimap.pos = (t_point2d){10, 10};
 	d->minimap.scale = 1 * d->scale;
-	d->minimap.color = (t_RGB){0, 0, 255, 50};
+	d->minimap.color = (t_RGB){0, 0, 255, 0};
 }
 
 void	init_world(t_data *d)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:48:49 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/29 14:22:54 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/04/29 20:56:43 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,12 @@ int	loopydyloop(void *param)
 	static int		frame;
 
 	frame++;
+	(void)frame;
 	d = (t_data *)param;
-	frame = animation(d, frame);
+	(void)d;
+	#ifdef __APPLE__
+		frame = animation(d, frame);
+	#endif
 	return (0);
 }
 

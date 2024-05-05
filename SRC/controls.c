@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:02:40 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/29 13:55:47 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:15:35 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,33 +18,30 @@ int	exit_hook(void)
 	exit(EXIT_SUCCESS);
 }
 
-void	player_moves(int keycode, t_data *d)
+int	player_moves(int keycode, t_data *d)
 {
 	if (keycode == UP)
 		player_movement(d, (t_point){0, 0, 1});
-	if (keycode == DOWN)
+	else if (keycode == DOWN)
 		player_movement(d, (t_point){0, 0, -1});
-	if (keycode == LEFT)
+	else if (keycode == LEFT)
 		player_movement(d, (t_point){-1, 0, 0});
-	if (keycode == RIGHT)
+	else if (keycode == RIGHT)
 		player_movement(d, (t_point){1, 0, 0});
-	if (keycode == ARROW_LEFT)
+	else if (keycode == ARROW_LEFT)
 		player_movement(d, (t_point){0, 1, 0});
-	if (keycode == ARROW_RIGHT)
+	else if (keycode == ARROW_RIGHT)
 		player_movement(d, (t_point){0, -1, 0});
-	if (keycode == MAP)
+	else if (keycode == MAP)
 	{
-		clear_img(d, d->minimapimg);
 		if (d->minimap.scale == d->scale)
 			d->minimap.scale = d->scale / 10;
 		else
 			d->minimap.scale = d->scale;
 	}
-	clear_img(d, d->img);
-	display_minimap(d);
-	raycast(d);
-	display_world_object(d);
-	displayimg(d);
+	else
+		return (0);
+	return (1);
 }
 
 void	world_effect(int keycode, t_data *d)
@@ -79,7 +76,14 @@ int	keyhook(int keycode, void *param)
 	struct data	*d;
 
 	d = (t_data *)param;
-	player_moves(keycode, d);
+	if (player_moves(keycode, d))
+	{
+		clear_img(d, d->img);
+		clear_buffer(d);
+		raycast(d);
+		display_world_object(d);
+		displayimg(d);
+	}
 	world_effect(keycode, d);
 	options_key(keycode, d);
 	if (keycode == ESC || keycode == CLOSE_WINDOW_KEY)

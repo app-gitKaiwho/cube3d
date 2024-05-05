@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+         #
+#    By: spook <spook@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/25 16:52:50 by lvon-war          #+#    #+#              #
-#    Updated: 2024/04/29 10:34:28 by lvon-war         ###   ########.fr        #
+#    Updated: 2024/04/29 20:30:02 by spook            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ ECHOFLAG :=
 # Compliation under anything else (but only work under linux)
 else
 INC_PATH := -I ./include/libft/include -I ./include/minilibx-linux -I ./include
-LINKER := -L ./include/minilibx-linux -lmlx -lX11 -lXext -lm -I ./include/minilibx_macos
+LINKER := -L ./include/minilibx-linux -lmlx -lX11 -lXext -lXrender -lm -I ./include/minilibx_macos
 FRAMEWORK :=
 MLX_PATH := ./include/minilibx-linux
 MLX := ./include/minilibx-linux/libmlx.a
