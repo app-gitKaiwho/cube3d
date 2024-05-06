@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 14:23:39 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/06 17:14:46 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:24:46 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,12 @@
 
 void	setborder(t_vector mp[2], t_upl *n, t_point *mab, t_point *mac)
 {
-	if (n->x.ab <= n->x.ac)
-	{
-		mab->x = interpolator2d(mp[0].a.x, mp[0].b.x, n->y.ab);
-		mab->y = interpolator2d(mp[0].a.y, mp[0].b.y, n->y.ab);
-		mab->z = interpolator2d(mp[0].a.z, mp[0].b.z, n->y.ab);
-		mac->x = interpolator2d(mp[1].a.x, mp[1].b.x, n->y.ac);
-		mac->y = interpolator2d(mp[1].a.y, mp[1].b.y, n->y.ac);
-		mac->z = interpolator2d(mp[1].a.z, mp[1].b.z, n->y.ac);
-	}
-	else
-	{
-		n->x.x = n->x.ab;
-		n->x.ab = n->x.ac;
-		n->x.ac = n->x.x;
-		mac->x = interpolator2d(mp[0].a.x, mp[0].b.x, n->y.ab);
-		mac->y = interpolator2d(mp[0].a.y, mp[0].b.y, n->y.ab);
-		mac->z = interpolator2d(mp[0].a.z, mp[0].b.z, n->y.ab);
-		mab->x = interpolator2d(mp[1].a.x, mp[1].b.x, n->y.ac);
-		mab->y = interpolator2d(mp[1].a.y, mp[1].b.y, n->y.ac);
-		mab->z = interpolator2d(mp[1].a.z, mp[1].b.z, n->y.ac);
-	}
+	mab->x = interpolator2d(mp[0].a.x, mp[0].b.x, n->y.ab);
+	mab->y = interpolator2d(mp[0].a.y, mp[0].b.y, n->y.ab);
+	mab->z = interpolator2d(mp[0].a.z, mp[0].b.z, n->y.ab);
+	mac->x = interpolator2d(mp[1].a.x, mp[1].b.x, n->y.ac);
+	mac->y = interpolator2d(mp[1].a.y, mp[1].b.y, n->y.ac);
+	mac->z = interpolator2d(mp[1].a.z, mp[1].b.z, n->y.ac);
 	n->x.x = n->x.ab - 1;
 }
 
@@ -58,6 +43,21 @@ void	x_put(t_data *d, t_polygon p, t_upl n, t_vector mp[2])
 			return ;
 		buffered_put((t_pixel){n.x.x, n.y.y, sampler(p, current.x
 				* d->option.eight, current.y * d->option.eight)},
+			d, d->img, current.z);
+	}
+	if (n.x.x > n.x.ac)
+		n.x.x = n.x.ac;
+	while (n.x.ab > n.x.ac && ++n.x.x <= n.x.ab)
+	{
+		valpercent = percent(n.x.x, n.x.ab, n.x.ac);
+		current.x = interpolator2d(mab.x, mac.x, valpercent);
+		current.y = interpolator2d(mab.y, mac.y, valpercent);
+		current.z = interpolator2d(mab.z, mac.z, valpercent);
+		if (break_point(*d, (t_vector2d){(t_point2d){n.x.ab, n.y.y},
+			(t_point2d){n.x.ac, n.y.y}}, (t_point2d){n.x.x, n.y.y}))
+			return ;
+		buffered_put((t_pixel){n.x.x, n.y.y, sampler(p, current.x
+				/ d->option.eight, current.y / d->option.eight)},
 			d, d->img, current.z);
 	}
 }
