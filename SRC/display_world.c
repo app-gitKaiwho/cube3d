@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 16:49:51 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/06 13:31:19 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:52:17 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,10 @@ void	display_polygone(t_data *d, t_polygon p)
 
 	poly = p;
 	i = -1;
-	if (d->option.wireframe)
-	{
-		while (++i < 3)
-			poly.verti[i] = pointcast(p.verti[i], *d);
-		rasterizer(d, poly);
-	}
+	while (++i < 3)
+		poly.verti[i] = pointcast(p.verti[i], *d);
+	rasterizer(d, poly);
+	i = -1;
 	while (!d->option.wireframe && ++i < 3)
 	{
 		poly.edges[i] = vec3cast(p.edges[i], *d);

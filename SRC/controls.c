@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:02:40 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/06 12:14:08 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:08:01 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	world_effect(int keycode, t_data *d)
 		d->focal -= 10;
 }
 
+#include <stdio.h>
+
 int	options_key(int keycode, t_data *d)
 {
 	if (keycode == OPTION1)
@@ -69,6 +71,20 @@ int	options_key(int keycode, t_data *d)
 		d->option.six = !d->option.six;
 	else if (keycode == OPTION7)
 		d->option.seven = !d->option.seven;
+	else if (keycode == OPTION8)
+	{
+		d->option.eight -= 0.05;
+		if (d->option.eight < 0.5)
+			d->option.eight = 1;
+		printf("option 8 : %f\n", d->option.eight);
+	}
+	else if (keycode == OPTION9)
+	{
+		d->option.eight += 0.05;
+		if (d->option.eight > 10)
+			d->option.eight = 1;
+		printf("option 8 : %f\n", d->option.eight);
+	}
 	else
 		return (0);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 22:24:15 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/06 12:06:02 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:28:28 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	initoption(t_data *d)
 	d->option.five = 1;
 	d->option.six = 1;
 	d->option.seven = 0;
+	d->option.eight = 1.0;
 }
 
 void	initscreenbuffer(t_data *d)

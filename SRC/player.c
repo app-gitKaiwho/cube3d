@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 15:15:19 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/06 12:27:22 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/06 15:53:37 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ void	player_init(t_data *d)
 {
 	d->player.speed = 5 * d->scale;
 	d->player.size = (t_point){0.5 * d->scale, 1.8 * d->scale, 0.5 * d->scale};
-	d->player.pos = (t_point){d->world.size.x / 2, 0, 100};
-	d->player.angle = (t_point){0, 0, 0};
+	d->player.pos = (t_point){d->world.size.x / 2 + 4000, 0, 5000};
+	//d->player.angle = (t_point){0, 0, 0}; default
+	d->player.angle = (t_point){0, 45, 0};
 }
 
 //temporary doble raycast to show lines

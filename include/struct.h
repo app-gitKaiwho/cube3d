@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/06 12:52:59 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:28:18 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,7 @@ typedef struct option
 	int		five;
 	int		six;
 	int		seven;
+	float	eight;
 }	t_option;
 
 typedef struct data
@@ -174,7 +175,7 @@ typedef struct data
 	double		height;
 	t_player	player;
 	t_minimap	minimap;
-	int			render_distance;
+	float		render_distance;
 }	t_data;
 
 #endif /*!STRUCT_H */
