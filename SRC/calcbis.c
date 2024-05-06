@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calcbis.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 14:23:39 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/05 15:51:17 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/06 12:21:47 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,16 @@ void	x_put(t_data *d, t_polygon p, t_upl n, t_vector mp[2])
 		if (break_point(*d, (t_vector2d){(t_point2d){n.x.ab, n.y.y},
 			(t_point2d){n.x.ac, n.y.y}}, (t_point2d){n.x.x, n.y.y}))
 			return ;
-		put_point((t_point){n.x.x, n.y.y, p.verti[0].z}, d, d->img,
-			sampler(p, current.x, current.y));
+		buffered_put((t_pixel){n.x.x, n.y.y,
+			sampler(p, current.x, current.y)}, d, d->img, 1);
 	}
 }
 
 // y : y start y, ab y pos on ab, ac y pos on ac
 int	top(t_data *d, t_polygon p, t_yupl y, t_xupl x)
 {
-	float	tab;
-	float	tac;
+	float		tab;
+	float		tac;
 	t_vector	mp[2];
 
 	tab = getstep(p.verti[0], p.verti[2]);
@@ -73,8 +73,7 @@ int	top(t_data *d, t_polygon p, t_yupl y, t_xupl x)
 			return (y.y);
 		mp[0] = (t_vector){p.texturepos[0], p.texturepos[2]};
 		mp[1] = (t_vector){p.texturepos[0], p.texturepos[1]};
-		if (d->option.five)
-			x_put(d, p, (t_upl){(t_xupl){y.y, x.ab, x.ac}, y}, mp);
+		x_put(d, p, (t_upl){(t_xupl){y.y, x.ab, x.ac}, y}, mp);
 		y.y--;
 		x.ab -= tab;
 		x.ac -= tac;
@@ -94,12 +93,12 @@ void	bot(t_data *d, t_polygon p, t_yupl y, t_xupl x)
 	{
 		y.ab = percent(y.y, p.verti[0].y, p.verti[2].y);
 		y.ac = percent(y.y, p.verti[1].y, p.verti[2].y);
-		if (break_point(*d, (t_vector2d){(t_point2d){x.ab, y.y}, (t_point2d){x.ac, p.verti[1].y}}, (t_point2d){x.x, p.verti[2].y}))
+		if (break_point(*d, (t_vector2d){(t_point2d){x.ab, y.y},
+			(t_point2d){x.ac, p.verti[1].y}}, (t_point2d){x.x, p.verti[2].y}))
 			return ;
 		mp[0] = (t_vector){p.texturepos[0], p.texturepos[2]};
 		mp[1] = (t_vector){p.texturepos[1], p.texturepos[2]};
-		if (d->option.six)
-			x_put(d, p, (t_upl){(t_xupl){y.y, x.ab, x.ac}, y}, mp);
+		x_put(d, p, (t_upl){(t_xupl){y.y, x.ab, x.ac}, y}, mp);
 		y.y--;
 		x.ab -= tab;
 		x.ac -= tac;

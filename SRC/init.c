@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 22:24:15 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/29 20:52:32 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/06 12:06:02 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	minimap_init(t_data *d)
 	clear_img(d, d->minimapimg);
 	d->minimap.pos = (t_point2d){10, 10};
 	d->minimap.scale = 1 * d->scale;
-	d->minimap.color = (t_RGB){0, 0, 255, 0};
+	d->minimap.color = (t_RGB){0, 0, 255, 50};
 }
 
 void	init_world(t_data *d)
@@ -53,13 +53,13 @@ void	initscreenbuffer(t_data *d)
 	int	i;
 	int	j;
 
-	d->buffer = malloc(sizeof(float) * d->height);
+	d->buffer = malloc(sizeof(float **) * d->height);
 	if (!d->buffer)
 		error_handler("Failed to init buffer", 1);
 	j = 0;
 	while (j < d->height)
 	{
-		d->buffer[j] = malloc(sizeof(float) * d->width);
+		d->buffer[j] = malloc(sizeof(float *) * d->width);
 		if (!d->buffer[j])
 			error_handler("Failed to init buffer", 1);
 		i = 0;
@@ -81,6 +81,7 @@ t_data	*initdata(void)
 		error_handler("Failed to init data", 1);
 	data->win.mlx = mlx_init();
 	data->win.ptr = mlx_new_window(data->win.mlx, WL, WH, "My Window");
+	init_objectimg(data);
 	mlx_hook(data->win.ptr, CLOSE_WINDOW_KEY, 0, &exit_hook, NULL);
 	mlx_key_hook(data->win.ptr, &keyhook, NULL);
 	data->width = WL;
@@ -88,11 +89,6 @@ t_data	*initdata(void)
 	data->fov = 90;
 	data->scale = WL * 0.1;
 	data->focal = data->width * 0.5 / tan(degtorad(data->fov * 0.5));
-	init_world(data);
-	minimap_init(data);
-	player_init(data);
-	initoption(data);
-	init_img(data);
 	initscreenbuffer(data);
 	return (data);
 }

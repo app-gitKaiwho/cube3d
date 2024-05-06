@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 19:05:13 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/29 19:59:53 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/05 14:02:41 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,5 @@ void	free_data(t_data *data)
 		free(data->world.c_sprite);
 	if (data->world.c_obj)
 		free(data->world.c_obj);
-	//ajouter le buffer
 	free(data);
 }

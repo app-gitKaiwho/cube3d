@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:54:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/02 16:13:17 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/06 12:20:03 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,38 +19,36 @@ void	displayimg(t_data *d)
 		mlx_put_image_to_window(d->win.mlx, d->win.ptr, d->bg.img, 0, 0);
 	if (d->img.img)
 		mlx_put_image_to_window(d->win.mlx, d->win.ptr, d->img.img, 0, 0);
-	if (0)
-	{
-		if (d->hud.img)
-			mlx_put_image_to_window(d->win.mlx, d->win.ptr, d->hud.img, 0, 0);
-		if (d->option.minimap && d->minimapimg.img)
-			mlx_put_image_to_window(d->win.mlx, d->win.ptr,
-				d->minimapimg.img, 0, 0);
-	}
+	if (d->hud.img)
+		mlx_put_image_to_window(d->win.mlx, d->win.ptr, d->hud.img, 0, 0);
+	if (d->option.minimap && d->minimapimg.img)
+		mlx_put_image_to_window(d->win.mlx, d->win.ptr,
+			d->minimapimg.img, 0, 0);
 }
 
 //add a pixel to img only for 2d object
 void	put_pixel(t_pixel p, t_data *d, t_img img)
 {
-	int				index;
+	int		index;
 
 	if (p.x <= 0 || p.y <= 0 || p.x >= d->width || p.y >= d->height)
 		return ;
-	index = ((d->height - (int)p.y) * img.line_size + (int)p.x * img.bpp / 8);
+	index = ((WH - (int)p.y) * img.line_size + (int)p.x * img.bpp / 8);
 	img.addr[index] = p.color.blue;
 	img.addr[index + 1] = p.color.green;
 	img.addr[index + 2] = p.color.red;
 	img.addr[index + 3] = p.color.alpha;
 }
 
-void	put_point(t_point p, t_data *d, t_img img, t_RGB color)
+void	buffered_put(t_pixel p, t_data *d, t_img img, float dz)
 {
 	if (p.x <= 0 || p.y <= 0 || p.x >= d->width || p.y >= d->height)
 		return ;
-	if (d->buffer[(int)p.y][(int)p.x] == -1 || d->buffer[(int)p.y][(int)p.x] > p.z)
+	if (d->buffer[(int)p.y][(int)p.x] == -1
+		|| dz < d->buffer[(int)p.y][(int)p.x])
 	{
-		d->buffer[(int)p.y][(int)p.x] = p.z;
-		put_pixel((t_pixel){p.x, p.y, color}, d, img);
+		d->buffer[(int)p.y][(int)p.x] = dz;
+		put_pixel(p, d, img);
 	}
 }
 
@@ -93,5 +91,26 @@ void	put_square(t_pixel cen, t_point2d size, t_data *d, t_img img)
 		i = -1;
 		while (++i < size.x)
 			put_pixel((t_pixel){cen.x + i, cen.y + j, cen.color}, d, img);
+	}
+}
+
+void	clear_img(t_data *d, t_img img)
+{
+	int		index;
+	int		i;
+	int		j;
+
+	j = 0;
+	while (++j < d->height)
+	{
+		i = 0;
+		while (++i < d->width)
+		{
+			index = ((d->height - j) * img.line_size + (int)i * img.bpp / 8);
+			img.addr[index] = 0;
+			img.addr[index + 1] = 0;
+			img.addr[index + 2] = 0;
+			img.addr[index + 3] = (unsigned char)255;
+		}
 	}
 }

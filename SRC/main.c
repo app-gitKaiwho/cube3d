@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:48:49 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/29 20:56:43 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/06 11:19:10 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	animation(t_data *d, int frame)
 	if (frame % 200 == 0)
 	{
 		color = int_to_rgb(rand());
-		color.alpha = 240;
 		if (d->world.nb_sprite > 0)
 			sprite_edit(d, 0, sprite_create((t_point2d){10, d->height - 210},
 					(t_point2d){200, 200}, color));
@@ -37,12 +36,8 @@ int	loopydyloop(void *param)
 	static int		frame;
 
 	frame++;
-	(void)frame;
 	d = (t_data *)param;
-	(void)d;
-	#ifdef __APPLE__
-		frame = animation(d, frame);
-	#endif
+	frame = animation(d, frame);
 	return (0);
 }
 
@@ -51,8 +46,14 @@ int	main(void)
 	t_data	*data;
 
 	data = initdata();
+	init_world(data);
+	minimap_init(data);
+	player_init(data);
+	initoption(data);
+	init_bg(data);
+	init_hudimg(data);
 	test(data);
-	display_minimap(data);
+	clear_img(data, data->img);
 	raycast(data);
 	display_world_object(data);
 	displayimg(data);

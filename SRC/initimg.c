@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initimg.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 10:32:02 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/29 20:54:26 by spook            ###   ########.fr       */
+/*   Updated: 2024/04/29 13:37:25 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,4 @@ void	init_hudimg(t_data *d)
 	d->hud.addr = mlx_get_data_addr(d->hud.img, &d->hud.bpp,
 			&d->hud.line_size, &d->hud.endian);
 	clear_img(d, d->hud);
-}
-
-void	init_img(t_data *d)
-{
-	init_bg(d);
-	init_objectimg(d);
-	init_hudimg(d);
 }
