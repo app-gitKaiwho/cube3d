@@ -6,11 +6,12 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 14:23:39 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/06 12:21:47 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/06 14:35:42 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+#include <stdio.h>
 
 void	setborder(t_vector mp[2], t_upl *n, t_point *mab, t_point *mac)
 {
@@ -68,6 +69,7 @@ int	top(t_data *d, t_polygon p, t_yupl y, t_xupl x)
 	{
 		y.ab = percent(y.y, p.verti[0].y, p.verti[2].y);
 		y.ac = percent(y.y, p.verti[0].y, p.verti[1].y);
+		x.x = interpolator(p.verti[0], p.verti[2], y.y);
 		if (break_point(*d, (t_vector2d){(t_point2d){x.ab, y.y},
 			(t_point2d){x.ac, p.verti[0].y}}, (t_point2d){x.x, p.verti[2].y}))
 			return (y.y);
@@ -93,6 +95,7 @@ void	bot(t_data *d, t_polygon p, t_yupl y, t_xupl x)
 	{
 		y.ab = percent(y.y, p.verti[0].y, p.verti[2].y);
 		y.ac = percent(y.y, p.verti[1].y, p.verti[2].y);
+		x.x = interpolator(p.verti[0], p.verti[2], y.y);
 		if (break_point(*d, (t_vector2d){(t_point2d){x.ab, y.y},
 			(t_point2d){x.ac, p.verti[1].y}}, (t_point2d){x.x, p.verti[2].y}))
 			return ;
@@ -105,19 +108,19 @@ void	bot(t_data *d, t_polygon p, t_yupl y, t_xupl x)
 	}
 }
 
-void	rasterizer(t_data *d, t_polygon p)
+void	rasterizer(t_data *d, t_polygon a)
 {
-	t_polygon	a;
+	t_polygon	p;
 	t_xupl		x;
 	t_yupl		y;
 
-	a = p;
-	sortscanlines(&a);
-	y.y = round(a.verti[0].y);
-	x.ab = a.verti[0].x;
-	x.ac = a.verti[0].x;
-	y.y = top(d, a, y, x);
-	x.ab = interpolator(a.verti[0], a.verti[2], y.y);
-	x.ac = interpolator(a.verti[1], a.verti[2], y.y);
-	bot(d, a, y, x);
+	p = a;
+	sortscanlines(&p);
+	y.y = round(p.verti[0].y);
+	x.ab = p.verti[0].x;
+	x.ac = p.verti[0].x;
+	y.y = top(d, p, y, x);
+	x.ab = interpolator(p.verti[0], p.verti[2], y.y);
+	x.ac = interpolator(p.verti[1], p.verti[2], y.y);
+	bot(d, p, y, x);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 15:15:19 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/28 12:33:31 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/06 12:27:22 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	player_movement(t_data *data, t_point dir)
 		data->player.pos.z = 0;
 }
 
-//rework to cast on z and not y
 void	raycast(t_data *d)
 	{
 	double	a;
