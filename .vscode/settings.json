@@ -2,6 +2,8 @@
     "files.associations": {
         "charconv": "c",
         "minimap.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "cmath": "c",
+        "complex": "c"
     }
 }
