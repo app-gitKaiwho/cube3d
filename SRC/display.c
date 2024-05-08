@@ -3,57 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 14:54:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/06 12:20:03 by lvon-war         ###   ########.fr       */
+/*   Created: 2024/05/08 10:15:53 by spook             #+#    #+#             */
+/*   Updated: 2024/05/08 16:02:25 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-/// @brief display the image on the window.
-void	displayimg(t_data *d)
-{
-	if (d->bg.img)
-		mlx_put_image_to_window(d->win.mlx, d->win.ptr, d->bg.img, 0, 0);
-	if (d->img.img)
-		mlx_put_image_to_window(d->win.mlx, d->win.ptr, d->img.img, 0, 0);
-	if (d->hud.img)
-		mlx_put_image_to_window(d->win.mlx, d->win.ptr, d->hud.img, 0, 0);
-	if (d->option.minimap && d->minimapimg.img)
-		mlx_put_image_to_window(d->win.mlx, d->win.ptr,
-			d->minimapimg.img, 0, 0);
-}
-
-//add a pixel to img only for 2d object
-void	put_pixel(t_pixel p, t_data *d, t_img img)
+void	put_pixel(t_pixel p, t_img img)
 {
 	int		index;
 
-	if (p.x <= 0 || p.y <= 0 || p.x >= d->width || p.y >= d->height)
+	if (p.x <= 0 || p.y <= 0 || p.x >= img.size.x || p.y >= img.size.y)
 		return ;
-	index = ((WH - (int)p.y) * img.line_size + (int)p.x * img.bpp / 8);
+	index = ((img.size.y - (int)p.y) * img.line_size + (int)p.x * img.bpp / 8);
 	img.addr[index] = p.color.blue;
 	img.addr[index + 1] = p.color.green;
 	img.addr[index + 2] = p.color.red;
-	img.addr[index + 3] = p.color.alpha;
 }
 
-void	buffered_put(t_pixel p, t_data *d, t_img img, float dz)
-{
-	if (p.x <= 0 || p.y <= 0 || p.x >= d->width || p.y >= d->height)
-		return ;
-	if (d->buffer[(int)p.y][(int)p.x] == -1
-		|| dz < d->buffer[(int)p.y][(int)p.x])
-	{
-		d->buffer[(int)p.y][(int)p.x] = dz;
-		put_pixel(p, d, img);
-	}
-}
-
-//put a line to img
-void	put_line(t_vector V, t_data *d, t_RGB color, t_img img)
+void	put_line(t_vector V, t_color color, t_img img)
 {
 	t_point	delta;
 	t_point	inc;
@@ -73,14 +44,13 @@ void	put_line(t_vector V, t_data *d, t_RGB color, t_img img)
 	i = -1;
 	while (++i <= steps)
 	{
-		put_pixel((t_pixel){inc.x, inc.y, color}, d, img);
+		put_pixel((t_pixel){inc.x, inc.y, color}, img);
 		inc.x += delta.x;
 		inc.y += delta.y;
 	}
 }
 
-// put a square to img
-void	put_square(t_pixel cen, t_point2d size, t_data *d, t_img img)
+void	put_square(t_pixel cen, t_point size, t_img img)
 {
 	int	i;
 	int	j;
@@ -90,27 +60,26 @@ void	put_square(t_pixel cen, t_point2d size, t_data *d, t_img img)
 	{
 		i = -1;
 		while (++i < size.x)
-			put_pixel((t_pixel){cen.x + i, cen.y + j, cen.color}, d, img);
+			put_pixel((t_pixel){cen.x + i, cen.y + j, cen.color}, img);
 	}
 }
 
-void	clear_img(t_data *d, t_img img)
+void	clear_img(t_img img)
 {
 	int		index;
 	int		i;
 	int		j;
 
 	j = 0;
-	while (++j < d->height)
+	while (++j < img.size.y)
 	{
 		i = 0;
-		while (++i < d->width)
+		while (++i < img.size.x)
 		{
-			index = ((d->height - j) * img.line_size + (int)i * img.bpp / 8);
+			index = ((img.size.y - j) * img.line_size + (int)i * img.bpp / 8);
 			img.addr[index] = 0;
 			img.addr[index + 1] = 0;
 			img.addr[index + 2] = 0;
-			img.addr[index + 3] = (unsigned char)255;
 		}
 	}
 }

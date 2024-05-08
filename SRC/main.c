@@ -3,37 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:48:49 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/06 14:42:17 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/08 18:49:25 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-//do thing every frame
 int	animation(t_data *d, int frame)
 {
-	static t_RGB	color;
-
 	if (frame == 100000)
 		frame = 0;
-	if (frame % 200 == 0)
-	{
-		color = int_to_rgb(rand());
-		if (d->world.nb_sprite > 0)
-			sprite_edit(d, 0, sprite_create((t_point2d){10, d->height - 210},
-					(t_point2d){200, 200}, color));
-		display_world_sprite(d);
-	}
+
+	clear_img(d->minimapimg);
+	clear_img(d->img);
+    minimap(d);
+	put_bg(d->img, *d);
+	raycast(d);
+	mlx_put_image_to_window(d->win.mlx, d->win.ptr, d->img.img, 0, 0);
+	mlx_put_image_to_window(d->win.mlx, d->win.ptr, d->minimapimg.img, 0, 0);
 	return (frame);
 }
 
 int	loopydyloop(void *param)
 {
-	struct data		*d;
-	static int		frame;
+	t_data		*d;
+	static int	frame;
 
 	frame++;
 	d = (t_data *)param;
@@ -46,21 +43,12 @@ int	main(void)
 	t_data	*data;
 
 	data = initdata();
-	init_world(data);
-	minimap_init(data);
-	player_init(data);
-	initoption(data);
-	init_bg(data);
-	init_hudimg(data);
-	test(data);
-	clear_img(data, data->img);
+	minimap(data);
 	raycast(data);
-	display_world_object(data);
-	displayimg(data);
-	mlx_key_hook(data->win.ptr, &keyhook, data);
+	mlx_hook(data->win.ptr, KeyPress, KeyPressMask, &keyhook, data);
+	mlx_hook(data->win.ptr, 17, 0, &exit_hook, data);
 	mlx_loop_hook(data->win.mlx, loopydyloop, data);
 	mlx_loop(data->win.mlx);
-	free_data(data);
-	error_handler("Failed to init data", 1);
+	free(data);
 	return (0);
 }

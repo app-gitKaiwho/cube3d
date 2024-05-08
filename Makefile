@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+         #
+#    By: spook <spook@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/25 16:52:50 by lvon-war          #+#    #+#              #
-#    Updated: 2024/04/29 10:34:28 by lvon-war         ###   ########.fr        #
+#    Updated: 2024/05/08 14:57:14 by spook            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,13 +27,11 @@ define end_spinner
 endef
 
 # Executable Name
-ENAME	=	cube3d
-NAME	=	cube3d.a
+ENAME	=	cub3d
+NAME	=	cub3d.a
 CFLAGS	=	-Wall -Werror -Wextra
 AR		=	ar -rsc
-FILES	=	main.c controls.c calc.c calcbis.c calcter.c calcquater.c utils.c display.c  display_world.c \
-sprite.c object.c objectinit.c data_utils.c player.c map.c utilsbis.c init.c initimg.c test.c vector.c \
-texturemapping.c
+FILES	=	main.c utils.c init.c display.c minimap.c control.c raycast.c player.c
 
 # Path for .c , .h and .o Files 
 LIBFT	=	./include/libft/lib.a

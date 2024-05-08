@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/18 15:29:59 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/25 14:20:13 by lvon-war         ###   ########.fr       */
+/*   Created: 2024/05/08 14:54:39 by spook             #+#    #+#             */
+/*   Updated: 2024/05/08 15:02:27 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 # include "struct.h"
 
-void	raycast(t_data *d);
-void	player_init(t_data *data);
-void	player_movement(t_data *data, t_point dir);
+//player.c
 
-#endif /* PLAYER_H */
+void    player_movement(t_data *d, t_point newpos);
+
+
+#endif /*!PLAYER_H */

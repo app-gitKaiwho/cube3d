@@ -3,15 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/06 16:28:18 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/08 19:28:03 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
+
+typedef struct color
+{
+	int		red;
+	int		green;
+	int		blue;
+	int		alpha;
+}	t_color;
+
+typedef struct pixel
+{
+	float	x;
+	float	y;
+	t_color	color;
+}	t_pixel;
+
+typedef struct point
+{
+	float	x;
+	float	y;
+}	t_point;
+
+typedef struct vector
+{
+	t_point	a;
+	t_point	b;
+}	t_vector;
 
 typedef struct img
 {
@@ -20,6 +47,7 @@ typedef struct img
 	char	*addr;
 	int		endian;
 	int		line_size;
+	t_point size;
 }	t_img;
 
 typedef struct window
@@ -29,153 +57,46 @@ typedef struct window
 	int		test;
 }	t_window;
 
-typedef struct rgb
+typedef struct map
 {
-	int	red;
-	int	green;
-	int	blue;
-	int	alpha;
-}	t_RGB;
-
-typedef struct iterator
-{
-	int	i;
-	int	j;
-	int	k;
-}	t_iterator;
-
-//in order x, y, z, color
-typedef struct pixel
-{
-	double	x;
-	double	y;
-	t_RGB	color;
-}	t_pixel;	
-
-typedef struct point
-{
-	double	x;
-	double	y;
-	double	z;
-}	t_point;
-
-typedef struct point2d
-{
-	double	x;
-	double	y;
-}	t_point2d;
-
-//a = start, b = end
-typedef struct vector
-{
-	t_point	a;
-	t_point	b;
-}	t_vector;
-
-typedef struct vector2d
-{
-	t_point2d	a;
-	t_point2d	b;
-}	t_vector2d;
-
-//triangular polygon
-typedef struct polygon
-{
-	int			seen;
-	t_point		normal;
-	t_point		verti[3];
-	t_vector	edges[3];
-	int			textsize;
-	t_RGB		*textaddr;
-	t_point		texturepos[3];
-}	t_polygon;
-
-//for texture : Nord = 0, Sud = 1, Est = 2, West = 3
-//pos is the center of the object, all object are cubes
-typedef struct object
-{
-	int			id;
-	t_point		pos;
-	t_point		rot;
-	int			seen;
-	t_point		size;
-	int			textsize;
-	t_point		verti[8];
-	t_polygon	poly[12];
-	t_RGB		**textures;
-}	t_object;
-
-typedef struct sprite
-{
-	int			id;
-	t_point2d	pos;
-	t_point2d	size;
-	t_RGB		*texture;
-}	t_sprite;
-
-//c for current
-typedef struct world
-{
-	int			sky;
-	t_point2d	size;
-	t_point		spawn;
-	int			earth;
-	int			nb_obj;
-	t_object	*c_obj;
-	t_sprite	*c_sprite;
-	int			nb_sprite;
-}	t_world;
+	t_point size;
+	char	**map;
+	t_color *north;
+	t_color *south;
+	t_color *west;
+	t_color *east;
+}	t_map;
 
 typedef struct player
 {
-	t_point		pos;
-	t_point		size;
-	int			speed;
-	t_point		angle;
-	t_point		cast[2];
-	t_sprite	mapsprite;
+	t_point	pos;
+	float	dir;
+	t_point size;
+	float	height;
 }	t_player;
 
 typedef struct minimap
 {
-	t_point2d	pos;
-	t_point2d	size;
-	t_RGB		color;
-	int			scale;
+	float	scale;
+	t_color bg;
+	t_color wall;
+	t_color player;
 }	t_minimap;
-
-typedef struct option
-{
-	int		raytoplayer;
-	int		playerview;
-	int		wireframe;
-	int		minimap;
-	int		five;
-	int		six;
-	int		seven;
-	float	eight;
-}	t_option;
 
 typedef struct data
 {
 	t_window	win;
 	t_img		img;
-	t_img		bg;
-	t_img		hud;
 	t_img		minimapimg;
-	float		**buffer;
-	double		fov;
-	int			sky;
-	int			earth;
-	double		focal;
-	double		width;
-	double		scale;
-	t_world		world;
-	t_option	option;
-	double		height;
-	t_player	player;
+	t_map		map;
 	t_minimap	minimap;
+	t_player	player;
+	t_color		sky;
+	t_color		earth;
+	double		fov;
+	t_point		scsize;
 	float		render_distance;
+	double		minimap_scaled;
 }	t_data;
 
 #endif /*!STRUCT_H */

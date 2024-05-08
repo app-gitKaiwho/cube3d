@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   controls.h                                         :+:      :+:    :+:   */
+/*   raycast.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 12:14:25 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/02 15:16:01 by lvon-war         ###   ########.fr       */
+/*   Created: 2024/05/08 14:54:39 by spook             #+#    #+#             */
+/*   Updated: 2024/05/08 16:11:10 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONTROLS_H
-# define CONTROLS_H
+#ifndef RAYCAST_H
+# define RAYCAST_H
 
 # include "struct.h"
-//controls.c
 
-int		exit_hook(void);
-int		keyhook(int keycode, void *param);
+//raycast.c
 
-#endif /*!CONTROLS_H */
+void raycast(t_data *d);
+
+#endif /*!RAYCAST_H */

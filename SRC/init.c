@@ -3,93 +3,117 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/28 22:24:15 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/06 16:28:28 by lvon-war         ###   ########.fr       */
+/*   Created: 2024/05/08 10:08:08 by spook             #+#    #+#             */
+/*   Updated: 2024/05/08 19:29:25 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-/// @brief should be initialised by input
-void	minimap_init(t_data *d)
+//replace by parsing
+t_map   initmap(t_data *d)
 {
-	d->minimapimg.img = mlx_new_image(d->win.mlx, WL, WH);
-	d->minimapimg.addr = mlx_get_data_addr(d->minimapimg.img,
-			&d->minimapimg.bpp, &d->minimapimg.line_size,
-			&d->minimapimg.endian);
-	clear_img(d, d->minimapimg);
-	d->minimap.pos = (t_point2d){10, 10};
-	d->minimap.scale = 1 * d->scale;
-	d->minimap.color = (t_RGB){0, 0, 255, 50};
+    t_map   m;
+    int     i;
+    int     j;
+    int     n;
+    char    testmap[] = {
+    '1','1','1','1','1','1','1','1','1','1',
+    '1','0','0','0','0','0','0','0','0','1',
+    '1','0','1','1','1','1','1','0','0','1',
+    '1','0','1','0','0','0','0','1','0','1',
+    '1','0','0','0','0','0','0','0','0','1',
+    '1','0','0','0','N','0','0','0','0','1',
+    '1','0','1','0','0','0','0','1','0','1',
+    '1','0','1','0','0','0','0','1','0','1',
+    '1','0','0','0','0','0','0','0','0','1',
+    '1','1','1','1','1','1','1','1','1','1'};
+    m.size.x = 10;
+    m.size.y = 10;
+    m.map = malloc(sizeof(char *) * m.size.y);
+    if (!m.map)
+        error_handler("Failed to init map", 1);
+    i = 0;
+    n = 0;
+    while (i < m.size.y)
+    {
+        m.map[i] = malloc(sizeof(char) * m.size.x);
+        if (!m.map[i])
+            error_handler("Failed to init map", 1);
+        j = 0;
+        while (j < m.size.x)
+        {
+            m.map[i][j] = testmap[n];
+            if (m.map[i][j] == 'N' || m.map[i][j] == 'S' || m.map[i][j] == 'E' || m.map[i][j] == 'W')
+            {
+                if (m.map[i][j] == 'N')
+                    d->player.dir =  M_PI / 2;
+                if (m.map[i][j] == 'S')
+                    d->player.dir = 3 * M_PI / 2;
+                if (m.map[i][j] == 'E')   
+                    d->player.dir = 0;
+                if (m.map[i][j] == 'W')   
+                    d->player.dir = M_PI;
+                d->player.pos.x = j;
+                d->player.pos.y = i;
+            }
+            j++;
+            n++;
+        }
+        i++;
+    }
+    return (m);
 }
 
-void	init_world(t_data *d)
+t_minimap  initminimap(t_data *d, double scale)
 {
-	d->world.spawn = (t_point){0, 0, 0};
-	d->world.size.x = 100 * d->scale;
-	d->world.size.y = 100 * d->scale;
-	d->world.earth = 0xbf9c6d;
-	d->world.sky = 0x9deaed;
-	d->world.nb_obj = 0;
-	d->world.nb_sprite = 0;
-	d->render_distance = (d->world.size.x + d->world.size.y) / 4;
+    t_minimap   m;
+
+    m.scale = (d->scsize.y * scale) / d->map.size.y; // 1 is % of screen covered by minimap 1 = 100%
+    d->minimapimg.size.x = (d->map.size.x * m.scale);
+    d->minimapimg.size.y = (d->map.size.x * m.scale);
+    d->minimapimg.img = mlx_new_image(d->win.mlx, d->minimapimg.size.x, d->minimapimg.size.y);
+	d->minimapimg.addr = mlx_get_data_addr(d->minimapimg.img, &d->minimapimg.bpp, &d->minimapimg.line_size, &d->minimapimg.endian);
+    m.bg = (t_color){0, 0, 255, (char)150};
+    m.player = (t_color){255, 0, 0, (char)150};
+    m.wall = (t_color){0, 255, 0, (char)150};
+    return (m);
 }
 
-void	initoption(t_data *d)
+t_player    initplayer()
 {
-	d->option.minimap = 1;
-	d->option.wireframe = 1;
-	d->option.playerview = 0;
-	d->option.raytoplayer = 0;
-	d->option.five = 1;
-	d->option.six = 1;
-	d->option.seven = 0;
-	d->option.eight = 1.0;
+    t_player    p;
+
+    p.size.x = 0.2;
+    p.size.y = 0.2;
+    p.height = 0.5;
+    return (p);
 }
 
-void	initscreenbuffer(t_data *d)
+t_data *initdata(void)
 {
-	int	i;
-	int	j;
+	t_data	*d;
 
-	d->buffer = malloc(sizeof(float **) * d->height);
-	if (!d->buffer)
-		error_handler("Failed to init buffer", 1);
-	j = 0;
-	while (j < d->height)
-	{
-		d->buffer[j] = malloc(sizeof(float *) * d->width);
-		if (!d->buffer[j])
-			error_handler("Failed to init buffer", 1);
-		i = 0;
-		while (i < d->width)
-		{
-			d->buffer[j][i] = -1;
-			i++;
-		}
-		j++;
-	}
-}
-
-t_data	*initdata(void)
-{
-	t_data	*data;
-
-	data = malloc(sizeof(t_data));
-	if (!data)
+	d = malloc(sizeof(t_data));
+	if (!d)
 		error_handler("Failed to init data", 1);
-	data->win.mlx = mlx_init();
-	data->win.ptr = mlx_new_window(data->win.mlx, WL, WH, "My Window");
-	init_objectimg(data);
-	mlx_hook(data->win.ptr, CLOSE_WINDOW_KEY, 0, &exit_hook, NULL);
-	mlx_key_hook(data->win.ptr, &keyhook, NULL);
-	data->width = WL;
-	data->height = WH;
-	data->fov = 90;
-	data->scale = WL * 0.1;
-	data->focal = data->width * 0.5 / tan(degtorad(data->fov * 0.5));
-	initscreenbuffer(data);
-	return (data);
+	d->win.mlx = mlx_init();
+	d->scsize.x = 1920;
+	d->scsize.y = 1080;
+    d->img.size.x = d->scsize.x;
+    d->img.size.y = d->scsize.y;
+	d->win.ptr = mlx_new_window(d->win.mlx, d->img.size.x, d->img.size.y, "Best Game");
+	d->img.img = mlx_new_image(d->win.mlx, d->scsize.x, d->scsize.y);
+	d->img.addr = mlx_get_data_addr(d->img.img, &d->img.bpp, &d->img.line_size, &d->img.endian);
+	d->sky = (t_color){153, 204, 255, 0};
+	d->earth = (t_color){153, 153, 255, 0};
+	d->fov = 90 * (M_PI / 180);
+	d->render_distance = 1000;
+    d->player = initplayer();
+    d->map = initmap(d);
+    d->minimap_scaled = 0;
+    d->minimap = initminimap(d, DEFAULMINI);
+	return (d);
 }

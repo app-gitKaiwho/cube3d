@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   control.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar@gmail.com>               +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/24 19:50:35 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/03/25 14:54:23 by lvon-war         ###   ########.fr       */
+/*   Created: 2024/05/08 13:49:55 by spook             #+#    #+#             */
+/*   Updated: 2024/05/08 13:50:31 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-# define MAP_H
+#ifndef CONTROL_H
+# define CONTROL_H
 
-# include "struct.h"
+int	exit_hook(void);
+int	keyhook(int keycode, void *param);
 
-void	minimap_init(t_data *data);
-void	display_minimap(t_data *data);
-#endif /*!MAP_H */
+#endif /* CONTROL_H */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:49:18 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/29 10:37:06 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/08 17:39:48 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,19 @@
 # define CUBE_H
 
 # define M_PI 3.14159265358979323846
-# define WL 1920
-# define WH 1080
-# define FOV 90
 # define BLUE 0x0000FF
 # define DARKBLUE 0x000080
 # define DARKRED 0x8B0000
 # define YELLOW 0xFFFF00
 # define RED 0xFF0000
 # define GREEN 0x00FF00
+# define DEFAULMINI 0.2
 
 //standard library
 # include <unistd.h>
 # include <stdlib.h>
 # include <math.h>
+# include <X11/X.h>
 
 //libft and mlx library
 # include "mlx.h"
@@ -49,31 +48,14 @@
 
 //lib from cube3d
 # include "keycode.h"
-# include "controls.h"
-# include "display.h"
-# include "map.h"
-# include "calc.h"
-
-//utils
 # include "struct.h"
-# include "utils.h"
-
-//init
 # include "init.h"
-
-//object
-# include "object.h"
-
-//sprite
-# include "sprite.h"
-
-//player
+# include "display.h"
+# include "minimap.h"
+# include "control.h"
+# include "raycast.h"
 # include "player.h"
 
-//vector
-# include "vector.h"
-
-//test
-# include "test.h"
-
+//utils
+# include "utils.h"
 #endif /*!CUBE_H */

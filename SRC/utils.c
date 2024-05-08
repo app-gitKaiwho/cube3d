@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 18:23:20 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/29 10:50:02 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/08 17:30:26 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,50 +21,21 @@ void	error_handler(char *txt, int code)
 	exit(code);
 }
 
-/// @brief convert an int to a t_RGB struct usefull with rand() for example.
-/// @param color the int to convert.
-/// @return a rgb struct.
-t_RGB	int_to_rgb(int color)
+void	put_bg(t_img img, t_data d)
 {
-	t_RGB	rgb;
-
-	rgb.red = (color & 0xFF0000) >> 16;
-	rgb.green = (color & 0xFF00) >> 8;
-	rgb.blue = color & 0xFF;
-	rgb.alpha = 0;
-	return (rgb);
-}
-
-t_RGB	*texture_pattern_create(t_point2d size, t_RGB color)
-{
-	t_RGB		*texture;
-	t_RGB		tmp;
-	int			i;
-	int			j;
-	int			n;
+	int	i;
+	int	j;
 
 	j = -1;
-	n = 0;
-	texture = malloc(sizeof(t_RGB) * size.x * size.y);
-	if (!texture)
-		error_handler("Failed to create texture", 1);
-	while (++j < size.y)
+	while (++j < img.size.y)
 	{
 		i = -1;
-		tmp = color;
-		if (j > size.y / 2)
-			tmp = int_to_rgb(DARKBLUE);
-		while (++i < size.x)
+		while (++i < img.size.x)
 		{
-			if (i > size.x / 2)
-			{
-				tmp = int_to_rgb(DARKRED);
-				if (j > size.y / 2)
-					tmp = int_to_rgb((DARKBLUE + DARKRED) / 2);
-			}
-			texture[n] = tmp;
-			n++;
+			if (j < img.size.y / 2)
+				put_pixel((t_pixel){i, j, d.earth}, img);
+			else
+				put_pixel((t_pixel){i, j, d.sky}, img);
 		}
 	}
-	return (texture);
 }
