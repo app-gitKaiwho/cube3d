@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/08 19:28:03 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/09 19:32:58 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ typedef struct img
 	char	*addr;
 	int		endian;
 	int		line_size;
-	t_point size;
+	int		sizex;
+	int		sizey;
 }	t_img;
 
 typedef struct window
@@ -61,10 +62,10 @@ typedef struct map
 {
 	t_point size;
 	char	**map;
-	t_color *north;
-	t_color *south;
-	t_color *west;
-	t_color *east;
+	t_img	north;
+	t_img	south;
+	t_img	west;
+	t_img	east;
 }	t_map;
 
 typedef struct player

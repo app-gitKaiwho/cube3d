@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 18:23:20 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/08 17:30:26 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/09 19:33:21 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ void	put_bg(t_img img, t_data d)
 	int	j;
 
 	j = -1;
-	while (++j < img.size.y)
+	while (++j < img.sizey)
 	{
 		i = -1;
-		while (++i < img.size.x)
+		while (++i < img.sizex)
 		{
-			if (j < img.size.y / 2)
+			if (j < img.sizey / 2)
 				put_pixel((t_pixel){i, j, d.earth}, img);
 			else
 				put_pixel((t_pixel){i, j, d.sky}, img);

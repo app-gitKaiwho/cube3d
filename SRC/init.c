@@ -6,11 +6,21 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 10:08:08 by spook             #+#    #+#             */
-/*   Updated: 2024/05/08 19:29:25 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/09 19:33:52 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+
+void    inittexture(t_data *d, char *path, char *path1, char *path2, char *path3)
+{
+    d->map.north.img = mlx_xpm_file_to_image(d->win.mlx, path, &d->map.north.sizex, &d->map.north.sizey);
+    d->map.south.img = mlx_xpm_file_to_image(d->win.mlx, path1, &d->map.south.sizex, &d->map.south.sizey);
+    d->map.east.img = mlx_xpm_file_to_image(d->win.mlx, path2, &d->map.east.sizex, &d->map.east.sizey);
+    d->map.west.img = mlx_xpm_file_to_image(d->win.mlx, path3, &d->map.west.sizex, &d->map.west.sizey);
+    if (!d->map.north.img || !d->map.south.img || !d->map.east.img || !d->map.west.img)
+        error_handler("Failed to init texture", 1);
+}
 
 //replace by parsing
 t_map   initmap(t_data *d)
@@ -72,9 +82,9 @@ t_minimap  initminimap(t_data *d, double scale)
     t_minimap   m;
 
     m.scale = (d->scsize.y * scale) / d->map.size.y; // 1 is % of screen covered by minimap 1 = 100%
-    d->minimapimg.size.x = (d->map.size.x * m.scale);
-    d->minimapimg.size.y = (d->map.size.x * m.scale);
-    d->minimapimg.img = mlx_new_image(d->win.mlx, d->minimapimg.size.x, d->minimapimg.size.y);
+    d->minimapimg.sizex = (d->map.size.x * m.scale);
+    d->minimapimg.sizey = (d->map.size.x * m.scale);
+    d->minimapimg.img = mlx_new_image(d->win.mlx, d->minimapimg.sizex, d->minimapimg.sizey);
 	d->minimapimg.addr = mlx_get_data_addr(d->minimapimg.img, &d->minimapimg.bpp, &d->minimapimg.line_size, &d->minimapimg.endian);
     m.bg = (t_color){0, 0, 255, (char)150};
     m.player = (t_color){255, 0, 0, (char)150};
@@ -102,9 +112,9 @@ t_data *initdata(void)
 	d->win.mlx = mlx_init();
 	d->scsize.x = 1920;
 	d->scsize.y = 1080;
-    d->img.size.x = d->scsize.x;
-    d->img.size.y = d->scsize.y;
-	d->win.ptr = mlx_new_window(d->win.mlx, d->img.size.x, d->img.size.y, "Best Game");
+    d->img.sizex = d->scsize.x;
+    d->img.sizey = d->scsize.y;
+	d->win.ptr = mlx_new_window(d->win.mlx, d->img.sizex, d->img.sizey, "Best Game");
 	d->img.img = mlx_new_image(d->win.mlx, d->scsize.x, d->scsize.y);
 	d->img.addr = mlx_get_data_addr(d->img.img, &d->img.bpp, &d->img.line_size, &d->img.endian);
 	d->sky = (t_color){153, 204, 255, 0};
@@ -115,5 +125,6 @@ t_data *initdata(void)
     d->map = initmap(d);
     d->minimap_scaled = 0;
     d->minimap = initminimap(d, DEFAULMINI);
+    inittexture(d, "textures/north.xpm", "textures/south.xpm", "textures/east.xpm", "textures/west.xpm");
 	return (d);
 }

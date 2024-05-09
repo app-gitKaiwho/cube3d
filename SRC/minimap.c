@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 11:02:20 by spook             #+#    #+#             */
-/*   Updated: 2024/05/08 18:27:13 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/09 19:34:42 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void    put_walls(t_data *d)
 
 void    minimap(t_data *d)
 {
-    put_square((t_pixel){0, 0, d->minimap.bg}, d->minimapimg.size, d->minimapimg);
+    put_square((t_pixel){0, 0, d->minimap.bg}, (t_point){d->minimapimg.sizex, d->minimapimg.sizey}, d->minimapimg);
     put_walls(d);
     player(d);
 }

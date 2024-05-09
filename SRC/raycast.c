@@ -6,12 +6,11 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:53:46 by spook             #+#    #+#             */
-/*   Updated: 2024/05/08 23:46:50 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/09 22:07:03 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
-#include <stdio.h>
 
 void    displayonminimap(t_data *d, t_point start, t_point end)
 {
@@ -22,7 +21,6 @@ void    displayonminimap(t_data *d, t_point start, t_point end)
     put_line((t_vector){start, end},(t_color){255, 0, 255, 0}, d->minimapimg);
 }
 
-#include <stdio.h>
 void    draw_wall(t_data *d, t_point start, t_point end, int n, int face)
 {
     float   dist;
@@ -44,7 +42,6 @@ void    draw_wall(t_data *d, t_point start, t_point end, int n, int face)
     put_line((t_vector){(t_point){n, (int)(d->scsize.y / 2) + 1}, (t_point){n, (int)(d->scsize.y / 2 - (d->scsize.y / 4 / dist))}}, color, d->img);
 }
 
-#include <stdio.h>
 void    raycast(t_data *d)
 {
     t_point start;

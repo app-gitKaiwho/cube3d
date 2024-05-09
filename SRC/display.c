@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 10:15:53 by spook             #+#    #+#             */
-/*   Updated: 2024/05/08 16:02:25 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/09 19:34:12 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	put_pixel(t_pixel p, t_img img)
 {
 	int		index;
 
-	if (p.x <= 0 || p.y <= 0 || p.x >= img.size.x || p.y >= img.size.y)
+	if (p.x <= 0 || p.y <= 0 || p.x >= img.sizex || p.y >= img.sizey)
 		return ;
-	index = ((img.size.y - (int)p.y) * img.line_size + (int)p.x * img.bpp / 8);
+	index = ((img.sizey - (int)p.y) * img.line_size + (int)p.x * img.bpp / 8);
 	img.addr[index] = p.color.blue;
 	img.addr[index + 1] = p.color.green;
 	img.addr[index + 2] = p.color.red;
@@ -71,12 +71,12 @@ void	clear_img(t_img img)
 	int		j;
 
 	j = 0;
-	while (++j < img.size.y)
+	while (++j < img.sizey)
 	{
 		i = 0;
-		while (++i < img.size.x)
+		while (++i < img.sizex)
 		{
-			index = ((img.size.y - j) * img.line_size + (int)i * img.bpp / 8);
+			index = ((img.sizey - j) * img.line_size + (int)i * img.bpp / 8);
 			img.addr[index] = 0;
 			img.addr[index + 1] = 0;
 			img.addr[index + 2] = 0;
