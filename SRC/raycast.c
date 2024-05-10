@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:53:46 by spook             #+#    #+#             */
-/*   Updated: 2024/05/10 15:04:32 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:06:22 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	raycast(t_data *d)
 
 	f.n = 0;
 	f.face = 0;
-	rayperpixel = 2;
+	rayperpixel = 8;
 	angle = d->player.dir - d->fov / 2;
 	while (angle < d->player.dir + d->fov / 2)
 	{
