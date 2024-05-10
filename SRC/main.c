@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:48:49 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/08 18:49:25 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/10 09:02:39 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@ int	animation(t_data *d, int frame)
 {
 	if (frame == 100000)
 		frame = 0;
-
 	clear_img(d->minimapimg);
 	clear_img(d->img);
-    minimap(d);
+	minimap(d);
 	put_bg(d->img, *d);
 	raycast(d);
 	mlx_put_image_to_window(d->win.mlx, d->win.ptr, d->img.img, 0, 0);
@@ -45,7 +44,7 @@ int	main(void)
 	data = initdata();
 	minimap(data);
 	raycast(data);
-	mlx_hook(data->win.ptr, KeyPress, KeyPressMask, &keyhook, data);
+	mlx_hook(data->win.ptr, 2, 4, &keyhook, data);
 	mlx_hook(data->win.ptr, 17, 0, &exit_hook, data);
 	mlx_loop_hook(data->win.mlx, loopydyloop, data);
 	mlx_loop(data->win.mlx);
