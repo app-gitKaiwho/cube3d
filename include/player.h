@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:54:39 by spook             #+#    #+#             */
-/*   Updated: 2024/05/08 15:02:27 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/10 11:13:26 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 //player.c
 
-void    player_movement(t_data *d, t_point newpos);
-
+void	player_movement(t_data *d, t_point newpos);
 
 #endif /*!PLAYER_H */

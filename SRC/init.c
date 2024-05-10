@@ -6,30 +6,46 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 10:08:08 by spook             #+#    #+#             */
-/*   Updated: 2024/05/10 09:17:15 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/10 12:11:03 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void	inittexture(t_data *d, char *path, char *path1, char *path2, char *path3)
+void		inittexture(t_data *d, char *path, char *path1, char *path2, char *path3)
 {
-	d->map.north.img = mlx_xpm_file_to_image(d->win.mlx, path, &d->map.north.sizex, &d->map.north.sizey);
-	d->map.south.img = mlx_xpm_file_to_image(d->win.mlx, path1, &d->map.south.sizex, &d->map.south.sizey);
-	d->map.east.img = mlx_xpm_file_to_image(d->win.mlx, path2, &d->map.east.sizex, &d->map.east.sizey);
-	d->map.west.img = mlx_xpm_file_to_image(d->win.mlx, path3, &d->map.west.sizex, &d->map.west.sizey);
-	if (!d->map.north.img || !d->map.south.img || !d->map.east.img || !d->map.west.img)
+	d->map.wall[0].img = mlx_xpm_file_to_image(d->win.mlx, path, \
+	&d->map.wall[0].sizex, &d->map.wall[0].sizey);
+	d->map.wall[1].img = mlx_xpm_file_to_image(d->win.mlx, path1, \
+	&d->map.wall[1].sizex, &d->map.wall[1].sizey);
+	d->map.wall[2].img = mlx_xpm_file_to_image(d->win.mlx, path2, \
+	&d->map.wall[2].sizex, &d->map.wall[2].sizey);
+	d->map.wall[3].img = mlx_xpm_file_to_image(d->win.mlx, path3, \
+	&d->map.wall[3].sizex, &d->map.wall[3].sizey);
+	if (!d->map.wall[0].img || !d->map.wall[1].img || !d->map.wall[2].img \
+	|| !d->map.wall[3].img)
+		error_handler("Failed to init texture", 1);
+	d->map.wall[0].addr = mlx_get_data_addr(d->map.wall[0].img, \
+	&d->map.wall[0].bpp, &d->map.wall[0].line_size, &d->map.wall[0].endian);
+	d->map.wall[1].addr = mlx_get_data_addr(d->map.wall[1].img, \
+	&d->map.wall[1].bpp, &d->map.wall[1].line_size, &d->map.wall[1].endian);
+	d->map.wall[2].addr = mlx_get_data_addr(d->map.wall[2].img, \
+	&d->map.wall[2].bpp, &d->map.wall[2].line_size, &d->map.wall[2].endian);
+	d->map.wall[3].addr = mlx_get_data_addr(d->map.wall[3].img, \
+	&d->map.wall[3].bpp, &d->map.wall[3].line_size, &d->map.wall[3].endian);
+	if (!d->map.wall[0].addr || !d->map.wall[1].addr || !d->map.wall[2].addr \
+	|| !d->map.wall[3].addr)
 		error_handler("Failed to init texture", 1);
 }
 
 //replace by parsing
 t_map   initmap(t_data *d)
 {
-	t_map   m;
-	int     i;
-	int     j;
-	int     n;
-	char    testmap[] = {
+	t_map	m;
+	int		i;
+	int		j;
+	int		n;
+	char	testmap[] = {
 	'1','1','1','1','1','1','1','1','1','1',
 	'1','0','0','0','0','0','0','0','0','1',
 	'1','0','1','1','1','1','1','0','0','1',
@@ -40,6 +56,7 @@ t_map   initmap(t_data *d)
 	'1','0','1','0','0','0','0','1','0','1',
 	'1','0','0','0','0','0','0','0','0','1',
 	'1','1','1','1','1','1','1','1','1','1'};
+
 	m.size.x = 10;
 	m.size.y = 10;
 	m.map = malloc(sizeof(char *) * m.size.y);
@@ -56,15 +73,16 @@ t_map   initmap(t_data *d)
 		while (j < m.size.x)
 		{
 			m.map[i][j] = testmap[n];
-			if (m.map[i][j] == 'N' || m.map[i][j] == 'S' || m.map[i][j] == 'E' || m.map[i][j] == 'W')
+			if (m.map[i][j] == 'N' || m.map[i][j] == 'S' \
+			|| m.map[i][j] == 'E' || m.map[i][j] == 'W')
 			{
 				if (m.map[i][j] == 'N')
-					d->player.dir =  M_PI / 2;
+					d->player.dir = M_PI / 2;
 				if (m.map[i][j] == 'S')
 					d->player.dir = 3 * M_PI / 2;
-				if (m.map[i][j] == 'E')   
+				if (m.map[i][j] == 'E')
 					d->player.dir = 0;
-				if (m.map[i][j] == 'W')   
+				if (m.map[i][j] == 'W')
 					d->player.dir = M_PI;
 				d->player.pos.x = j;
 				d->player.pos.y = i;
@@ -88,9 +106,9 @@ t_minimap	initminimap(t_data *d, double scale)
 	d->minimapimg.sizex, d->minimapimg.sizey);
 	d->minimapimg.addr = mlx_get_data_addr(d->minimapimg.img, \
 	&d->minimapimg.bpp, &d->minimapimg.line_size, &d->minimapimg.endian);
-	m.bg = (t_color){0, 0, 255, (char)150};
-	m.player = (t_color){255, 0, 0, (char)150};
-	m.wall = (t_color){0, 255, 0, (char)150};
+	m.bg = (t_color){0, 0, 255, (char)90};
+	m.player = (t_color){255, 0, 0, (char)90};
+	m.wall = (t_color){0, 255, 0, (char)90};
 	return (m);
 }
 
@@ -112,8 +130,7 @@ t_data	*initdata(void)
 	if (!d)
 		error_handler("Failed to init data", 1);
 	d->win.mlx = mlx_init();
-	d->scsize.x = 1920;
-	d->scsize.y = 1080;
+	d->scsize = (t_point){1920, 1080};
 	d->img.sizex = d->scsize.x;
 	d->img.sizey = d->scsize.y;
 	d->win.ptr = mlx_new_window(d->win.mlx, d->img.sizex, \
@@ -129,6 +146,7 @@ t_data	*initdata(void)
 	d->map = initmap(d);
 	d->minimap_scaled = 0;
 	d->minimap = initminimap(d, DEFAULMINI);
-	inittexture(d, "textures/north.xpm", "textures/south.xpm", "textures/east.xpm", "textures/west.xpm");
+	inittexture(d, "textures/north.xpm", "textures/south.xpm", \
+	"textures/east.xpm", "textures/west.xpm");
 	return (d);
 }

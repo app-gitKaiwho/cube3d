@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 18:23:20 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/10 09:24:55 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/10 14:13:10 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,27 @@ void	put_bg(t_img img, t_data d)
 				put_pixel((t_pixel){i, j, d.sky}, img);
 		}
 	}
+}
+
+t_color	int_to_color(int color)
+{
+	t_color	c;
+
+	c.alpha = (color & (0xFF << 24)) >> 24;
+	c.red = (color & (0xFF << 16)) >> 16;
+	c.green = (color & (0xFF << 8)) >> 8;
+	c.blue = color & 0xFF;
+	return (c);
+}
+
+t_color	pixel_plottin(t_img img, int x, int y)
+{
+	t_color	color;
+	int		colorint;
+
+	x = x % img.sizex;
+	y = y % img.sizey;
+	colorint = *(int *)(img.addr + (y * img.line_size + x * (img.bpp / 8)));
+	color = int_to_color(colorint);
+	return (color);
 }

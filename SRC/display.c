@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 10:15:53 by spook             #+#    #+#             */
-/*   Updated: 2024/05/09 19:34:12 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/10 12:10:30 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	put_pixel(t_pixel p, t_img img)
 	img.addr[index] = p.color.blue;
 	img.addr[index + 1] = p.color.green;
 	img.addr[index + 2] = p.color.red;
+	img.addr[index + 3] = p.color.alpha;
 }
 
 void	put_line(t_vector V, t_color color, t_img img)
@@ -80,6 +81,7 @@ void	clear_img(t_img img)
 			img.addr[index] = 0;
 			img.addr[index + 1] = 0;
 			img.addr[index + 2] = 0;
+			img.addr[index + 3] = (char)255;
 		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 13:49:29 by spook             #+#    #+#             */
-/*   Updated: 2024/05/10 09:18:51 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/10 11:09:36 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,18 @@ void	playerctrl(int keycode, t_data *d)
 	}
 	if (keycode == ARROW_DOWN)
 	{
-		dir.x =  d->player.pos.x - cos(d->player.dir) * d->player.height;
-		dir.y =  d->player.pos.y - sin(d->player.dir) * d->player.height;
+		dir.x = d->player.pos.x - cos(d->player.dir) * d->player.height;
+		dir.y = d->player.pos.y - sin(d->player.dir) * d->player.height;
 		player_movement(d, dir);
 	}
 	if (keycode == ARROW_LEFT)
 		d->player.dir += M_PI / 8;
 	if (keycode == ARROW_RIGHT)
 		d->player.dir -= M_PI / 8;
+}
+
+void	hudctrl(int keycode, t_data *d)
+{
 	if (keycode == MAP)
 	{
 		mlx_destroy_image(d->win.mlx, d->minimapimg.img);
@@ -61,5 +65,6 @@ int	keyhook(int keycode, void *param)
 	if (keycode == ESC || keycode == CLOSE_WINDOW_KEY)
 		exit(EXIT_SUCCESS);
 	playerctrl(keycode, d);
+	hudctrl(keycode, d);
 	return (0);
 }

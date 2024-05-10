@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 11:02:20 by spook             #+#    #+#             */
-/*   Updated: 2024/05/10 09:20:33 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/10 14:41:43 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	put_walls(t_data *d)
 		{
 			if (d->map.map[j][i] == '1')
 				put_square((t_pixel){i * d->minimap.scale + 1, \
-				j * d->minimap.scale + 1, d->minimap.wall}, \
+				j * d->minimap.scale, d->minimap.wall}, \
 				(t_point){d->minimap.scale - 1, d->minimap.scale - 1}, \
 				d->minimapimg);
 			i++;
