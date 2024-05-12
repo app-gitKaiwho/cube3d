@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 11:02:20 by spook             #+#    #+#             */
-/*   Updated: 2024/05/12 12:45:28 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/12 13:53:05 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ void	wall_type(t_data *d, int j, int i)
 		j * d->minimap.scale, d->minimap.wall}, \
 		(t_point){d->minimap.scale - 1, d->minimap.scale - 1}, \
 		d->minimapimg);
-	if (d->map.map[j][i] == '0' || d->map.map[j][i] == 'N' ||
-		d->map.map[j][i] == 'S' || d->map.map[j][i] == 'E' ||
-		d->map.map[j][i] == 'W')
+	if (d->map.map[j][i] == '0')
 		put_square((t_pixel){i * d->minimap.scale + 1, \
 		j * d->minimap.scale, d->minimap.bg}, \
 		(t_point){d->minimap.scale - 1, d->minimap.scale - 1}, \
