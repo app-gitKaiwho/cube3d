@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/12 04:52:02 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/12 11:23:02 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct player
 	float	dir;
 	t_point size;
 	float	height;
+	float	speed;
 }	t_player;
 
 typedef struct ray

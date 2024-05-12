@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 13:49:29 by spook             #+#    #+#             */
-/*   Updated: 2024/05/12 04:53:25 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/12 11:23:55 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,10 @@ int	exit_hook(void)
 
 void	playerctrl(int keycode, t_data *d)
 {
-	t_point	dir;
-
 	if (keycode == ARROW_UP || keycode == UP)
-	{
-		dir.x = d->player.pos.x + cos(degtorad(d->player.dir)) * d->player.height;
-		dir.y = d->player.pos.y + sin(degtorad(d->player.dir)) * d->player.height;
-		player_movement(d, dir);
-	}
+		player_movement(d, 0);
 	if (keycode == ARROW_DOWN || keycode == DOWN)
-	{
-		dir.x = d->player.pos.x - cos(degtorad(d->player.dir)) * d->player.height;
-		dir.y = d->player.pos.y - sin(degtorad(d->player.dir)) * d->player.height;
-		player_movement(d, dir);
-	}
+		player_movement(d, 180);
 	if (keycode == ARROW_LEFT || keycode == LEFT)
 	{
 		d->player.dir += 15;
@@ -73,7 +63,7 @@ void	action(int keycode, t_data *d)
 	t_ray	ray;
 	if (keycode == INTERACT)
 	{
-		ray = raycast(d, d->player.pos, 1, d->player.dir);
+		ray = raycast(d, d->player.pos, d->player.speed, d->player.dir);
 		if (ray.walltype == '2')
 			d->map.map[(int)ray.mapcurr.y][(int)ray.mapcurr.x] = '0';
 		if (ray.walltype == '0')

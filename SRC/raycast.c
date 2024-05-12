@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:53:46 by spook             #+#    #+#             */
-/*   Updated: 2024/05/12 04:51:07 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/12 10:23:51 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	vertical(t_ray *ray, t_movement *move)
 		ray->face = 3;
 }
 
-void	seek_wall(t_data *d, t_ray *ray, t_movement *move, int max_length)
+void	seek_wall(t_data *d, t_ray *ray, t_movement *move, float max_length)
 {
 	while (ray->size < max_length)
 	{
@@ -80,7 +80,7 @@ void	seek_wall(t_data *d, t_ray *ray, t_movement *move, int max_length)
 	}
 }
 
-t_ray	raycast(t_data *d, t_point p, int max_length, float angle)
+t_ray	raycast(t_data *d, t_point p, float max_length, float angle)
 {
 	t_ray	ray;
 	t_movement move;

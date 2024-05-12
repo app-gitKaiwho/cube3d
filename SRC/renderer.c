@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 17:49:51 by spook             #+#    #+#             */
-/*   Updated: 2024/05/12 04:55:35 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/12 10:19:25 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void display(t_data *d, float dir, t_ray ray, int n)
 		ray.x = ray.start.x + ray.dir.x * ray.size;
 	ray.x -= floor(ray.x);
 	ray.x *= d->map.wall[ray.face].sizex;
+	ray.x = d->map.wall[ray.face].sizex - ray.x;
+	n = d->scsize.x - n;
 	incy = (float)d->map.wall[ray.face].sizey / (float)(d->scsize.y / 2  \
 	+ (wallheight / ray.size) - (d->scsize.y / 2 - wallheight / ray.size));
 	v = 0;

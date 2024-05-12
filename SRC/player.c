@@ -6,24 +6,20 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:56:29 by spook             #+#    #+#             */
-/*   Updated: 2024/05/12 04:31:35 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/12 11:36:34 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void	player_movement(t_data *d, t_point newpos)
+void	player_movement(t_data *d, int inc)
 {
-	if (newpos.x < 0 || newpos.x + (d->player.size.x) >= d->map.size.x \
-	|| newpos.y < 0 || newpos.y + (d->player.size.y) >= d->map.size.y)
-		return ;
-	if (d->map.map[(int)newpos.y][(int)newpos.x] >= '1' && d->map.map[(int)newpos.y][(int)newpos.x] < '9')
-		return ;
-	if (d->map.map[(int)(newpos.y)][(int)(newpos.x + d->player.size.x)] >= '1' && d->map.map[(int)(newpos.y)][(int)(newpos.x + d->player.size.x)] < '9')
-		return ;
-	if (d->map.map[(int)(newpos.y + d->player.size.y)][(int)newpos.x] >= '1' && d->map.map[(int)(newpos.y + d->player.size.y)][(int)newpos.x] < '9')
-		return ;
-	if (d->map.map[(int)(newpos.y + d->player.size.y)][(int)(newpos.x + d->player.size.x)] >= '1' && d->map.map[(int)(newpos.y + d->player.size.y)][(int)(newpos.x + d->player.size.x)] < '9')
-		return ;
-	d->player.pos = newpos;
+	t_ray	ray;
+	t_point	player;
+
+	player = (t_point){d->player.pos.x + d->player.size.x, d->player.pos.y + d->player.size.y};
+	ray = raycast(d, player, d->player.speed, d->player.dir + inc);
+	if (ray.walltype == '0' || ray.size > d->player.speed)
+		d->player.pos = (t_point){d->player.pos.x + d->player.speed * cos(degtorad(d->player.dir + inc)), \
+		d->player.pos.y + d->player.speed * sin(degtorad(d->player.dir + inc))};
 }
