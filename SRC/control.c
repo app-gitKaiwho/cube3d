@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 13:49:29 by spook             #+#    #+#             */
-/*   Updated: 2024/05/12 12:53:59 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/12 14:39:34 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,6 @@ void	action(int keycode, t_data *d)
 		ray = raycast(d, d->player.pos, d->player.speed, d->player.dir);
 		if (ray.walltype == '2')
 			d->map.map[(int)ray.mapcurr.y][(int)ray.mapcurr.x] = '0';
-		if (ray.walltype == '0')
-			d->map.map[(int)ray.mapcurr.y][(int)ray.mapcurr.x] = '2';
 	}
 }
 

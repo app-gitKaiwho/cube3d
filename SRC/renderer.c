@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 17:49:51 by spook             #+#    #+#             */
-/*   Updated: 2024/05/12 14:06:14 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/12 14:36:26 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void	castray(t_data *d)
 		ray = raycast(d, playerpos, sqrt(pow(d->map.size.x, 2) \
 		+ pow(d->map.size.y, 2)), dir);
 		displayonminimap(d, playerpos, ray.end);
+		if (ray.walltype == '2' && ray.face != 0 && ray.face != 2)
+			ray.face = 4;
 		display(d, dir, ray, floor(n));
 		dir += d->fov / (d->scsize.x - 1);
 		n += 1;

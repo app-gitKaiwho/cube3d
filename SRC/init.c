@@ -6,13 +6,13 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 10:08:08 by spook             #+#    #+#             */
-/*   Updated: 2024/05/12 13:38:12 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/12 14:21:36 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void	inittexture(t_data *d, char *path, char *path1, char *path2, char *path3)
+void	inittexture(t_data *d, char *path, char *path1, char *path2, char *path3, char *path4)
 {
 	d->map.wall[0].img = mlx_xpm_file_to_image(d->win.mlx, path, \
 	&d->map.wall[0].sizex, &d->map.wall[0].sizey);
@@ -22,8 +22,10 @@ void	inittexture(t_data *d, char *path, char *path1, char *path2, char *path3)
 	&d->map.wall[2].sizex, &d->map.wall[2].sizey);
 	d->map.wall[3].img = mlx_xpm_file_to_image(d->win.mlx, path3, \
 	&d->map.wall[3].sizex, &d->map.wall[3].sizey);
+	d->map.wall[4].img = mlx_xpm_file_to_image(d->win.mlx, path4, \
+	&d->map.wall[4].sizex, &d->map.wall[4].sizey);
 	if (!d->map.wall[0].img || !d->map.wall[1].img || !d->map.wall[2].img \
-	|| !d->map.wall[3].img)
+	|| !d->map.wall[3].img || !d->map.wall[4].img)
 		error_handler("Failed to init texture", 1);
 	d->map.wall[0].addr = mlx_get_data_addr(d->map.wall[0].img, \
 	&d->map.wall[0].bpp, &d->map.wall[0].line_size, &d->map.wall[0].endian);
@@ -33,12 +35,13 @@ void	inittexture(t_data *d, char *path, char *path1, char *path2, char *path3)
 	&d->map.wall[2].bpp, &d->map.wall[2].line_size, &d->map.wall[2].endian);
 	d->map.wall[3].addr = mlx_get_data_addr(d->map.wall[3].img, \
 	&d->map.wall[3].bpp, &d->map.wall[3].line_size, &d->map.wall[3].endian);
+	d->map.wall[4].addr = mlx_get_data_addr(d->map.wall[4].img, \
+	&d->map.wall[4].bpp, &d->map.wall[4].line_size, &d->map.wall[4].endian);
 	if (!d->map.wall[0].addr || !d->map.wall[1].addr || !d->map.wall[2].addr \
-	|| !d->map.wall[3].addr)
+	|| !d->map.wall[3].addr || !d->map.wall[4].addr)
 		error_handler("Failed to init texture", 1);
 }
 
-//replace by parsing
 t_map   initmap(t_data *d)
 {
 	t_map	m;
@@ -149,6 +152,6 @@ t_data	*initdata(void)
 	d->minimap = initminimap(d, DEFAULMINI);
 	d->minimap_scaled = 0;
 	inittexture(d, "textures/north.xpm", "textures/south.xpm", \
-	"textures/east.xpm", "textures/west.xpm");
+	"textures/east.xpm", "textures/west.xpm", "textures/door.xpm");
 	return (d);
 }
