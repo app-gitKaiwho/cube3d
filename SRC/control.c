@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 13:49:29 by spook             #+#    #+#             */
-/*   Updated: 2024/05/11 17:42:46 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/12 02:21:34 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,25 @@ void	playerctrl(int keycode, t_data *d)
 {
 	t_point	dir;
 
-	if (keycode == ARROW_UP)
+	if (keycode == ARROW_UP || keycode == UP)
 	{
 		dir.x = d->player.pos.x + cos(degtorad(d->player.dir)) * d->player.height;
 		dir.y = d->player.pos.y + sin(degtorad(d->player.dir)) * d->player.height;
 		player_movement(d, dir);
 	}
-	if (keycode == ARROW_DOWN)
+	if (keycode == ARROW_DOWN || keycode == DOWN)
 	{
 		dir.x = d->player.pos.x - cos(degtorad(d->player.dir)) * d->player.height;
 		dir.y = d->player.pos.y - sin(degtorad(d->player.dir)) * d->player.height;
 		player_movement(d, dir);
 	}
-	if (keycode == ARROW_LEFT)
+	if (keycode == ARROW_LEFT || keycode == LEFT)
 	{
 		d->player.dir += 15;
 		if (d->player.dir >= 360)
 			d->player.dir -= 360;
 	}
-	if (keycode == ARROW_RIGHT)
+	if (keycode == ARROW_RIGHT || keycode == RIGHT)
 	{
 		d->player.dir -= 15;
 		if (d->player.dir < 0)
