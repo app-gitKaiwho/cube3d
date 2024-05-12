@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 18:23:20 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/11 17:42:31 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/12 04:14:57 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ float	delta(float a, float b)
 	return (b - a);
 }
 
-float degtorad(int deg)
+float degtorad(float deg)
 {
 	return (deg * M_PI / 180);
 }

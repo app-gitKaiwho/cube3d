@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/12 01:55:01 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/12 04:52:02 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@ typedef struct point
 	float	x;
 	float	y;
 }	t_point;
+
+typedef struct int_point
+{
+    int x;
+    int y;
+}	t_int_point;
 
 typedef struct vector
 {
@@ -68,7 +74,7 @@ typedef struct map
 typedef struct player
 {
 	t_point	pos;
-	int		dir;
+	float	dir;
 	t_point size;
 	float	height;
 }	t_player;
@@ -77,8 +83,12 @@ typedef struct ray
 {
 	t_point	start;
 	t_point	end;
+	t_point	dir;
+	t_int_point	mapcurr;
+	float	x;
 	float 	size;
 	int		face;
+	char	walltype;
 }	t_ray;
 
 typedef struct minimap
