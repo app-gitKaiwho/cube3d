@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:54:39 by spook             #+#    #+#             */
-/*   Updated: 2024/05/12 10:23:41 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/12 12:41:27 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@
 
 typedef struct movement
 {
-    t_point dir;
-    t_point inc;
-    t_point step;
-    t_point dist;
-    t_int_point mapcurr;
+	t_point		dir;
+	t_point		inc;
+	t_point		step;
+	t_point		dist;
+	t_int_point	mapcurr;
 }	t_movement;
 
 //raycast.c
 
-t_ray raycast(t_data *d, t_point p, float max_length, float angle);
+t_ray	raycast(t_data *d, t_point p, float max_length, float angle);
 
 #endif /*!RAYCAST_H */

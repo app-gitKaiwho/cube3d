@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 11:02:20 by spook             #+#    #+#             */
-/*   Updated: 2024/05/12 04:29:52 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/12 12:45:28 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,21 @@ void	player(t_data *d)
 	* d->player.size.y}, d->minimapimg);
 }
 
-void	wall_type(t_data* d, int j, int i)
+void	wall_type(t_data *d, int j, int i)
 {
-	if(d->map.map[j][i] == '1')
+	if (d->map.map[j][i] == '1')
 		put_square((t_pixel){i * d->minimap.scale + 1, \
 		j * d->minimap.scale, d->minimap.wall}, \
 		(t_point){d->minimap.scale - 1, d->minimap.scale - 1}, \
 		d->minimapimg);
-	if(d->map.map[j][i] == '0' || d->map.map[j][i] == 'N' || d->map.map[j][i] == 'S' || d->map.map[j][i] == 'E' || d->map.map[j][i] == 'W')
+	if (d->map.map[j][i] == '0' || d->map.map[j][i] == 'N' ||
+		d->map.map[j][i] == 'S' || d->map.map[j][i] == 'E' ||
+		d->map.map[j][i] == 'W')
 		put_square((t_pixel){i * d->minimap.scale + 1, \
 		j * d->minimap.scale, d->minimap.bg}, \
 		(t_point){d->minimap.scale - 1, d->minimap.scale - 1}, \
 		d->minimapimg);
-	if(d->map.map[j][i] == '2')
+	if (d->map.map[j][i] == '2')
 		put_square((t_pixel){i * d->minimap.scale + 1, \
 		j * d->minimap.scale, d->minimap.player}, \
 		(t_point){d->minimap.scale - 1, d->minimap.scale - 1}, \

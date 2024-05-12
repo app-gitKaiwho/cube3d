@@ -6,7 +6,7 @@
 #    By: spook <spook@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/25 16:52:50 by lvon-war          #+#    #+#              #
-#    Updated: 2024/05/11 17:55:35 by spook            ###   ########.fr        #
+#    Updated: 2024/05/12 12:58:09 by spook            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ ENAME	=	cub3d
 NAME	=	cub3d.a
 CFLAGS	=	-Wall -Werror -Wextra
 AR		=	ar -rsc
-FILES	=	main.c utils.c init.c display.c minimap.c control.c raycast.c player.c renderer.c
+FILES	=	main.c utils.c init.c display.c minimap.c control.c raycast.c player.c renderer.c mouse.c
 
 # Path for .c , .h and .o Files 
 LIBFT	=	./include/libft/lib.a

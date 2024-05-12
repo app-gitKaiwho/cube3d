@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 13:49:29 by spook             #+#    #+#             */
-/*   Updated: 2024/05/12 11:23:55 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/12 12:53:59 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	hudctrl(int keycode, t_data *d)
 {
 	if (keycode == MAP)
 	{
-
 		mlx_destroy_image(d->win.mlx, d->minimapimg.img);
 		if (d->minimap_scaled == 0)
 		{
@@ -61,6 +60,7 @@ void	hudctrl(int keycode, t_data *d)
 void	action(int keycode, t_data *d)
 {
 	t_ray	ray;
+
 	if (keycode == INTERACT)
 	{
 		ray = raycast(d, d->player.pos, d->player.speed, d->player.dir);

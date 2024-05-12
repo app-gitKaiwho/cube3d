@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 17:49:51 by spook             #+#    #+#             */
-/*   Updated: 2024/05/12 10:19:25 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/12 12:52:28 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	displayonminimap(t_data *d, t_point start, t_point end)
 	put_line((t_vector){start, end}, (t_color){255, 0, 255, 0}, d->minimapimg);
 }
 
-void display(t_data *d, float dir, t_ray ray, int n)
+void	display(t_data *d, float dir, t_ray ray, int n)
 {
 	int			i;
 	t_color		color;
@@ -38,7 +38,7 @@ void display(t_data *d, float dir, t_ray ray, int n)
 	ray.x *= d->map.wall[ray.face].sizex;
 	ray.x = d->map.wall[ray.face].sizex - ray.x;
 	n = d->scsize.x - n;
-	incy = (float)d->map.wall[ray.face].sizey / (float)(d->scsize.y / 2  \
+	incy = (float)d->map.wall[ray.face].sizey / (float)(d->scsize.y / 2 \
 	+ (wallheight / ray.size) - (d->scsize.y / 2 - wallheight / ray.size));
 	v = 0;
 	i = (d->scsize.y / 2 - wallheight / ray.size) - 1;

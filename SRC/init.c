@@ -6,13 +6,13 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 10:08:08 by spook             #+#    #+#             */
-/*   Updated: 2024/05/12 11:23:30 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/12 13:38:12 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void		inittexture(t_data *d, char *path, char *path1, char *path2, char *path3)
+void	inittexture(t_data *d, char *path, char *path1, char *path2, char *path3)
 {
 	d->map.wall[0].img = mlx_xpm_file_to_image(d->win.mlx, path, \
 	&d->map.wall[0].sizex, &d->map.wall[0].sizey);
@@ -86,6 +86,7 @@ t_map   initmap(t_data *d)
 					d->player.dir = 180;
 				d->player.pos.x = j;
 				d->player.pos.y = i;
+				m.map[i][j] = '0';
 			}
 			j++;
 			n++;

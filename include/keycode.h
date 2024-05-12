@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 11:54:56 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/11 09:53:16 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/12 12:40:58 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@
 #  define OPTION8 65431 //num pad 8
 #  define OPTION9 65434 //num pad 9
 #  define PRESS 2
-#  define PRESSMASK 1L<<0
+#  define PRESSMASK 1L
 
 # endif /*!__APPLE__ */
 

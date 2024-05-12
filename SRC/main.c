@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:48:49 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/11 17:59:54 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/12 13:23:13 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	main(void)
 	data = initdata();
 	minimap(data);
 	castray(data);
+	mlx_mouse_hook(data->win.ptr, &mouse_hook, data);
+	mlx_hook(data->win.ptr, 6, 64, &mouse_move, data);
 	mlx_hook(data->win.ptr, PRESS, PRESSMASK, &keyhook, data);
 	mlx_hook(data->win.ptr, 17, 0, &exit_hook, data);
 	mlx_loop_hook(data->win.mlx, loopydyloop, data);
