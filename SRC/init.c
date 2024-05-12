@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 10:08:08 by spook             #+#    #+#             */
-/*   Updated: 2024/05/10 12:11:03 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/12 01:40:40 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ t_map   initmap(t_data *d)
 	'1','0','1','1','1','1','1','0','0','1',
 	'1','0','1','0','0','0','0','1','0','1',
 	'1','0','0','0','0','0','0','0','0','1',
-	'1','0','0','0','N','0','0','0','0','1',
+	'1','0','0','0','N','0','1','0','0','1',
 	'1','0','1','0','0','0','0','1','0','1',
-	'1','0','1','0','0','0','0','1','0','1',
-	'1','0','0','0','0','0','0','0','0','1',
-	'1','1','1','1','1','1','1','1','1','1'};
+	'1','0','1','1','1','1','0','1','0','1',
+	'1','0','0','1', 0,'1','0','0','0','1',
+	'1','1','1','1', 0,'1','1','1','1','1'};
 
 	m.size.x = 10;
 	m.size.y = 10;
@@ -77,13 +77,13 @@ t_map   initmap(t_data *d)
 			|| m.map[i][j] == 'E' || m.map[i][j] == 'W')
 			{
 				if (m.map[i][j] == 'N')
-					d->player.dir = M_PI / 2;
+					d->player.dir = 90;
 				if (m.map[i][j] == 'S')
-					d->player.dir = 3 * M_PI / 2;
+					d->player.dir = 270;
 				if (m.map[i][j] == 'E')
 					d->player.dir = 0;
 				if (m.map[i][j] == 'W')
-					d->player.dir = M_PI;
+					d->player.dir = 180;
 				d->player.pos.x = j;
 				d->player.pos.y = i;
 			}
@@ -140,12 +140,12 @@ t_data	*initdata(void)
 	&d->img.line_size, &d->img.endian);
 	d->sky = (t_color){153, 204, 255, 0};
 	d->earth = (t_color){153, 153, 255, 0};
-	d->fov = 90 * (M_PI / 180);
+	d->fov = 90;
 	d->render_distance = 1000;
 	d->player = initplayer();
 	d->map = initmap(d);
-	d->minimap_scaled = 0;
 	d->minimap = initminimap(d, DEFAULMINI);
+	d->minimap_scaled = 0;
 	inittexture(d, "textures/north.xpm", "textures/south.xpm", \
 	"textures/east.xpm", "textures/west.xpm");
 	return (d);

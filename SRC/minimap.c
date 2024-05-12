@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 11:02:20 by spook             #+#    #+#             */
-/*   Updated: 2024/05/10 14:41:43 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/10 23:06:28 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ void	put_walls(t_data *d)
 				j * d->minimap.scale, d->minimap.wall}, \
 				(t_point){d->minimap.scale - 1, d->minimap.scale - 1}, \
 				d->minimapimg);
+			if (d->map.map[j][i] == '0' || d->map.map[j][i] == 'N' || d->map.map[j][i] == 'S' || d->map.map[j][i] == 'E' || d->map.map[j][i] == 'W')
+				put_square((t_pixel){i * d->minimap.scale + 1, \
+				j * d->minimap.scale, d->minimap.bg}, \
+				(t_point){d->minimap.scale - 1, d->minimap.scale - 1}, \
+				d->minimapimg);
 			i++;
 		}
 		j++;
@@ -44,8 +49,6 @@ void	put_walls(t_data *d)
 
 void	minimap(t_data *d)
 {
-	put_square((t_pixel){0, 0, d->minimap.bg}, (t_point){d->minimapimg.sizex, \
-	d->minimapimg.sizey}, d->minimapimg);
 	put_walls(d);
 	player(d);
 }

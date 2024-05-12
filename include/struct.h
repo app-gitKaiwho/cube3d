@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/10 10:07:20 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/12 01:55:01 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,18 @@ typedef struct map
 typedef struct player
 {
 	t_point	pos;
-	float	dir;
+	int		dir;
 	t_point size;
 	float	height;
 }	t_player;
+
+typedef struct ray
+{
+	t_point	start;
+	t_point	end;
+	float 	size;
+	int		face;
+}	t_ray;
 
 typedef struct minimap
 {
@@ -94,7 +102,7 @@ typedef struct data
 	double		fov;
 	t_point		scsize;
 	float		render_distance;
-	double		minimap_scaled;
+	int			minimap_scaled;
 }	t_data;
 
 #endif /*!STRUCT_H */

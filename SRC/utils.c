@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 18:23:20 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/10 14:13:10 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/11 17:42:31 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,6 @@ void	error_handler(char *txt, int code)
 {
 	ft_printf("%s\n", txt);
 	exit(code);
-}
-
-void	put_bg(t_img img, t_data d)
-{
-	int	i;
-	int	j;
-
-	j = -1;
-	while (++j < img.sizey)
-	{
-		i = -1;
-		while (++i < img.sizex)
-		{
-			if (j < img.sizey / 2)
-				put_pixel((t_pixel){i, j, d.earth}, img);
-			else
-				put_pixel((t_pixel){i, j, d.sky}, img);
-		}
-	}
 }
 
 t_color	int_to_color(int color)
@@ -61,4 +42,16 @@ t_color	pixel_plottin(t_img img, int x, int y)
 	colorint = *(int *)(img.addr + (y * img.line_size + x * (img.bpp / 8)));
 	color = int_to_color(colorint);
 	return (color);
+}
+
+float	delta(float a, float b)
+{
+	if (a > b)
+		return (a - b);
+	return (b - a);
+}
+
+float degtorad(int deg)
+{
+	return (deg * M_PI / 180);
 }

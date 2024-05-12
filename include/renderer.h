@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast.h                                          :+:      :+:    :+:   */
+/*   renderer.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 14:54:39 by spook             #+#    #+#             */
-/*   Updated: 2024/05/12 02:09:38 by spook            ###   ########.fr       */
+/*   Created: 2024/05/11 17:51:04 by spook             #+#    #+#             */
+/*   Updated: 2024/05/12 00:30:33 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAYCAST_H
-# define RAYCAST_H
+#ifndef RENDERER_H
+# define RENDERER_H
 
 # include "struct.h"
 
-typedef struct int_point
-{
-    int x;
-    int y;
-}	t_int_point;
+//renderer.c
 
-typedef struct movement
-{
-    t_point dir;
-    t_point inc;
-    t_point step;
-    t_point dist;
-    t_int_point mapcurr;
-}	t_movement;
+void    castray(t_data *d);
+void	displayonminimap(t_data *d, t_point start, t_point end);
 
-//raycast.c
-
-t_ray raycast(t_data *d, t_point p, int max_length, int angle);
-
-#endif /*!RAYCAST_H */
+#endif /*!renderer */

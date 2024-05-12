@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keycode.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 11:54:56 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/04/15 11:43:02 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/11 09:53:16 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,11 @@
 #  define OPTION7 89 //num pad 7
 #  define OPTION8 91 //num pad 8
 #  define OPTION9 92 //num pad 9
+#  define PRESS 2
+#  define PRESSMASK 1L<<0
 # else
 //compiled if not on macOS
+
 #  define ESC 65307 // Escape key on Linux
 #  define MINUS 65453
 #  define PLUS 65451
@@ -85,6 +88,8 @@
 #  define OPTION7 65429 //num pad 7
 #  define OPTION8 65431 //num pad 8
 #  define OPTION9 65434 //num pad 9
+#  define PRESS 2
+#  define PRESSMASK 1L<<0
 
 # endif /*!__APPLE__ */
 

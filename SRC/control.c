@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   control.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 13:49:29 by spook             #+#    #+#             */
-/*   Updated: 2024/05/10 11:09:36 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/11 17:42:46 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,33 +23,44 @@ void	playerctrl(int keycode, t_data *d)
 
 	if (keycode == ARROW_UP)
 	{
-		dir.x = d->player.pos.x + cos(d->player.dir) * d->player.height;
-		dir.y = d->player.pos.y + sin(d->player.dir) * d->player.height;
+		dir.x = d->player.pos.x + cos(degtorad(d->player.dir)) * d->player.height;
+		dir.y = d->player.pos.y + sin(degtorad(d->player.dir)) * d->player.height;
 		player_movement(d, dir);
 	}
 	if (keycode == ARROW_DOWN)
 	{
-		dir.x = d->player.pos.x - cos(d->player.dir) * d->player.height;
-		dir.y = d->player.pos.y - sin(d->player.dir) * d->player.height;
+		dir.x = d->player.pos.x - cos(degtorad(d->player.dir)) * d->player.height;
+		dir.y = d->player.pos.y - sin(degtorad(d->player.dir)) * d->player.height;
 		player_movement(d, dir);
 	}
 	if (keycode == ARROW_LEFT)
-		d->player.dir += M_PI / 8;
+	{
+		d->player.dir += 15;
+		if (d->player.dir >= 360)
+			d->player.dir -= 360;
+	}
 	if (keycode == ARROW_RIGHT)
-		d->player.dir -= M_PI / 8;
+	{
+		d->player.dir -= 15;
+		if (d->player.dir < 0)
+			d->player.dir += 360;
+	}
+	else
+		return ;
 }
 
 void	hudctrl(int keycode, t_data *d)
 {
 	if (keycode == MAP)
 	{
+
 		mlx_destroy_image(d->win.mlx, d->minimapimg.img);
 		if (d->minimap_scaled == 0)
 		{
 			d->minimap_scaled = 1;
 			d->minimap = initminimap(d, 1);
 		}
-		else
+		else if (d->minimap_scaled == 1)
 		{
 			d->minimap_scaled = 0;
 			d->minimap = initminimap(d, DEFAULMINI);
