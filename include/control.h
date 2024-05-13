@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 13:49:55 by spook             #+#    #+#             */
-/*   Updated: 2024/05/12 13:05:25 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/13 21:53:16 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 //control.c
 
-int	exit_hook(void);
+int	exit_hook(t_data *d);
 int	keyhook(int keycode, void *param);
 
 //mouse.c

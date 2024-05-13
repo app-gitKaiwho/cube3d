@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 10:08:08 by spook             #+#    #+#             */
-/*   Updated: 2024/05/13 13:24:17 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/14 00:33:05 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,15 +87,11 @@ t_data	*initdata(int argc, char *argv)
 	d->img.img = mlx_new_image(d->win.mlx, d->scsize.x, d->scsize.y);
 	d->img.addr = mlx_get_data_addr(d->img.img, &d->img.bpp, \
 	&d->img.line_size, &d->img.endian);
-	d->sky = (t_color){153, 204, 255, 0};
-	d->earth = (t_color){153, 153, 255, 0};
 	d->fov = 90;
 	d->render_distance = 1000;
 	d->player = initplayer();
 	d->map = parsing(d, argc, argv);
 	d->minimap = initminimap(d, DEFAULMINI);
 	d->minimap_scaled = 0;
-	inittexture(d, "textures/north.xpm", "textures/south.xpm", \
-	"textures/east.xpm", "textures/west.xpm", "textures/door.xpm");
 	return (d);
 }

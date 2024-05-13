@@ -3,17 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   control.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 13:49:29 by spook             #+#    #+#             */
-/*   Updated: 2024/05/13 09:32:41 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/13 21:53:41 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-int	exit_hook(void)
+int	exit_hook(t_data *d)
 {
+	int	j;
+
+	j = 0;
+	while (j < d->map.size.y)
+	{
+		free(d->map.map[j]);
+		j++;
+	}
+	free(d->map.map);
 	exit(EXIT_SUCCESS);
 }
 

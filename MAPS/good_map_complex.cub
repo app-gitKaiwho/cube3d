@@ -1,8 +1,9 @@
 
-NO ./assets/textures/labo/xpm/0.xpm
-SO ./assets/textures/labo/xpm/1.xpm
-WE ./assets/textures/labo/xpm/2.xpm
-EA ./assets/textures/labo/xpm/3.xpm
+NO ./textures/north.xpm
+SO ./textures/south.xpm
+WE ./textures/east.xpm
+EA ./textures/west.xpm
+
 
 F 189,195,199
 C 236,240,241

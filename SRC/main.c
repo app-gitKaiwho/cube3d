@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:48:49 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/13 13:14:06 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/13 21:51:51 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,5 @@ int	main(int argc, char **argv)
 	mlx_hook(data->win.ptr, 17, 0, &exit_hook, data);
 	mlx_loop_hook(data->win.mlx, loopydyloop, data);
 	mlx_loop(data->win.mlx);
-	free(data);
 	return (0);
 }
