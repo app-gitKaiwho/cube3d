@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 10:15:53 by spook             #+#    #+#             */
-/*   Updated: 2024/05/10 12:10:30 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/12 12:44:18 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,25 @@ void	clear_img(t_img img)
 			img.addr[index + 1] = 0;
 			img.addr[index + 2] = 0;
 			img.addr[index + 3] = (char)255;
+		}
+	}
+}
+
+void	put_bg(t_img img, t_data d)
+{
+	int	i;
+	int	j;
+
+	j = -1;
+	while (++j < img.sizey)
+	{
+		i = -1;
+		while (++i < img.sizex)
+		{
+			if (j < img.sizey / 2)
+				put_pixel((t_pixel){i, j, d.earth}, img);
+			else
+				put_pixel((t_pixel){i, j, d.sky}, img);
 		}
 	}
 }

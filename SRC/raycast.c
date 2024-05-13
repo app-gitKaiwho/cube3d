@@ -6,109 +6,100 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:53:46 by spook             #+#    #+#             */
-/*   Updated: 2024/05/10 15:06:22 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/13 08:08:22 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void	displayonminimap(t_data *d, t_point start, t_point end)
+void	get_dir(t_ray ray, float angle, t_movement *move)
 {
-	start.x *= d->minimap.scale;
-	start.y *= d->minimap.scale;
-	end.x *= d->minimap.scale;
-	end.y *= d->minimap.scale;
-	put_line((t_vector){start, end}, (t_color){255, 0, 255, 0}, d->minimapimg);
-}
-
-void	draw_wall(t_data *d, t_folder f, int pixelperray)
-{
-	float	dist;
-	t_color	color;
-	int		y;
-	float	v;
-	t_point	inc;
-
-	f.n = d->scsize.x - f.n;
-	dist = sqrt(pow(f.end.x - f.start.x, 2) + pow(f.end.y - f.start.y, 2));
-	dist = dist * cos(d->player.dir - \
-	atan2(f.end.y - f.start.y, f.end.x - f.start.x));
-	inc = (t_point){0, (float)d->map.wall[f.face].sizey \
-	/ (float)((d->scsize.y / 2 + (d->scsize.y / 4 / dist)) \
-	- (int)(d->scsize.y / 2 - (d->scsize.y / 4 / dist)))};
-	while (pixelperray >= 0)
+	move->dir = (t_point){cos(degtorad(angle)), sin(degtorad(angle))};
+	move->inc = (t_point){sqrt(1 + (move->dir.y / move->dir.x) * \
+	(move->dir.y / move->dir.x)), sqrt(1 + (move->dir.x / move->dir.y) \
+	* (move->dir.x / move->dir.y))};
+	move->mapcurr = (t_int_point){(int)ray.start.x, (int)ray.start.y};
+	if (move->dir.x <= 0)
+		move->step.x = -1;
+	if (move->dir.x <= 0)
+		move->dist.x = (ray.start.x - (float)(move->mapcurr.x)) * move->inc.x;
+	else
 	{
-		y = (int)(d->scsize.y / 2 - (d->scsize.y / 4 / dist));
-		v = 0;
-		while (y < (int)(d->scsize.y / 2 + (d->scsize.y / 4 / dist)))
-		{
-			color = pixel_plottin(d->map.wall[f.face], floor(f.n), floor(v));
-			if (y >= 0 && y < d->scsize.y)
-				put_pixel((t_pixel){floor(f.n), floor(y), color}, d->img);
-			y++;
-			v += inc.y;
-		}
-		f.n++;
-		pixelperray--;
+		move->step.x = 1;
+		move->dist.x = ((float)(move->mapcurr.x + 1) \
+		- ray.start.x) * move->inc.x;
+	}
+	if (move->dir.y <= 0)
+		move->step.y = -1;
+	if (move->dir.y <= 0)
+		move->dist.y = (ray.start.y - (float)(move->mapcurr.y)) * move->inc.y;
+	else
+	{
+		move->step.y = 1;
+		move->dist.y = ((float)(move->mapcurr.y + 1) \
+		- ray.start.y) * move->inc.y;
 	}
 }
 
-int	dirtester(t_data *d, t_folder *f, t_point dir)
+void	horizontal(t_ray *ray, t_movement *move)
 {
-	if ((f->end.x - (int)f->end.x) < 0.001)
-	{
-		if (d->map.map[(int)floor((f->end.y + dir.y))] \
-		[(int)floor((f->end.x + dir.x))] == '1')
-		{
-			f->face = 0;
-			if (dir.x < 0)
-				f->face = 1;
-			return (1);
-		}
-	}
-	if ((f->end.y - (int)f->end.y) < 0.001)
-	{
-		if (d->map.map[(int)floor((f->end.y + dir.y))] \
-		[(int)floor((f->end.x + dir.x))] == '1')
-		{
-			f->face = 2;
-			if (dir.y < 0)
-				f->face = 3;
-			return (1);
-		}
-	}
-	f->end.x += dir.x;
-	f->end.y += dir.y;
-	return (0);
+	move->mapcurr.x += move->step.x;
+	ray->size = move->dist.x;
+	move->dist.x += move->inc.x;
+	if (move->step.x > 0)
+		ray->face = 0;
+	else
+		ray->face = 2;
 }
 
-void	raycast(t_data *d)
+void	vertical(t_ray *ray, t_movement *move)
 {
-	t_folder	f;
-	t_point		dir;
-	int			rayperpixel;
-	float		angle;
+	move->mapcurr.y += move->step.y;
+	ray->size = move->dist.y;
+	move->dist.y += move->inc.y;
+	if (move->step.y > 0)
+		ray->face = 1;
+	else
+		ray->face = 3;
+}
 
-	f.n = 0;
-	f.face = 0;
-	rayperpixel = 8;
-	angle = d->player.dir - d->fov / 2;
-	while (angle < d->player.dir + d->fov / 2)
+void	seek_wall(t_data *d, t_ray *ray, t_movement *move, float max_length)
+{
+	while (ray->size < max_length)
 	{
-		dir.y = sin(angle) * 0.001;
-		dir.x = cos(angle) * 0.001;
-		f.start = (t_point){(d->player.pos.x + d->player.size.x / 2), \
-		(d->player.pos.y + d->player.size.y / 2)};
-		f.end = (t_point){f.start.x, f.start.y};
-		while (f.end.x >= 0 && f.end.x < (d->map.size.x) && \
-		f.end.y >= 0 && f.end.y < (d->map.size.y))
+		if (move->dist.x < move->dist.y)
+			horizontal(ray, move);
+		else
+			vertical(ray, move);
+		if (move->mapcurr.x >= 0 && move->mapcurr.x < d->map.size.x \
+		&& move->mapcurr.y >= 0 && move->mapcurr.y < d->map.size.y)
 		{
-			if (dirtester(d, &f, dir))
-				break ;
+			if (d->map.map[(int)move->mapcurr.y][(int)move->mapcurr.x] >= '1' \
+			&& d->map.map[(int)move->mapcurr.y][(int)move->mapcurr.x] < '9')
+				return ;
 		}
-		displayonminimap(d, f.start, f.end);
-		draw_wall(d, f, rayperpixel * 2);
-		angle += M_PI * rayperpixel / (d->scsize.x);
-		f.n += 2 * rayperpixel;
 	}
+}
+
+t_ray	raycast(t_data *d, t_point p, float max_length, float angle)
+{
+	t_ray		ray;
+	t_movement	move;
+
+	ray.start = p;
+	ray.size = 0.0f;
+	ray.face = 0;
+	ray.walltype = 0;
+	get_dir(ray, angle, &move);
+	seek_wall(d, &ray, &move, max_length);
+	ray.end.x = ray.start.x + move.dir.x * ray.size;
+	ray.end.y = ray.start.y + move.dir.y * ray.size;
+	ray.dir = move.dir;
+	ray.mapcurr = move.mapcurr;
+	if (move.mapcurr.x >= 0 && move.mapcurr.x < d->map.size.x && \
+	move.mapcurr.y >= 0 && move.mapcurr.y < d->map.size.y)
+		ray.walltype = d->map.map[(int)move.mapcurr.y][(int)move.mapcurr.x];
+	else
+		ray.walltype = 'n';
+	return (ray);
 }

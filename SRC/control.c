@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   control.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 13:49:29 by spook             #+#    #+#             */
-/*   Updated: 2024/05/10 11:09:36 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/12 14:39:34 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,24 @@ int	exit_hook(void)
 
 void	playerctrl(int keycode, t_data *d)
 {
-	t_point	dir;
-
-	if (keycode == ARROW_UP)
+	if (keycode == ARROW_UP || keycode == UP)
+		player_movement(d, 0);
+	if (keycode == ARROW_DOWN || keycode == DOWN)
+		player_movement(d, 180);
+	if (keycode == ARROW_LEFT || keycode == LEFT)
 	{
-		dir.x = d->player.pos.x + cos(d->player.dir) * d->player.height;
-		dir.y = d->player.pos.y + sin(d->player.dir) * d->player.height;
-		player_movement(d, dir);
+		d->player.dir += 15;
+		if ((int)d->player.dir >= 360)
+			d->player.dir -= 360;
 	}
-	if (keycode == ARROW_DOWN)
+	if (keycode == ARROW_RIGHT || keycode == RIGHT)
 	{
-		dir.x = d->player.pos.x - cos(d->player.dir) * d->player.height;
-		dir.y = d->player.pos.y - sin(d->player.dir) * d->player.height;
-		player_movement(d, dir);
+		d->player.dir -= 15;
+		if ((int)d->player.dir < 0)
+			d->player.dir += 360;
 	}
-	if (keycode == ARROW_LEFT)
-		d->player.dir += M_PI / 8;
-	if (keycode == ARROW_RIGHT)
-		d->player.dir -= M_PI / 8;
+	else
+		return ;
 }
 
 void	hudctrl(int keycode, t_data *d)
@@ -49,11 +49,23 @@ void	hudctrl(int keycode, t_data *d)
 			d->minimap_scaled = 1;
 			d->minimap = initminimap(d, 1);
 		}
-		else
+		else if (d->minimap_scaled == 1)
 		{
 			d->minimap_scaled = 0;
 			d->minimap = initminimap(d, DEFAULMINI);
 		}
+	}
+}
+
+void	action(int keycode, t_data *d)
+{
+	t_ray	ray;
+
+	if (keycode == INTERACT)
+	{
+		ray = raycast(d, d->player.pos, d->player.speed, d->player.dir);
+		if (ray.walltype == '2')
+			d->map.map[(int)ray.mapcurr.y][(int)ray.mapcurr.x] = '0';
 	}
 }
 
@@ -66,5 +78,6 @@ int	keyhook(int keycode, void *param)
 		exit(EXIT_SUCCESS);
 	playerctrl(keycode, d);
 	hudctrl(keycode, d);
+	action(keycode, d);
 	return (0);
 }

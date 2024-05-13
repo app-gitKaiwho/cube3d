@@ -6,13 +6,13 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 10:08:08 by spook             #+#    #+#             */
-/*   Updated: 2024/05/10 12:11:03 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/13 08:06:03 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void		inittexture(t_data *d, char *path, char *path1, char *path2, char *path3)
+void	inittexture(t_data *d, char *path, char *path1, char *path2, char *path3, char *path4)
 {
 	d->map.wall[0].img = mlx_xpm_file_to_image(d->win.mlx, path, \
 	&d->map.wall[0].sizex, &d->map.wall[0].sizey);
@@ -22,8 +22,10 @@ void		inittexture(t_data *d, char *path, char *path1, char *path2, char *path3)
 	&d->map.wall[2].sizex, &d->map.wall[2].sizey);
 	d->map.wall[3].img = mlx_xpm_file_to_image(d->win.mlx, path3, \
 	&d->map.wall[3].sizex, &d->map.wall[3].sizey);
+	d->map.wall[4].img = mlx_xpm_file_to_image(d->win.mlx, path4, \
+	&d->map.wall[4].sizex, &d->map.wall[4].sizey);
 	if (!d->map.wall[0].img || !d->map.wall[1].img || !d->map.wall[2].img \
-	|| !d->map.wall[3].img)
+	|| !d->map.wall[3].img || !d->map.wall[4].img)
 		error_handler("Failed to init texture", 1);
 	d->map.wall[0].addr = mlx_get_data_addr(d->map.wall[0].img, \
 	&d->map.wall[0].bpp, &d->map.wall[0].line_size, &d->map.wall[0].endian);
@@ -33,12 +35,13 @@ void		inittexture(t_data *d, char *path, char *path1, char *path2, char *path3)
 	&d->map.wall[2].bpp, &d->map.wall[2].line_size, &d->map.wall[2].endian);
 	d->map.wall[3].addr = mlx_get_data_addr(d->map.wall[3].img, \
 	&d->map.wall[3].bpp, &d->map.wall[3].line_size, &d->map.wall[3].endian);
+	d->map.wall[4].addr = mlx_get_data_addr(d->map.wall[4].img, \
+	&d->map.wall[4].bpp, &d->map.wall[4].line_size, &d->map.wall[4].endian);
 	if (!d->map.wall[0].addr || !d->map.wall[1].addr || !d->map.wall[2].addr \
-	|| !d->map.wall[3].addr)
+	|| !d->map.wall[3].addr || !d->map.wall[4].addr)
 		error_handler("Failed to init texture", 1);
 }
 
-//replace by parsing
 t_map   initmap(t_data *d)
 {
 	t_map	m;
@@ -48,14 +51,14 @@ t_map   initmap(t_data *d)
 	char	testmap[] = {
 	'1','1','1','1','1','1','1','1','1','1',
 	'1','0','0','0','0','0','0','0','0','1',
-	'1','0','1','1','1','1','1','0','0','1',
+	'1','0','1','1','2','1','1','0','0','1',
 	'1','0','1','0','0','0','0','1','0','1',
 	'1','0','0','0','0','0','0','0','0','1',
-	'1','0','0','0','N','0','0','0','0','1',
+	'1','0','0','0','N','0','1','0','0','1',
 	'1','0','1','0','0','0','0','1','0','1',
-	'1','0','1','0','0','0','0','1','0','1',
-	'1','0','0','0','0','0','0','0','0','1',
-	'1','1','1','1','1','1','1','1','1','1'};
+	'1','0','1','1','1','1','0','1','0','1',
+	'1','0','0','1', 0,'1','0','0','0','1',
+	'1','1','1','1', 0,'1','1','1','1','1'};
 
 	m.size.x = 10;
 	m.size.y = 10;
@@ -77,15 +80,16 @@ t_map   initmap(t_data *d)
 			|| m.map[i][j] == 'E' || m.map[i][j] == 'W')
 			{
 				if (m.map[i][j] == 'N')
-					d->player.dir = M_PI / 2;
+					d->player.dir = 90;
 				if (m.map[i][j] == 'S')
-					d->player.dir = 3 * M_PI / 2;
+					d->player.dir = 270;
 				if (m.map[i][j] == 'E')
 					d->player.dir = 0;
 				if (m.map[i][j] == 'W')
-					d->player.dir = M_PI;
+					d->player.dir = 180;
 				d->player.pos.x = j;
 				d->player.pos.y = i;
+				m.map[i][j] = '0';
 			}
 			j++;
 			n++;
@@ -119,6 +123,7 @@ t_player	initplayer(void)
 	p.size.x = 0.2;
 	p.size.y = 0.2;
 	p.height = 0.5;
+	p.speed = 0.5;
 	return (p);
 }
 
@@ -140,13 +145,13 @@ t_data	*initdata(void)
 	&d->img.line_size, &d->img.endian);
 	d->sky = (t_color){153, 204, 255, 0};
 	d->earth = (t_color){153, 153, 255, 0};
-	d->fov = 90 * (M_PI / 180);
+	d->fov = 90;
 	d->render_distance = 1000;
 	d->player = initplayer();
 	d->map = initmap(d);
-	d->minimap_scaled = 0;
 	d->minimap = initminimap(d, DEFAULMINI);
+	d->minimap_scaled = 0;
 	inittexture(d, "textures/north.xpm", "textures/south.xpm", \
-	"textures/east.xpm", "textures/west.xpm");
+	"textures/east.xpm", "textures/west.xpm", "textures/door.xpm");
 	return (d);
 }
