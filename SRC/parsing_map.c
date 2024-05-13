@@ -6,7 +6,7 @@
 /*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:58:24 by angela            #+#    #+#             */
-/*   Updated: 2024/05/13 10:30:56 by angela           ###   ########.fr       */
+/*   Updated: 2024/05/13 11:02:23 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	init_mapping(int i, t_map *map)
 		return(ERROR);
 	}
 
-	map->mapping =  ft_calloc(map->map_size + 1, sizeof(char *));
+	map->mapping =  ft_calloc(map->mapping_size + 1, sizeof(char *));
 	if (!map->mapping)
 		return (ERROR);
 	m = 0;
