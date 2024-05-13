@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 10:08:33 by spook             #+#    #+#             */
-/*   Updated: 2024/05/10 11:13:08 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/13 09:34:12 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 //init.c 
 
-t_data		*initdata(void);
+t_data	*initdata(int argc, char **argv);
 t_minimap	initminimap(t_data *d, double scale);
 
 #endif /*!INIT_H */
