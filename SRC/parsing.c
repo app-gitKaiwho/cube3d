@@ -6,7 +6,7 @@
 /*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 21:17:14 by angnguye          #+#    #+#             */
-/*   Updated: 2024/05/13 02:41:34 by angela           ###   ########.fr       */
+/*   Updated: 2024/05/13 10:11:54 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,15 @@ But:
 - vérifiér viabilité
 !
 */
+static void print_string_array(char **array) {
+  
+    int index = 0;
+    while (array[index] != NULL) {
+        ft_printf("-%d: %s\n", index, array[index]);
+        index++;
+    }
+}
+
 int	parsing_cub(int argc, char **argv, t_data *d)
 {
 	int	line_texture;
@@ -46,11 +55,11 @@ int	parsing_cub(int argc, char **argv, t_data *d)
 		error_handler("ERROR: No texture found\n",1);
 		return (ERROR);
 	}
-	  ft_printf("Voici les coordonnés de Floor %d-%d-%d\n", d->map.floor_color->red,d->map.floor_color->green,d->map.floor_color->blue);
 
 	check_carte(&d->map, line_texture, d);//verifie le contenu de la carte
 	turn_player_direction(&d->map, d); 
 	init_mapping(line_texture, &d->map); // recupere uniquement la map
+	print_string_array(d->map.mapping);
 	path_finding(&d->map);
 	return (SUCCESS);
 }

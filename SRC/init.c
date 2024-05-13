@@ -6,7 +6,7 @@
 /*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 10:08:08 by spook             #+#    #+#             */
-/*   Updated: 2024/05/13 09:32:14 by angela           ###   ########.fr       */
+/*   Updated: 2024/05/13 10:35:13 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,10 +224,7 @@ t_data	*initdata(int argc, char **argv)
 	d->player = initplayer();
 
 	init_parsing(d); // init des elements pour le parsing dans data
-	parsing_cub(argc,argv, d);
-	
-	
-	
+	parsing_cub(argc,argv, d);	
 	
 	d->minimap_scaled = 0;	
 	d->win.mlx = mlx_init(); // check malloc
@@ -243,7 +240,6 @@ t_data	*initdata(int argc, char **argv)
     d->sky = *d->map.ceiling_color;
 	d->fov = 90 * (M_PI / 180);
 	d->render_distance = 1000;
-	
 	// d->player = initplayer();
 	// d->map = initmap(d);
 	d->minimap_scaled = 0;

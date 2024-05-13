@@ -6,7 +6,7 @@
 /*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:48:49 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/13 09:34:56 by angela           ###   ########.fr       */
+/*   Updated: 2024/05/13 10:37:43 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,13 @@ int	main(int argc, char **argv)
 	t_data	*data;
 
 	data = initdata(argc,argv);
+	ft_printf("fooop\n");
 	minimap(data);
+	ft_printf("fooop1\n");
 	castray(data);
+	ft_printf("fooop2\n");
 	mlx_mouse_hook(data->win.ptr, &mouse_hook, data);
+	ft_printf("fooop3\n");
 	mlx_hook(data->win.ptr, 6, 64, &mouse_move, data);
 	mlx_hook(data->win.ptr, PRESS, PRESSMASK, &keyhook, data);
 	mlx_hook(data->win.ptr, 17, 0, &exit_hook, data);

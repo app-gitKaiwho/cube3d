@@ -6,7 +6,7 @@
 /*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:58:24 by angela            #+#    #+#             */
-/*   Updated: 2024/05/13 02:02:41 by angela           ###   ########.fr       */
+/*   Updated: 2024/05/13 10:30:56 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	init_mapping(int i, t_map *map)
 {
 	int		m;
 	
-	m = 0;
     while (map->map[i])
 	{
 		map->map[i] = skip_space(map->map[i]);
@@ -36,15 +35,18 @@ int	init_mapping(int i, t_map *map)
 		error_handler("empty map, init mapping\n",1);
 		return(ERROR);
 	}
+
 	map->mapping =  ft_calloc(map->map_size + 1, sizeof(char *));
 	if (!map->mapping)
 		return (ERROR);
+	m = 0;
 	while ((i <= map->end_map) && (map->map[i]))
 	{
 		map->mapping[m] = ft_strdup(map->map[i]);
 		i++;
 		m++;
 	}
+	map->mapping[m] = NULL;
 	return (SUCCESS);
 	
 }

@@ -6,7 +6,7 @@
 /*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 21:39:05 by angnguye          #+#    #+#             */
-/*   Updated: 2024/05/13 09:10:47 by angela           ###   ########.fr       */
+/*   Updated: 2024/05/13 10:12:45 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ static char *ft_strncpy(char *dest, const char *src, size_t n) {
 static int is_space(char c) {
     return (c == ' ' || c == '\t' || c == '\n') ? 1 : 0;
 }
-static char **clear_space(char **split_str) {
+
+static char **clear_space(char **split_str) 
+{
     int i, j = 0, begin, end;
     char **result = malloc(sizeof(char *) * 3);  // Allocating memory for 3 pointers.
 
@@ -68,6 +70,7 @@ static char **clear_space(char **split_str) {
     return result;
 }
 
+
 //-launcher-recupere du tableau les lignes F ou C
 // converti en char*->int* avec les check.
 int	*set_color(char *str)
@@ -81,7 +84,9 @@ int	*set_color(char *str)
 	rgb = (int *)malloc(sizeof(int) * 3);
 	if (rgb == NULL)
 	{
+		
 		free_split(split_str, 1);
+		
 		return (NULL);
 	}
 	str++;
@@ -92,13 +97,15 @@ int	*set_color(char *str)
 	if (i != 3)
 	{
 		free_split(split_str, 1);
+		
 		return (NULL);
 	}
-	char **cleared; 
+	char **cleared;
 	cleared = clear_space(split_str);
-	check_components(split_str, rgb);
+	check_components(cleared, rgb);
 	free_split(split_str, 0);
 	free(cleared);
+	
 	return (rgb);
 }
 
@@ -114,6 +121,7 @@ int	check_str_digit(char **split_str, int *rgb, int i)
 		{
 			free(rgb);
 			free_split(split_str, 1);
+			
 			return (ERROR);
 		}
 		current++;
@@ -136,6 +144,7 @@ int	*check_components(char **split_str, int *rgb)
 		{
 			free(rgb);
 			free_split(split_str, 1);
+			
 			return (NULL);
 		}
 		i++;
@@ -146,7 +155,6 @@ int	*check_components(char **split_str, int *rgb)
 //-init-Fini de set les informations dans la structure
 void	init_floor_ceiling(int *rgb, t_map *map, char letter)
 {
-	// ft_printf("\nplop\n");
 	
 	if (letter == 'C')
 	{

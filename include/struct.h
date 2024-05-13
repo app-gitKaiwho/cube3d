@@ -6,7 +6,7 @@
 /*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/13 08:56:29 by angela           ###   ########.fr       */
+/*   Updated: 2024/05/13 10:37:15 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,22 +96,6 @@ typedef struct minimap
 	t_color	player;
 }	t_minimap;
 
-// typedef struct data
-// {
-// 	t_window	win;
-// 	t_img		img;
-// 	t_img		minimapimg;
-// 	t_map		map;
-// 	t_minimap	minimap;
-// 	t_player	player;
-// 	t_color		sky;
-// 	t_color		earth;
-// 	double		fov;
-// 	t_point		scsize;
-// 	float		render_distance;
-// 	int			minimap_scaled;
-// }	t_data;
-
 
 
 //parsing
@@ -148,6 +132,7 @@ typedef struct	map
 	
 
 } t_map;
+
 typedef struct data
 {
 	t_window	win;
