@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 10:08:08 by spook             #+#    #+#             */
-/*   Updated: 2024/05/12 14:21:36 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/13 02:57:24 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,3 +155,100 @@ t_data	*initdata(void)
 	"textures/east.xpm", "textures/west.xpm", "textures/door.xpm");
 	return (d);
 }
+
+//----------------PARSING VERSION---------------------
+// void		inittexture(t_data *d, char *path, char *path1, char *path2, char *path3)
+// {
+// 	d->map.wall[0].img = mlx_xpm_file_to_image(d->win.mlx, path, \
+// 	&d->map.wall[0].sizex, &d->map.wall[0].sizey);
+// 	d->map.wall[1].img = mlx_xpm_file_to_image(d->win.mlx, path1, \
+// 	&d->map.wall[1].sizex, &d->map.wall[1].sizey);
+// 	d->map.wall[2].img = mlx_xpm_file_to_image(d->win.mlx, path2, \
+// 	&d->map.wall[2].sizex, &d->map.wall[2].sizey);
+// 	d->map.wall[3].img = mlx_xpm_file_to_image(d->win.mlx, path3, \
+// 	&d->map.wall[3].sizex, &d->map.wall[3].sizey);
+// 	if (!d->map.wall[0].img || !d->map.wall[1].img || !d->map.wall[2].img \
+// 	|| !d->map.wall[3].img)
+// 		error_handler("Failed to init texture", 1);
+// 	d->map.wall[0].addr = mlx_get_data_addr(d->map.wall[0].img, \
+// 	&d->map.wall[0].bpp, &d->map.wall[0].line_size, &d->map.wall[0].endian);
+// 	d->map.wall[1].addr = mlx_get_data_addr(d->map.wall[1].img, \
+// 	&d->map.wall[1].bpp, &d->map.wall[1].line_size, &d->map.wall[1].endian);
+// 	d->map.wall[2].addr = mlx_get_data_addr(d->map.wall[2].img, \
+// 	&d->map.wall[2].bpp, &d->map.wall[2].line_size, &d->map.wall[2].endian);
+// 	d->map.wall[3].addr = mlx_get_data_addr(d->map.wall[3].img, \
+// 	&d->map.wall[3].bpp, &d->map.wall[3].line_size, &d->map.wall[3].endian);
+// 	if (!d->map.wall[0].addr || !d->map.wall[1].addr || !d->map.wall[2].addr \
+// 	|| !d->map.wall[3].addr)
+// 		error_handler("Failed to init texture", 1);
+// }
+
+
+// t_minimap	initminimap(t_data *d, double scale)
+// {
+// 	t_minimap	m;
+
+// 	m.scale = (d->scsize.y * scale) / d->map.size.y;
+// 	d->minimapimg.sizex = (d->map.size.x * m.scale);
+// 	d->minimapimg.sizey = (d->map.size.x * m.scale);
+// 	d->minimapimg.img = mlx_new_image(d->win.mlx, \
+// 	d->minimapimg.sizex, d->minimapimg.sizey);
+// 	d->minimapimg.addr = mlx_get_data_addr(d->minimapimg.img, \
+// 	&d->minimapimg.bpp, &d->minimapimg.line_size, &d->minimapimg.endian);
+// 	m.bg = (t_color){0, 0, 255, (char)90};
+// 	m.player = (t_color){255, 0, 0, (char)90};
+// 	m.wall = (t_color){0, 255, 0, (char)90};
+// 	return (m);
+// }
+
+// t_player	initplayer(void)
+// {
+// 	t_player	p;
+
+// 	p.size.x = 0.2;
+// 	p.size.y = 0.2;
+// 	p.height = 0.5;
+// 	return (p);
+// }
+
+
+// t_data	*initdata(int argc, char **argv)
+// {
+// 	t_data	*d;
+
+// 	d = malloc(sizeof(t_data));
+// 	if (!d)
+// 		error_handler("Failed to init data", 1);
+		
+// 	//parsing
+// 	d->player = initplayer();
+
+// 	init_parsing(d); // init des elements pour le parsing dans data
+// 	parsing_cub(argc,argv, d);
+	
+	
+	
+	
+// 	d->minimap_scaled = 0;	
+// 	d->win.mlx = mlx_init(); // check malloc
+// 	d->scsize = (t_point){1920, 1080};
+// 	d->img.sizex = d->scsize.x;
+// 	d->img.sizey = d->scsize.y;
+// 	d->win.ptr = mlx_new_window(d->win.mlx, d->img.sizex, \
+// 	d->img.sizey, "Best Game"); // check malloc
+// 	d->img.img = mlx_new_image(d->win.mlx, d->scsize.x, d->scsize.y);// check malloc
+// 	d->img.addr = mlx_get_data_addr(d->img.img, &d->img.bpp, \
+// 	&d->img.line_size, &d->img.endian);// check malloc
+// 	d->earth = *d->map.floor_color;
+//     d->sky = *d->map.ceiling_color;
+// 	d->fov = 90 * (M_PI / 180);
+// 	d->render_distance = 1000;
+	
+// 	// d->player = initplayer();
+// 	// d->map = initmap(d);
+// 	d->minimap_scaled = 0;
+// 	d->minimap = initminimap(d, DEFAULMINI);
+// 	inittexture(d, d->map.texture_north, d->map.texture_south, \
+// 	d->map.texture_east, d->map.texture_west);
+// 	return (d);
+// }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:49:18 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/12 12:40:35 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/13 02:51:37 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,7 @@
 
 //utils
 # include "utils.h"
+
+//parsing
+# include "parsing.h"
 #endif /*!CUBE_H */

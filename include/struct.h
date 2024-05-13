@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/12 14:29:20 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/13 02:50:44 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,68 @@ typedef struct data
 	float		render_distance;
 	int			minimap_scaled;
 }	t_data;
+
+
+
+//parsing
+
+/*
+typedef struct point_pars
+{
+	int	player_j;
+	int	player_i;
+}				t_point_pars;
+
+typedef struct	map
+{
+	t_point		size;
+	t_img		wall[4];
+	
+	char		**map;//cointient le fichier cub
+	int			map_nb_lines;
+	char		player_orientation;
+	char		*texture_north; // a deplacer depuis data...
+	char		*texture_south;
+	char		*texture_west;
+	char		*texture_east;
+	t_color 	*floor_color;
+	t_color 	*ceiling_color;
+	char		**mapping;//contient la maaap
+	int			end_map;
+	int			begin_map;
+	int			map_size;
+	int			player_x;
+	int			player_y;
+	int		mapping_size;
+	t_point_pars		p;
+	
+
+} t_map;
+typedef struct data
+{
+	t_window	win;
+	t_img		img;
+	t_img		minimapimg;
+	t_map		map;
+	t_minimap	minimap;
+	t_player	player;
+	t_color		sky; // ceiling
+	t_color		earth;//floor
+	double		fov;
+	t_point		scsize;
+	float		render_distance;
+	double		minimap_scaled;
+}	t_data;
+typedef struct player
+{
+	t_point	pos;
+	float	dir;
+	t_point size;
+	float	height;
+	char	player_orientation;
+	
+}	t_player;
+
+*/
 
 #endif /*!STRUCT_H */
