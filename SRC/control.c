@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   control.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 13:49:29 by spook             #+#    #+#             */
-/*   Updated: 2024/05/12 14:39:34 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/13 09:32:41 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,19 @@ void	playerctrl(int keycode, t_data *d)
 {
 	if (keycode == ARROW_UP || keycode == UP)
 		player_movement(d, 0);
+	if (keycode == LEFT)
+		player_movement(d, 90);
 	if (keycode == ARROW_DOWN || keycode == DOWN)
 		player_movement(d, 180);
-	if (keycode == ARROW_LEFT || keycode == LEFT)
+	if (keycode == RIGHT)
+		player_movement(d, 270);
+	if (keycode == ARROW_LEFT)
 	{
 		d->player.dir += 15;
 		if ((int)d->player.dir >= 360)
 			d->player.dir -= 360;
 	}
-	if (keycode == ARROW_RIGHT || keycode == RIGHT)
+	if (keycode == ARROW_RIGHT)
 	{
 		d->player.dir -= 15;
 		if ((int)d->player.dir < 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 11:38:40 by spook             #+#    #+#             */
-/*   Updated: 2024/05/12 13:40:57 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/13 13:22:00 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@ int	mouse_hook(int button, int x, int y, void *param)
 	d = (t_data *)param;
 	if (d->minimap_scaled && button == 1)
 	{
-		d->map.map[(int)(d->map.size.y - (float)y / d->minimap.scale)] \
-		[(int)((float)x / d->minimap.scale)] = '1';
+		d->map.map[(int)(d->map.size.y - (float)y / d->minimap.scale.y)] \
+		[(int)((float)x / d->minimap.scale.x)] = '1';
 	}
 	if (d->minimap_scaled && button == 2)
 	{
-		d->map.map[(int)(d->map.size.y - (float)y / d->minimap.scale)] \
-		[(int)((float)x / d->minimap.scale)] = '0';
+		d->map.map[(int)(d->map.size.y - (float)y / d->minimap.scale.y)] \
+		[(int)((float)x / d->minimap.scale.x)] = '0';
 	}
 	if (d->minimap_scaled && button == 3)
 	{
-		d->map.map[(int)(d->map.size.y - (float)y / d->minimap.scale)] \
-		[(int)((float)x / d->minimap.scale)] = '2';
+		d->map.map[(int)(d->map.size.y - (float)y / d->minimap.scale.y)] \
+		[(int)((float)x / d->minimap.scale.x)] = '2';
 	}
 	return (0);
 }

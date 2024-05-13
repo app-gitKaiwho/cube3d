@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/12 14:29:20 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/13 13:19:12 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct window
 
 typedef struct map
 {
-	t_point		size;
+	t_int_point	size;
 	char		**map;
 	t_img		wall[5];
 }	t_map;
@@ -95,7 +95,7 @@ typedef struct ray
 
 typedef struct minimap
 {
-	float	scale;
+	t_point	scale;
 	t_color	bg;
 	t_color	wall;
 	t_color	player;

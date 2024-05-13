@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 17:49:51 by spook             #+#    #+#             */
-/*   Updated: 2024/05/13 08:06:49 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/13 13:41:54 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	displayonminimap(t_data *d, t_point start, t_point end)
 {
-	start.x *= d->minimap.scale;
-	start.y *= d->minimap.scale;
-	end.x *= d->minimap.scale;
-	end.y *= d->minimap.scale;
+	start.x *= d->minimap.scale.x;
+	start.y *= d->minimap.scale.y;
+	end.x *= d->minimap.scale.x;
+	end.y *= d->minimap.scale.y;
 	put_line((t_vector){start, end}, (t_color){255, 0, 255, 0}, d->minimapimg);
 }
 

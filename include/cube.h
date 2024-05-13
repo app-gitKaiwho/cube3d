@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:49:18 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/12 12:40:35 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/13 12:44:29 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define RED 0xFF0000
 # define GREEN 0x00FF00
 # define DEFAULMINI 0.2
+# define HEADERSIZE 6
 
 //standard library
 # include <unistd.h>
@@ -43,6 +44,7 @@
 # include "raycast.h"
 # include "player.h"
 # include "renderer.h"
+# include "parsing.h"
 
 //utils
 # include "utils.h"
