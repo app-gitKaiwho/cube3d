@@ -6,7 +6,7 @@
 #    By: angela <angela@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/25 16:52:50 by lvon-war          #+#    #+#              #
-#    Updated: 2024/05/13 03:00:26 by angela           ###   ########.fr        #
+#    Updated: 2024/05/13 08:53:16 by angela           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,8 @@ NAME	=	cub3d.a
 CFLAGS	=	-Wall -Werror -Wextra
 AR		=	ar -rsc
 FILES	=	main.c utils.c init.c display.c minimap.c control.c raycast.c player.c renderer.c mouse.c\
-			# parsing.c parsing_floor_ceiling.c parsing_utils.c parsing_map.c parsing_flood_fill.c \
-			# parsing_utils_bis.c
+			parsing.c parsing_floor_ceiling.c parsing_utils.c parsing_map.c parsing_flood_fill.c \
+			parsing_utils_bis.c
 
 # Path for .c , .h and .o Files 
 LIBFT	=	./include/libft/lib.a

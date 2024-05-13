@@ -6,7 +6,7 @@
 /*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 21:39:05 by angnguye          #+#    #+#             */
-/*   Updated: 2024/05/13 02:45:15 by angela           ###   ########.fr       */
+/*   Updated: 2024/05/13 09:10:47 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,11 @@ int	*set_color(char *str)
 		free_split(split_str, 1);
 		return (NULL);
 	}
-	// char **cleared;
-	// cleared = clear_space(split_str);
+	char **cleared; 
+	cleared = clear_space(split_str);
 	check_components(split_str, rgb);
 	free_split(split_str, 0);
+	free(cleared);
 	return (rgb);
 }
 

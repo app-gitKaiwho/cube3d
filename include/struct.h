@@ -6,7 +6,7 @@
 /*   By: angela <angela@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 14:02:44 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/13 02:50:44 by angela           ###   ########.fr       */
+/*   Updated: 2024/05/13 08:56:29 by angela           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,20 +64,15 @@ typedef struct window
 	int		test;
 }	t_window;
 
-typedef struct map
-{
-	t_point		size;
-	char		**map;
-	t_img		wall[5];
-}	t_map;
-
 typedef struct player
 {
 	t_point	pos;
 	float	dir;
-	t_point	size;
+	t_point size;
 	float	height;
+	char	player_orientation;
 	float	speed;
+	
 }	t_player;
 
 typedef struct ray
@@ -101,27 +96,27 @@ typedef struct minimap
 	t_color	player;
 }	t_minimap;
 
-typedef struct data
-{
-	t_window	win;
-	t_img		img;
-	t_img		minimapimg;
-	t_map		map;
-	t_minimap	minimap;
-	t_player	player;
-	t_color		sky;
-	t_color		earth;
-	double		fov;
-	t_point		scsize;
-	float		render_distance;
-	int			minimap_scaled;
-}	t_data;
+// typedef struct data
+// {
+// 	t_window	win;
+// 	t_img		img;
+// 	t_img		minimapimg;
+// 	t_map		map;
+// 	t_minimap	minimap;
+// 	t_player	player;
+// 	t_color		sky;
+// 	t_color		earth;
+// 	double		fov;
+// 	t_point		scsize;
+// 	float		render_distance;
+// 	int			minimap_scaled;
+// }	t_data;
 
 
 
 //parsing
 
-/*
+
 typedef struct point_pars
 {
 	int	player_j;
@@ -131,7 +126,7 @@ typedef struct point_pars
 typedef struct	map
 {
 	t_point		size;
-	t_img		wall[4];
+	t_img		wall[5];
 	
 	char		**map;//cointient le fichier cub
 	int			map_nb_lines;
@@ -168,16 +163,9 @@ typedef struct data
 	float		render_distance;
 	double		minimap_scaled;
 }	t_data;
-typedef struct player
-{
-	t_point	pos;
-	float	dir;
-	t_point size;
-	float	height;
-	char	player_orientation;
-	
-}	t_player;
 
-*/
+
+
+
 
 #endif /*!STRUCT_H */
