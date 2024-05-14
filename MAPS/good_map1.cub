@@ -6,8 +6,8 @@ WE ./textures/east.xpm
 EA ./textures/west.xpm
 
 
-F 220,110,0
-C 225,30,0
+F 255,255,255
+C 0,0,0
 
 
 
