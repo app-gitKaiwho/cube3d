@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:53:46 by spook             #+#    #+#             */
-/*   Updated: 2024/05/13 13:38:53 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:47:53 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	horizontal(t_ray *ray, t_movement *move)
 	ray->size = move->dist.x;
 	move->dist.x += move->inc.x;
 	if (move->step.x > 0)
-		ray->face = 0;
+		ray->face = 3;
 	else
 		ray->face = 2;
 }
@@ -58,9 +58,9 @@ void	vertical(t_ray *ray, t_movement *move)
 	ray->size = move->dist.y;
 	move->dist.y += move->inc.y;
 	if (move->step.y > 0)
-		ray->face = 1;
+		ray->face = 0;
 	else
-		ray->face = 3;
+		ray->face = 1;
 }
 
 void	seek_wall(t_data *d, t_ray *ray, t_movement *move, float max_length)

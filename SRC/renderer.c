@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 17:49:51 by spook             #+#    #+#             */
-/*   Updated: 2024/05/13 13:41:54 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:47:04 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	display(t_data *d, float dir, t_ray ray, int n)
 	float		incy;
 	const int	wallheight = d->scsize.y / 3;
 
-	if (ray.face == 0 || ray.face == 2)
+	if (ray.face == 2 || ray.face == 3)
 		ray.x = ray.start.y + ray.dir.y * ray.size;
 	else
 		ray.x = ray.start.x + ray.dir.x * ray.size;
