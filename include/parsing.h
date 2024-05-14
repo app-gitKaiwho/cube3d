@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 11:10:15 by spook             #+#    #+#             */
-/*   Updated: 2024/05/14 08:24:08 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/14 10:08:58 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ t_color		get_color(char *line);
 
 int			check_path(char *path, char *ext);
 int			skip_chara(char *line, int i, char c);
+void		sort_data_line(char **filedata);
 
 #endif /*!PARSING_H */ 

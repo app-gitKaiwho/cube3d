@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 10:08:08 by spook             #+#    #+#             */
-/*   Updated: 2024/05/14 09:33:11 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/14 09:58:21 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	get_file_data(int fd, char ***split)
 		n++;
 	}
 	if (!data || !data[0])
-		error_handler("Error\nEmpty map\n", 1);
+		error_handler("Map error\nEmpty map", 1);
 	*split = ft_split(data, '\n');
 	free(data);
 	return (n);
@@ -78,9 +78,9 @@ t_map	parsing(t_data *d, int arc, char *file)
 	int		n;
 
 	if (arc != 2)
-		error_handler("Error\nInvalid number of arguments\n", 1);
+		error_handler("Input Error\nInvalid number of arguments", 1);
 	if (check_path(file, "cub"))
-		error_handler("Error\nInvalid file type\n", 1);
+		error_handler("Input Error\nInvalid file type", 1);
 	n = open(file, O_RDONLY);
 	if (n < 0)
 		error_handler("Error\nCould not open file", 1);
@@ -90,7 +90,7 @@ t_map	parsing(t_data *d, int arc, char *file)
 	copy = map_copy(map);
 	if (floodsearch(map, (t_int_point){(int)d->player.pos.x, \
 	(int)d->player.pos.y}, ' ', '1'))
-		error_handler("Invalid map\n backroom access", 1);
+		error_handler("Invalid map\nbackroom access", 1);
 	free(map.map);
 	map.map = copy;
 	get_texture(d, filedata, &map);
@@ -104,7 +104,7 @@ t_data	*initdata(int argc, char *argv)
 
 	d = malloc(sizeof(t_data));
 	if (!d)
-		error_handler("Failed to init data", 1);
+		error_handler("Malloc Error\nFailed to init data", 1);
 	d->win.mlx = mlx_init();
 	d->scsize = (t_point){1920, 1080};
 	d->img.sizex = d->scsize.x;

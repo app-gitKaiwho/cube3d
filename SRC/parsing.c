@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 11:01:20 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/14 08:24:21 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/14 10:08:04 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_int_point	get_and_check_mapsize(char **filedata, int n)
 			(filedata[j][i] == 32 || filedata[j][i] == 'N' || \
 			filedata[j][i] == 'S' || filedata[j][i] == 'W' || \
 			filedata[j][i] == 'E')))
-				error_handler("Error\nInvalid character in map\n", 1);
+				error_handler("Map Error\nInvalid character in map", 1);
 			i++;
 		}
 		if (x <= i)
@@ -67,20 +67,20 @@ t_map	get_map(t_data *d, char **filedata, int n)
 	map.size = get_and_check_mapsize(filedata, n);
 	map.map = malloc(sizeof(char *) * map.size.y);
 	if (!map.map)
-		error_handler("Error\nMalloc failed\n", 1);
+		error_handler("Malloc Error\ncould not allocate map", 1);
 	j = 0;
 	while (j < map.size.y)
 	{
 		map.map[j] = malloc(sizeof(char) * map.size.x);
 		if (!map.map[j])
-			error_handler("Error\nMalloc failed\n", 1);
+			error_handler("Malloc Error\ncould not allocate flood map", 1);
 		i = -1;
 		while (++i < map.size.x)
 			get_playerpos(d, &map, filedata, (t_int_point){i, j});
 		j++;
 	}
 	if (d->player.pos.x == -1)
-		error_handler("Error\nNo player\n", 1);
+		error_handler("Map Error\nNo player", 1);
 	return (map);
 }
 
@@ -93,23 +93,23 @@ t_img	get_text_from_file(t_data *d, char *path)
 	n = skip_chara(path, 0, ' ');
 	if (path[n] != 'N' && path[n] != 'S' && path[n] != 'W' && path[n] != 'E' \
 	&& path[n + 1] != 'O' && path[n + 1] != 'E' && path[n + 1] != 'A')
-		error_handler("Invalid texture\n bad texture format\n", 1);
+		error_handler("Invalid texture\nbad texture format", 1);
 	n += 2;
 	while (path[n] && path[n] != '.')
 	{
 		if (path[n] != ' ')
-			error_handler("Invalid texture\n bad pre-texture format\n", 1);
+			error_handler("Invalid texture\nbad pre-texture format", 1);
 		n++;
 	}
 	str = ft_substr(path, n + 2, ft_strlen(path) - (n + 2));
 	if (check_path(str, "xpm"))
-		error_handler("invalide file type...\n", 1);
+		error_handler("File Error\nWrong extention", 1);
 	i.img = mlx_xpm_file_to_image(d->win.mlx, str, &i.sizex, &i.sizey);
 	if (!i.img)
-		error_handler("Failed to init texture\ncould not make img", 1);
+		error_handler("mlx_img Error\ncould not make img", 1);
 	i.addr = mlx_get_data_addr(i.img, &i.bpp, &i.line_size, &i.endian);
 	if (!i.addr)
-		error_handler("Failed to init texture\ncould not get addr", 1);
+		error_handler("mlx_img Error\ncould not get addr", 1);
 	return (i);
 }
 
@@ -117,6 +117,7 @@ void	get_texture(t_data *d, char **filedata, t_map *map)
 {
 	t_img	img;
 
+	sort_data_line(filedata);
 	map->wall[0] = get_text_from_file(d, filedata[0]);
 	map->wall[1] = get_text_from_file(d, filedata[1]);
 	map->wall[2] = get_text_from_file(d, filedata[2]);
@@ -128,12 +129,12 @@ void	get_texture(t_data *d, char **filedata, t_map *map)
 		img.addr = mlx_get_data_addr(img.img, &img.bpp, \
 		&img.line_size, &img.endian);
 		if (!img.addr)
-			error_handler("Failed to init texture\ncould not get addr", 1);
+			error_handler("mlx_img Error\ncould not get addr", 1);
 		map->wall[4] = img;
 	}
 	else
 	{
-		ft_printf("Failed to init door\ndefault to wall");
+		ft_printf("texture failed\ndefault to wall");
 		map->wall[4] = map->wall[3];
 	}
 	d->sky = get_color(filedata[4]);

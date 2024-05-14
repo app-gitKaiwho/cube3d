@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 18:23:20 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/14 00:24:08 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/14 09:56:34 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 /// @param code the error code to return.
 void	error_handler(char *txt, int code)
 {
+	if (code != 0)
+		ft_printf("Error\n");
 	ft_printf("%s\n", txt);
 	exit(code);
 }

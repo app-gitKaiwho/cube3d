@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsingter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 07:39:25 by spook             #+#    #+#             */
-/*   Updated: 2024/05/14 08:22:50 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/14 10:26:07 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,34 @@ int	skip_chara(char *line, int i, char c)
 	while (line[i] && line[i] == c)
 		i++;
 	return (i);
+}
+
+void	sort_data_line(char **filedata)
+{
+	char		**tmp;
+	t_int_point	p;
+
+	p.x = -1;
+	tmp = malloc(sizeof(char *) * HEADERSIZE);
+	while (++p.x < HEADERSIZE)
+	{	
+		p.y = skip_chara(filedata[p.x], 0, ' ');
+		if (filedata[p.x] && filedata[p.x][p.y] == 'N')
+			tmp[0] = filedata[p.x];
+		else if (filedata[p.x] && filedata[p.x][p.y] == 'S')
+			tmp[1] = filedata[p.x];
+		else if (filedata[p.x] && filedata[p.x][p.y] == 'W')
+			tmp[2] = filedata[p.x];
+		else if (filedata[p.x] && filedata[p.x][p.y] == 'E')
+			tmp[3] = filedata[p.x];
+		else if (filedata[p.x] && filedata[p.x][p.y] == 'F')
+			tmp[4] = filedata[p.x];
+		else if (filedata[p.x] && filedata[p.x][p.y] == 'C')
+			tmp[5] = filedata[p.x];
+		else
+			error_handler("Map Error\nInvalid header", 1);
+	}
+	while (--p.x >= 0)
+		filedata[p.x] = tmp[p.x];
+	free(tmp);
 }

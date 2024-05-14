@@ -6,7 +6,7 @@
 /*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 06:53:06 by spook             #+#    #+#             */
-/*   Updated: 2024/05/14 09:31:54 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/14 09:47:34 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	**map_copy(t_map map)
 
 	copy = malloc(sizeof(char *) * map.size.y);
 	if (!copy)
-		error_handler("Malloc Error\nCould not copy map\n", 1);
+		error_handler("Malloc Error\nCould not copy map", 1);
 	i = 0;
 	while (i < map.size.y)
 	{
@@ -73,7 +73,7 @@ void	get_playerpos(t_data *d, t_map *map, char **filedata, t_int_point p)
 			map->map[p.y][p.x] == 'W' || map->map[p.y][p.x] == 'E')
 		{
 			if (d->player.pos.x != -1)
-				error_handler("Error\nMultiple player\n", 1);
+				error_handler("Map Error\nMultiple player", 1);
 			if (map->map[p.y][p.x] == 'N')
 				d->player.dir = 90;
 			if (map->map[p.y][p.x] == 'S')
@@ -100,12 +100,12 @@ t_color	get_color(char *line)
 	while (line[i] && line[i] == ' ' && line[i] == '\t')
 		i++;
 	if ((line[i] != 'F' && line[i] != 'C'))
-		error_handler("Error\nbad Floor/Celing format", 1);
+		error_handler("File Error\nbad Floor/Celing format", 1);
 	split = ft_split(line, ',');
 	if (!split || !split[0] || !split[1] || !split[2])
-		error_handler("Error\ncolor empty", 1);
+		error_handler("File Error\ncolor empty", 1);
 	if (!is_num(split[0] + 1) || !is_num(split[1]) || !is_num(split[2]))
-		error_handler("Error\nbad color value", 1);
+		error_handler("File Error\nbad color value", 1);
 	color.red = ft_atoi(split[0] + 1);
 	color.green = ft_atoi(split[1]);
 	color.blue = ft_atoi(split[2]);
@@ -113,7 +113,7 @@ t_color	get_color(char *line)
 	if (color.red < 0 || color.red > 255 || \
 	color.green < 0 || color.green > 255 || \
 	color.blue < 0 || color.blue > 255)
-		error_handler("bad color value\nto big or to small", 1);
+		error_handler("File Error\n color val to big or to small", 1);
 	free(split);
 	return (color);
 }
