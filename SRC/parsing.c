@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 11:01:20 by lvon-war          #+#    #+#             */
-/*   Updated: 2024/05/14 06:55:13 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/14 08:24:21 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_int_point	get_and_check_mapsize(char **filedata, int n)
 			(filedata[j][i] == 32 || filedata[j][i] == 'N' || \
 			filedata[j][i] == 'S' || filedata[j][i] == 'W' || \
 			filedata[j][i] == 'E')))
-				error_handler("Error\nInvalid map\n", 1);
+				error_handler("Error\nInvalid character in map\n", 1);
 			i++;
 		}
 		if (x <= i)
@@ -79,34 +79,38 @@ t_map	get_map(t_data *d, char **filedata, int n)
 			get_playerpos(d, &map, filedata, (t_int_point){i, j});
 		j++;
 	}
+	if (d->player.pos.x == -1)
+		error_handler("Error\nNo player\n", 1);
 	return (map);
 }
 
 t_img	get_text_from_file(t_data *d, char *path)
 {
-	t_img	img;
+	t_img	i;
 	char	*str;
-	int		i;
+	int		n;
 
-	i = 0;
-	while (ft_strlen(path) > i && path[i] == ' ')
-		i++;
-	if (path[i] != 'N' && path[i] != 'S' && path[i] != 'W' && path[i] != 'E' \
-	&& path[i + 1] != 'O' && path[i + 1] != 'E' && path[i + 1] != 'A')
+	n = skip_chara(path, 0, ' ');
+	if (path[n] != 'N' && path[n] != 'S' && path[n] != 'W' && path[n] != 'E' \
+	&& path[n + 1] != 'O' && path[n + 1] != 'E' && path[n + 1] != 'A')
 		error_handler("Invalid texture\n bad texture format\n", 1);
-	while (ft_strlen(path) > i && path[i] != '.')
-		i++;
-	str = ft_substr(path, i + 2, ft_strlen(path) - (i + 2));
-	if (ft_strncmp(ft_split(str, '.')[1], "xpm", 3))
+	n += 2;
+	while (path[n] && path[n] != '.')
+	{
+		if (path[n] != ' ')
+			error_handler("Invalid texture\n bad pre-texture format\n", 1);
+		n++;
+	}
+	str = ft_substr(path, n + 2, ft_strlen(path) - (n + 2));
+	if (check_path(str, "xpm"))
 		error_handler("invalide file type...\n", 1);
-	img.img = mlx_xpm_file_to_image(d->win.mlx, str, &img.sizex, &img.sizey);
-	if (!img.img)
+	i.img = mlx_xpm_file_to_image(d->win.mlx, str, &i.sizex, &i.sizey);
+	if (!i.img)
 		error_handler("Failed to init texture\ncould not make img", 1);
-	img.addr = mlx_get_data_addr(img.img, &img.bpp, \
-	&img.line_size, &img.endian);
-	if (!img.addr)
+	i.addr = mlx_get_data_addr(i.img, &i.bpp, &i.line_size, &i.endian);
+	if (!i.addr)
 		error_handler("Failed to init texture\ncould not get addr", 1);
-	return (img);
+	return (i);
 }
 
 void	get_texture(t_data *d, char **filedata, t_map *map)

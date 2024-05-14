@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 10:08:08 by spook             #+#    #+#             */
-/*   Updated: 2024/05/14 06:58:59 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/14 08:24:48 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,14 @@ int	get_file_data(int fd, char ***split)
 		if (line[0] == '\n' || line[0] == '\0')
 		{
 			free(line);
-			line = NULL;
 			continue ;
 		}
 		data = get_newdata(data, line);
 		free(line);
 		n++;
 	}
+	if (!data || !data[0])
+		error_handler("Error\nEmpty map\n", 1);
 	*split = ft_split(data, '\n');
 	free(data);
 	return (n);
@@ -78,7 +79,12 @@ t_map	parsing(t_data *d, int arc, char *file)
 
 	if (arc != 2)
 		error_handler("Error\nInvalid number of arguments\n", 1);
-	n = get_file_data(open(file, O_RDONLY), &filedata);
+	if (check_path(file, "cub"))
+		error_handler("Error\nInvalid file type\n", 1);
+	n = open(file, O_RDONLY);
+	if (n < 0)
+		error_handler("Error\nCould not open file", 1);
+	n = get_file_data(n, &filedata);
 	d->player.pos.x = -1;
 	map = get_map(d, filedata, n);
 	copy = map_copy(map);

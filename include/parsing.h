@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 11:10:15 by spook             #+#    #+#             */
-/*   Updated: 2024/05/14 07:00:21 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/14 08:24:08 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,10 @@ char		**map_copy(t_map map);
 void		get_playerpos(t_data *d, t_map *map, \
 char **filedata, t_int_point p);
 t_color		get_color(char *line);
+
+//parsingter.c
+
+int			check_path(char *path, char *ext);
+int			skip_chara(char *line, int i, char c);
 
 #endif /*!PARSING_H */ 

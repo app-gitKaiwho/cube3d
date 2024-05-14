@@ -6,7 +6,7 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 06:53:06 by spook             #+#    #+#             */
-/*   Updated: 2024/05/14 07:02:36 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/14 08:29:05 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	is_num(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (!ft_isdigit(str[i]))
+		if (!ft_isdigit(str[i]) && !is_whitespace(str[i]))
 			return (0);
 		i++;
 	}
@@ -52,13 +52,13 @@ char	**map_copy(t_map map)
 
 	copy = malloc(sizeof(char *) * map.size.y);
 	if (!copy)
-		error_handler("Error\nMalloc failed\n", 1);
+		error_handler("Malloc Error\nCould not copy map\n", 1);
 	i = 0;
 	while (i < map.size.y)
 	{
 		copy[i] = ft_strdup(map.map[i]);
 		if (!copy[i])
-			error_handler("Error\nMalloc failed\n", 1);
+			error_handler("Malloc Error\nCould not copy map", 1);
 		i++;
 	}
 	return (copy);
@@ -93,20 +93,27 @@ void	get_playerpos(t_data *d, t_map *map, char **filedata, t_int_point p)
 t_color	get_color(char *line)
 {
 	t_color	color;
-	char	**fst_split;
 	char	**split;
+	int		i;
 
-	fst_split = ft_split(line, ' ');
-	if (!fst_split || (fst_split[0][0] != 'F' && fst_split[0][0] != 'C'))
+	i = 0;
+	while (line[i] && line[i] == ' ' && line[i] == '\t')
+		i++;
+	if ((line[i] != 'F' && line[i] != 'C'))
 		error_handler("Error\nbad Floor/Celing format", 1);
-	split = ft_split(fst_split[1], ',');
-	free(fst_split);
-	if (!split || !is_num(split[0]) || !is_num(split[1]) || !is_num(split[2]))
+	split = ft_split(line, ',');
+	if (!split || !split[0] || !split[1] || !split[2])
+		error_handler("Error\ncolor empty", 1);
+	if (!is_num(split[0] + 1) || !is_num(split[1]) || !is_num(split[2]))
 		error_handler("Error\nbad color value", 1);
-	color.red = ft_atoi(split[0]);
+	color.red = ft_atoi(split[0] + 1);
 	color.green = ft_atoi(split[1]);
 	color.blue = ft_atoi(split[2]);
 	color.alpha = 0;
+	if (color.red < 0 || color.red > 255 || \
+	color.green < 0 || color.green > 255 || \
+	color.blue < 0 || color.blue > 255)
+		error_handler("bad color value\nto big or to small", 1);
 	free(split);
 	return (color);
 }
