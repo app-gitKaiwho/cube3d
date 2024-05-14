@@ -6,41 +6,11 @@
 /*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 10:08:08 by spook             #+#    #+#             */
-/*   Updated: 2024/05/14 00:33:05 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/14 06:58:59 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
-
-void	inittexture(t_data *d, char *path, char *path1, char *path2, char *path3, char *path4)
-{
-	d->map.wall[0].img = mlx_xpm_file_to_image(d->win.mlx, path, \
-	&d->map.wall[0].sizex, &d->map.wall[0].sizey);
-	d->map.wall[1].img = mlx_xpm_file_to_image(d->win.mlx, path1, \
-	&d->map.wall[1].sizex, &d->map.wall[1].sizey);
-	d->map.wall[2].img = mlx_xpm_file_to_image(d->win.mlx, path2, \
-	&d->map.wall[2].sizex, &d->map.wall[2].sizey);
-	d->map.wall[3].img = mlx_xpm_file_to_image(d->win.mlx, path3, \
-	&d->map.wall[3].sizex, &d->map.wall[3].sizey);
-	d->map.wall[4].img = mlx_xpm_file_to_image(d->win.mlx, path4, \
-	&d->map.wall[4].sizex, &d->map.wall[4].sizey);
-	if (!d->map.wall[0].img || !d->map.wall[1].img || !d->map.wall[2].img \
-	|| !d->map.wall[3].img || !d->map.wall[4].img)
-		error_handler("Failed to init texture", 1);
-	d->map.wall[0].addr = mlx_get_data_addr(d->map.wall[0].img, \
-	&d->map.wall[0].bpp, &d->map.wall[0].line_size, &d->map.wall[0].endian);
-	d->map.wall[1].addr = mlx_get_data_addr(d->map.wall[1].img, \
-	&d->map.wall[1].bpp, &d->map.wall[1].line_size, &d->map.wall[1].endian);
-	d->map.wall[2].addr = mlx_get_data_addr(d->map.wall[2].img, \
-	&d->map.wall[2].bpp, &d->map.wall[2].line_size, &d->map.wall[2].endian);
-	d->map.wall[3].addr = mlx_get_data_addr(d->map.wall[3].img, \
-	&d->map.wall[3].bpp, &d->map.wall[3].line_size, &d->map.wall[3].endian);
-	d->map.wall[4].addr = mlx_get_data_addr(d->map.wall[4].img, \
-	&d->map.wall[4].bpp, &d->map.wall[4].line_size, &d->map.wall[4].endian);
-	if (!d->map.wall[0].addr || !d->map.wall[1].addr || !d->map.wall[2].addr \
-	|| !d->map.wall[3].addr || !d->map.wall[4].addr)
-		error_handler("Failed to init texture", 1);
-}
 
 t_minimap	initminimap(t_data *d, double scale)
 {
@@ -69,6 +39,57 @@ t_player	initplayer(void)
 	p.height = 0.5;
 	p.speed = 0.5;
 	return (p);
+}
+
+int	get_file_data(int fd, char ***split)
+{
+	int		n;
+	char	*line;
+	char	*data;
+
+	n = 0;
+	data = NULL;
+	while (fd)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		if (line[0] == '\n' || line[0] == '\0')
+		{
+			free(line);
+			line = NULL;
+			continue ;
+		}
+		data = get_newdata(data, line);
+		free(line);
+		n++;
+	}
+	*split = ft_split(data, '\n');
+	free(data);
+	return (n);
+}
+
+t_map	parsing(t_data *d, int arc, char *file)
+{
+	char	**filedata;
+	t_map	map;
+	char	**copy;
+	int		n;
+
+	if (arc != 2)
+		error_handler("Error\nInvalid number of arguments\n", 1);
+	n = get_file_data(open(file, O_RDONLY), &filedata);
+	d->player.pos.x = -1;
+	map = get_map(d, filedata, n);
+	copy = map_copy(map);
+	if (floodsearch(map, (t_int_point){(int)d->player.pos.x, \
+	(int)d->player.pos.y}, ' ', '1'))
+		error_handler("Invalid map\n backroom access", 1);
+	free(map.map);
+	map.map = copy;
+	get_texture(d, filedata, &map);
+	free(filedata);
+	return (map);
 }
 
 t_data	*initdata(int argc, char *argv)

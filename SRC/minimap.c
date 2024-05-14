@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 11:02:20 by spook             #+#    #+#             */
-/*   Updated: 2024/05/13 13:24:54 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/14 07:00:53 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,4 @@ void	minimap(t_data *d)
 	d->map.size.y * d->minimap.scale.y}, d->minimapimg);
 	put_walls(d);
 	player(d);
-}	
+}
