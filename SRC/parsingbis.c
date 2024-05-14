@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsingbis.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lvon-war <lvon-war@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 06:53:06 by spook             #+#    #+#             */
-/*   Updated: 2024/05/14 08:29:05 by spook            ###   ########.fr       */
+/*   Updated: 2024/05/14 09:31:54 by lvon-war         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	is_num(char *str)
 int	floodsearch(t_map map, t_int_point p, char seek, char wall)
 {
 	if (p.x < 0 || p.x >= map.size.x || p.y < 0 || p.y >= map.size.y)
-		return (0);
+		return (1);
 	if (map.map[p.y][p.x] == wall)
 		return (0);
 	if (map.map[p.y][p.x] == 'F')
