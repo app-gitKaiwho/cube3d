@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_listmanip.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvon-war <lvonwar42@gmail.com>             +#+  +:+       +#+        */
+/*   By: spook <spook@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 17:41:56 by lvon-war          #+#    #+#             */
-/*   Updated: 2023/05/25 16:46:00 by lvon-war         ###   ########.fr       */
+/*   Updated: 2024/05/14 07:03:29 by spook            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_list	freelist(t_list li, int mode)
 	t_list	temp;
 
 	while (li)
-	{	
+	{
 		if (mode)
 			free(li->mot);
 		temp = li->last;
